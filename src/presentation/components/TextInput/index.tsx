@@ -7,6 +7,7 @@ interface TextInputProps {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 	placeholder?: string
 	label?: string
+	error?: string
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -14,9 +15,10 @@ const TextInput: React.FC<TextInputProps> = ({
 	onChange,
 	placeholder,
 	label,
+	error,
 }) => (
-	<div className={classes.div}>
-		{label && <label className={classes.label}>{label}</label>}
+	<div className={classes.wrapper}>
+		{label && <label className={classes.label}>{label}:</label>}
 		<input
 			className={classes.input}
 			type='text'
@@ -24,6 +26,7 @@ const TextInput: React.FC<TextInputProps> = ({
 			value={value}
 			onChange={onChange}
 		/>
+		<small className={classes.error}>{error}</small>
 	</div>
 )
 

@@ -1,4 +1,4 @@
-import { BASE_URL, QueryName, queryClient, Environment } from '..'
+import { BASE_URL, Environment } from '..'
 
 const baseUrl = `${BASE_URL}/environments`
 
@@ -17,10 +17,11 @@ export namespace EnvironmentRepository {
         const body = JSON.stringify(params)
         const res = await fetch(baseUrl, {
             method: 'POST',
+            headers: {
+                'Content-Type': "application/json"
+            },
             body,
         })
-
-        queryClient.invalidateQueries(QueryName.ENVIRONMENTS)
 
         return res.json()
     }

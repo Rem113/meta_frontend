@@ -1,16 +1,24 @@
-.div {
+.wrapper {
   padding: 0.5rem 0;
 
   .label {
-    font-size: 0.8rem;
-    color: #8e8e8e;
+    font-size: 1rem;
+    color: var(--color-light-text);
     margin-bottom: 0.5rem;
+    display: block;
   }
 
   .input {
-    background: #1f1f1f;
+    background: var(--color-dark-background);
     border: none;
-    padding: 0.5rem;
+    padding: 0.8rem;
     color: white;
+    border-radius: 4px;
+  }
+
+  .error {
+    color: var(--color-error);
+    display: block;
+    margin-top: .25rem;
   }
 }

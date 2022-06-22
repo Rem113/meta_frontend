@@ -1,0 +1,49 @@
+.wrapper {
+  button {
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+
+    &.small {
+      padding: .5rem .75rem;
+      font-size: 1rem;
+    }
+
+    &.medium {
+      padding: .75rem 1rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    &.large {
+
+    }
+
+    &.primary {
+      background: var(--color-primary);
+    }
+
+    &.secondary {
+      background: var(--color-dark-background);
+    }
+
+    &:disabled {
+      background: lightgray;
+    }
+
+    .icon {
+      margin-right: 1rem;
+    }
+
+  }
+
+  .error {
+    color: var(--color-error);
+    display: block;
+    margin-top: .25rem;
+  }
+}

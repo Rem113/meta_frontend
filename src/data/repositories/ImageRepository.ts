@@ -1,4 +1,4 @@
-import { BASE_URL, QueryName, queryClient, Image } from '..'
+import { BASE_URL, Image } from '..'
 
 const baseUrl = `${BASE_URL}/images`
 
@@ -23,8 +23,6 @@ export namespace ImageRepository {
 			method: 'POST',
 			body: formData,
 		})
-
-		queryClient.invalidateQueries(QueryName.IMAGES)
 
 		return res.json()
 	}

@@ -25,7 +25,7 @@
       &.active::after {
         height: .5rem;
         width: .5rem;
-        background-color: var(--primary);
+        background-color: var(--color-primary);
         border-radius: 50%;
         content: "";
         position: absolute;
@@ -37,7 +37,7 @@
       }
 
       &:hover {
-        color: var(--primary);
+        color: var(--color-primary);
       }
     }
   }

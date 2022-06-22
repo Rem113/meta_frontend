@@ -10,7 +10,7 @@ interface FloatingActionButtonProps {
 
 const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({icon, alt, onClick}) => {
     return <>
-        <button className={classes.button} onClick={onClick}>
+        <button className={classes.button} onClick={onClick} type={"button"}>
             <img src={icon} alt={alt}/>
         </button>
     </>

@@ -1,5 +1,5 @@
 .button {
-  background-color: var(--primary);
+  background-color: var(--color-primary);
   border: none;
   border-radius: 50%;
   width: 4rem;
@@ -8,4 +8,7 @@
   right: 1rem;
   bottom: 1rem;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
