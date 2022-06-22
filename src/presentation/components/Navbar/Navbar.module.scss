@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 3.5rem auto;
+
+  .logo {
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    max-width: 600px;
+
+    & > a {
+      color: white;
+      text-decoration: none;
+      position: relative;
+
+      &.active::after {
+        height: .5rem;
+        width: .5rem;
+        background-color: var(--primary);
+        border-radius: 50%;
+        content: "";
+        position: absolute;
+        bottom: -1rem;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
+  }
+}

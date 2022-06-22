@@ -1,17 +1,24 @@
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { QueryClientProvider } from 'react-query'
-import { queryClient } from './src/data'
-import Home from './src/presentation/routes/Home'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {QueryClientProvider} from 'react-query'
+import {queryClient} from './src/data'
+import Images from './src/presentation/routes/Images'
+import Navbar from "./src/presentation/components/Navbar";
+import Wrapper from "./src/presentation/components/Wrapper";
+import Environments from "./src/presentation/routes/Environments";
 
 const App = () => (
-	<QueryClientProvider client={queryClient}>
-		<BrowserRouter>
-			<Routes>
-				<Route path='/' element={<Home />} />
-			</Routes>
-		</BrowserRouter>
-	</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+            <Wrapper>
+                <Navbar/>
+                <Routes>
+                    <Route path='/environments' element={<Environments/>}/>
+                    <Route path='/images' element={<Images/>}/>
+                </Routes>
+            </Wrapper>
+        </BrowserRouter>
+    </QueryClientProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'))
