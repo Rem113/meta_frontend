@@ -7,6 +7,26 @@ export const queryClient = new QueryClient()
 export enum QueryName {
 	ENVIRONMENTS = 'ENVIRONMENTS',
 	IMAGES = 'IMAGES',
+	SCENARIOS = 'SCENARIOS'
+}
+
+export interface Command {
+	name: string
+	description: string
+	path: string
+}
+
+export interface Step {
+	simulatorId: string
+	command: Command
+	arguments: string
+}
+
+export interface Scenario {
+	id: string
+	name: string
+	description: string
+	steps: Step[]
 }
 
 export interface Environment {

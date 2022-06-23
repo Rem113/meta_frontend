@@ -13,8 +13,8 @@ const Navbar: React.FC<null> = () => {
                   to={"/environments"}>Environments</Link>
             <Link className={`${path.startsWith("/images") ? classes.active : ''}`}
                   to={"/images"}>Images</Link>
-            <Link className={`${path.startsWith("/simulators") ? classes.active : ''}`}
-                  to={"/simulators"}>Simulators</Link>
+            <Link className={`${path.startsWith("/scenarios") ? classes.active : ''}`}
+                  to={"/scenarios"}>Scenarios</Link>
             <Link className={`${path.startsWith("/executions") ? classes.active : ''}`}
                   to={"/executions"}>Executions</Link>
             <Link className={`${path.startsWith("/suites") ? classes.active : ''}`}
