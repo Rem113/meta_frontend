@@ -17,7 +17,7 @@ export interface Command {
 }
 
 export interface Step {
-	simulatorId: string
+	imageId: string
 	command: Command
 	arguments: string
 }

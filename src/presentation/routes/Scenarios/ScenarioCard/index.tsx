@@ -1,9 +1,9 @@
 import React from 'react'
 
 import * as classes from './ScenarioCard.module.scss'
-import { Scenario } from '../../../data'
 
-import rightArrow from '../../../assets/icons/right arrow.svg'
+import { Scenario } from '../../../../data'
+import RightArrowIcon from '../../../components/Icons/RightArrowIcon'
 
 interface ScenarioCardProps {
 	scenario: Scenario
@@ -26,7 +26,7 @@ const ScenarioCard: React.FC<ScenarioCardProps> = ({
 				{ellipsized(scenario.description, 70)}
 			</p>
 		</div>
-		<img src={rightArrow} alt={'right arrow'} />
+		<RightArrowIcon />
 	</div>
 )
 

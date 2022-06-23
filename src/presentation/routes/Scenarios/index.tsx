@@ -1,11 +1,11 @@
 import React from 'react'
-import ScenarioCard from '../../components/ScenarioCard'
 import { useQuery } from 'react-query'
 import { QueryName } from '../../../data'
 import { ScenarioRepository } from '../../../data/repositories/ScenarioRepository'
 
-import * as classes from './Scenarios.module.scss'
 import { useNavigate } from 'react-router-dom'
+import * as classes from './Scenarios.module.scss'
+import ScenarioCard from './ScenarioCard'
 
 const Scenarios: React.FC = () => {
 	const {
@@ -13,7 +13,9 @@ const Scenarios: React.FC = () => {
 		isLoading,
 		isError,
 		error,
-	} = useQuery(QueryName.SCENARIOS, ScenarioRepository.all)
+	} = useQuery(QueryName.SCENARIOS, ScenarioRepository.all, {
+		refetchOnWindowFocus: false,
+	})
 
 	const navigate = useNavigate()
 
@@ -26,6 +28,7 @@ const Scenarios: React.FC = () => {
 				{scenarios !== undefined &&
 					scenarios.map(scenario => (
 						<ScenarioCard
+							key={scenario.id}
 							scenario={scenario}
 							onClick={() => navigate(`/scenarios/${scenario.id}`)}
 						/>

@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { QueryName } from '../../../data'
 import { ScenarioRepository } from '../../../data/repositories/ScenarioRepository'
+
+import FloatingActionButton from '../../components/FloatingActionButton'
+
+import * as classes from './ViewScenario.module.scss'
+import ScenarioStep from './ScenarioStep'
+import PlayIcon from '../../components/Icons/PlayIcon'
 
 const ViewScenario: React.FC = () => {
 	const { id: scenarioId } = useParams()
@@ -13,7 +19,7 @@ const ViewScenario: React.FC = () => {
 		isError,
 		error,
 	} = useQuery(
-		QueryName.SCENARIOS,
+		[QueryName.SCENARIOS, scenarioId],
 		() => ScenarioRepository.find(scenarioId!),
 		{
 			refetchOnWindowFocus: false,
@@ -26,15 +32,14 @@ const ViewScenario: React.FC = () => {
 				<>
 					<h1>{scenario.name}</h1>
 					<h3>{scenario.description}</h3>
-					{scenario.steps.map(step => (
-						<>
-							<p>{step.simulatorId}</p>
-							<p>{step.command.name}</p>
-							<p>{step.command.description}</p>
-							<p>{step.command.path}</p>
-							<p>{JSON.stringify(step.arguments)}</p>
-						</>
+					{scenario.steps.map((step, index) => (
+						<ScenarioStep
+							key={step.imageId + index}
+							number={index + 1}
+							step={step}
+						/>
 					))}
+					<FloatingActionButton icon={<PlayIcon />} onClick={() => {}} />
 				</>
 			)}
 		</>

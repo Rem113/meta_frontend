@@ -1,19 +1,23 @@
 import React from 'react'
 
-import * as classes from "./FloatingActionButton.module.scss"
+import * as classes from './FloatingActionButton.module.scss'
 
 interface FloatingActionButtonProps {
-    icon: string
-    alt: string
-    onClick: () => void
+	icon: React.ReactNode
+	onClick: () => void
 }
 
-const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({icon, alt, onClick}) => {
-    return <>
-        <button className={classes.button} onClick={onClick} type={"button"}>
-            <img src={icon} alt={alt}/>
-        </button>
-    </>
+const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({
+	icon,
+	onClick,
+}) => {
+	return (
+		<>
+			<button className={classes.button} onClick={onClick} type={'button'}>
+				{icon}
+			</button>
+		</>
+	)
 }
 
 export default FloatingActionButton
