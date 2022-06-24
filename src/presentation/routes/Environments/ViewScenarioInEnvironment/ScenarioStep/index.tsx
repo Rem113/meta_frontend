@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import Highlight from 'react-highlight'
 
@@ -27,34 +27,46 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({ number, step }) => {
 		{ refetchOnWindowFocus: false }
 	)
 
+	const [showArguments, setShowArguments] = useState(false)
+
+	const toggleShowArguments = () =>
+		setShowArguments(showArguments => !showArguments)
+
 	return (
 		<div className={classes.wrapper}>
-			<h2 className={classes.number}>{number}</h2>
-			<div className={classes.info}>
-				{isLoading && <p>Loading...</p>}
-				{isError && error !== undefined && (
-					<p>Error while getting image name: {error}</p>
-				)}
-				{image !== undefined && (
-					<div className={classes.image}>
-						<h3>{image.tag.name}</h3>
-						<div className={classes['image-info']}>
-							<div className={classes['icon-wrapper']}>
-								<TagIcon className={classes.icon} />
-								<p>{image.tag.version}</p>
-							</div>
-							<div className={classes['icon-wrapper']}>
-								<GlobeIcon className={classes.icon} />
-								<p>/{step.command.path}</p>
+			<div className={classes.inner}>
+				<h2 className={classes.number}>{number}</h2>
+				<div className={classes.info}>
+					{isLoading && <p>Loading...</p>}
+					{isError && error !== undefined && (
+						<p>Error while getting image name: {error}</p>
+					)}
+					{image !== undefined && (
+						<div className={classes.image}>
+							<h3>{image.tag.name}</h3>
+							<div className={classes['image-info']}>
+								<div className={classes['icon-wrapper']}>
+									<TagIcon className={classes.icon} />
+									<p>{image.tag.version}</p>
+								</div>
+								<div className={classes['icon-wrapper']}>
+									<GlobeIcon className={classes.icon} />
+									<p>/{step.command.path}</p>
+								</div>
 							</div>
 						</div>
+					)}
+					<div className={classes.command}>
+						<p>{step.command.name}</p>
+						<small>{step.command.description}</small>
 					</div>
-				)}
-				<div className={classes.command}>
-					<p>{step.command.name}</p>
-					<small>{step.command.description}</small>
 				</div>
-				<Highlight className='json'>
+			</div>
+			<div className={classes.arguments}>
+				<p onClick={toggleShowArguments}>
+					{showArguments ? 'Hide' : 'Show'} arguments
+				</p>
+				<Highlight className={`json ${showArguments ? '' : classes.hidden}`}>
 					{JSON.stringify(step.arguments, null, 4)}
 				</Highlight>
 			</div>
