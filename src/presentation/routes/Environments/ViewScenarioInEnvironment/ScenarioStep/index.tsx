@@ -1,12 +1,12 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import Highlight from 'react-highlight'
+
 import { QueryName, Step } from '../../../../../data'
 import { ImageRepository } from '../../../../../data/repositories/ImageRepository'
 
 import * as classes from './ScenarioStep.module.scss'
 
-import tag from '../../../../assets/icons/tag.svg'
-import globe from '../../../../assets/icons/globe.svg'
 import GlobeIcon from '../../../../components/Icons/GlobeIcon'
 import TagIcon from '../../../../components/Icons/TagIcon'
 
@@ -26,6 +26,7 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({ number, step }) => {
 		() => ImageRepository.find(step.imageId),
 		{ refetchOnWindowFocus: false }
 	)
+
 	return (
 		<div className={classes.wrapper}>
 			<h2 className={classes.number}>{number}</h2>
@@ -37,7 +38,7 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({ number, step }) => {
 				{image !== undefined && (
 					<div className={classes.image}>
 						<h3>{image.tag.name}</h3>
-						<div className={classes["image-info"]}>
+						<div className={classes['image-info']}>
 							<div className={classes['icon-wrapper']}>
 								<TagIcon className={classes.icon} />
 								<p>{image.tag.version}</p>
@@ -51,9 +52,11 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({ number, step }) => {
 				)}
 				<div className={classes.command}>
 					<p>{step.command.name}</p>
-					<p>{step.command.description}</p>
+					<small>{step.command.description}</small>
 				</div>
-				<a className={classes.parameters}>Expand parameters</a>
+				<Highlight className='json'>
+					{JSON.stringify(step.arguments, null, 4)}
+				</Highlight>
 			</div>
 		</div>
 	)

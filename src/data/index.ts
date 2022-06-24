@@ -20,7 +20,7 @@ export interface Command {
 export interface Step {
 	imageId: string
 	command: Command
-	arguments: string
+	arguments: object
 }
 
 export interface Scenario {
