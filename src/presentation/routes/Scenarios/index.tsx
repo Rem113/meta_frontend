@@ -4,8 +4,8 @@ import { QueryName } from '../../../data'
 import { ScenarioRepository } from '../../../data/repositories/ScenarioRepository'
 
 import { useNavigate } from 'react-router-dom'
+import Card from '../../components/Card'
 import * as classes from './Scenarios.module.scss'
-import ScenarioCard from './ScenarioCard'
 
 const Scenarios: React.FC = () => {
 	const {
@@ -27,9 +27,10 @@ const Scenarios: React.FC = () => {
 				{isError && <p>{error}</p>}
 				{scenarios !== undefined &&
 					scenarios.map(scenario => (
-						<ScenarioCard
+						<Card
 							key={scenario.id}
-							scenario={scenario}
+							name={scenario.name}
+							description={scenario.description}
 							onClick={() => navigate(`/scenarios/${scenario.id}`)}
 						/>
 					))}

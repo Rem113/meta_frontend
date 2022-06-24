@@ -13,9 +13,9 @@ const PlayIcon: React.FC<IconProps> = ({ className }) => (
 		<path
 			d='M6 4V20M20 12L6 20M20 12L6 4'
 			stroke='white'
-			stroke-width='2'
-			stroke-linecap='round'
-			stroke-linejoin='round'
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'
 		/>
 	</svg>
 )

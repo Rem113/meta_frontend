@@ -8,6 +8,7 @@ import FloatingActionButton from '../../components/FloatingActionButton'
 
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '../../components/Icons/AddIcon'
+import Card from '../../components/Card'
 
 const Environments: React.FC = () => {
 	const {
@@ -24,14 +25,19 @@ const Environments: React.FC = () => {
 	return (
 		<>
 			<h1 className={classes.title}>Environments</h1>
-			<ul>
-				{isFetching && <p>Loading...</p>}
+			{isFetching && <p>Loading...</p>}
+			<div className={classes.wrapper}>
 				{environments &&
 					environments.map(environment => (
-						<li key={environment.id}>{environment.name}</li>
+						<Card
+							key={environment.id}
+							name={environment.name}
+							description={environment.description}
+							onClick={() => navigate(`/environments/${environment.id}`)}
+						/>
 					))}
-				{isError && error && <p>{error as string}</p>}
-			</ul>
+			</div>
+			{isError && error && <p>{error as string}</p>}
 			<FloatingActionButton
 				icon={<AddIcon />}
 				onClick={() => navigate('/environments/create')}

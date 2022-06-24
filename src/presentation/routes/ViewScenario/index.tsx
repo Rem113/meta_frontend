@@ -26,19 +26,25 @@ const ViewScenario: React.FC = () => {
 		}
 	)
 
+	// const {
+	// 	data: environment
+	// } = useQuery([QueryName.ENVIRONMENTS, environmentId])
+
 	return (
 		<>
 			{scenario !== undefined && (
 				<>
 					<h1>{scenario.name}</h1>
 					<h3>{scenario.description}</h3>
-					{scenario.steps.map((step, index) => (
-						<ScenarioStep
-							key={step.imageId + index}
-							number={index + 1}
-							step={step}
-						/>
-					))}
+					<div className={classes.wrapper}>
+						{scenario.steps.map((step, index) => (
+							<ScenarioStep
+								key={step.imageId + index}
+								number={index + 1}
+								step={step}
+							/>
+						))}
+					</div>
 					<FloatingActionButton icon={<PlayIcon />} onClick={() => {}} />
 				</>
 			)}

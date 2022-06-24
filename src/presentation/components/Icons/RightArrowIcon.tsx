@@ -13,9 +13,9 @@ const RightArrowIcon: React.FC<IconProps> = ({ className }) => (
 		<path
 			d='M4 12H20M13 5L20 12L13 19'
 			stroke='white'
-			stroke-width='2'
-			stroke-linecap='round'
-			stroke-linejoin='round'
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'
 		/>
 	</svg>
 )

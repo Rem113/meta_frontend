@@ -1,0 +1,83 @@
+.wrapper {
+	padding: 1.25rem;
+	background: var(--color-dark-background);
+	width: 100%;
+	border-radius: var(--border-radius);
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	.info {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.image {
+			display: flex;
+			align-items: center;
+			gap: 2rem;
+
+			& > div {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				color: var(--color-light-text);
+			}
+
+			.icon {
+				width: 1rem;
+
+				path {
+					stroke: var(--color-light-text);
+				}
+			}
+		}
+	}
+
+	.config {
+		.value {
+			display: grid;
+			grid-template-columns: 3fr 1fr 6fr;
+			word-break: break-all;
+
+			.arrow {
+				width: 1.25rem;
+			}
+		}
+	}
+
+	.actions {
+		display: flex;
+		justify-content: space-between;
+
+		& > div {
+			display: flex;
+			gap: 0.5rem;
+			cursor: pointer;
+		}
+
+		.edit {
+			color: var(--color-primary);
+
+			.edit-icon {
+				width: 1.25rem;
+
+				path {
+					stroke: var(--color-primary);
+				}
+			}
+		}
+
+		.delete {
+			color: var(--color-error);
+
+			.delete-icon {
+				width: 1.25rem;
+
+				path {
+					stroke: var(--color-error);
+				}
+			}
+		}
+	}
+}

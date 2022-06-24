@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify'
 import CreateImage from './src/presentation/routes/CreateImage'
 import Scenarios from './src/presentation/routes/Scenarios'
 import ViewScenario from './src/presentation/routes/ViewScenario'
+import ViewEnvironment from './src/presentation/routes/ViewEnvironment'
 
 const App = () => (
 	<QueryClientProvider client={queryClient}>
@@ -25,6 +26,7 @@ const App = () => (
 						path={'/environments/create'}
 						element={<CreateEnvironment />}
 					/>
+					<Route path={'/environments/:id'} element={<ViewEnvironment />} />
 					<Route path={'/images'} element={<Images />} />
 					<Route path={'/images/create'} element={<CreateImage />} />
 					<Route path={'/scenarios'} element={<Scenarios />} />

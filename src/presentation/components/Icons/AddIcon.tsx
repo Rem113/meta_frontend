@@ -13,8 +13,8 @@ const AddIcon: React.FC<IconProps> = ({ className }) => (
 		<path
 			d='M12 20V12M12 12V4M12 12H20M12 12H4'
 			stroke='white'
-			stroke-width='2'
-			stroke-linecap='round'
+			strokeWidth='2'
+			strokeLinecap='round'
 		/>
 	</svg>
 )
