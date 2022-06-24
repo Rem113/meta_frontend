@@ -21,6 +21,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "2.3.2",
     "@tsconfig/recommended": "^1.0.1",
+    "@types/node": "^18.0.0",
     "@types/react": "^17.0.40",
     "@types/react-highlight": "^0.12.5",
     "postcss": "^8.0.0",

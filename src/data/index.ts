@@ -1,6 +1,6 @@
 import { QueryClient } from 'react-query'
 
-export const BASE_URL = 'http://127.0.0.1:4000/api'
+export const BASE_URL = `http://${process.env.SERVER_URL}/api`
 
 export const queryClient = new QueryClient()
 
