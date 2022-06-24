@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import TextInput from '../../../components/TextInput'
 import RaisedButton from '../../../components/RaisedButton'
+import TextInput from '../../../components/TextInput'
 
-import add from '../../../assets/icons/add.svg'
-import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import { useMutation } from 'react-query'
-import { queryClient, QueryName } from '../../../../data'
-import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { queryClient, QueryName } from '../../../../data'
+import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import AddIcon from '../../../components/Icons/AddIcon'
+
+import * as classes from './CreateEnvironment.module.scss'
 
 interface CreateEnvironmentFormErrors {
 	name?: string
@@ -54,7 +55,7 @@ const CreateEnvironment: React.FC = () => {
 	}
 
 	return (
-		<>
+		<div className={classes.wrapper}>
 			<h1>Create environment</h1>
 			<form>
 				<TextInput
@@ -63,14 +64,14 @@ const CreateEnvironment: React.FC = () => {
 					label={'Name'}
 					error={errors.name}
 				/>
-				<RaisedButton
-					text={'Add environment'}
-					icon={<AddIcon />}
-					onClick={submit}
-					disabled={isCreatingEnvironment}
-				/>
 			</form>
-		</>
+			<RaisedButton
+				text={'Add environment'}
+				icon={<AddIcon />}
+				onClick={submit}
+				disabled={isCreatingEnvironment}
+			/>
+		</div>
 	)
 }
 

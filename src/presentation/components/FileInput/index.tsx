@@ -41,8 +41,8 @@ const FileInput: React.FC<FileInputProps> = ({
 				icon={<UploadIcon />}
 				size={'small'}
 				color={'secondary'}
-				error={error}
 			/>
+			<small className={classes.error}>{error}</small>
 		</div>
 	)
 }

@@ -23,10 +23,10 @@ const ListEnvironments: React.FC = () => {
 	const navigate = useNavigate()
 
 	return (
-		<>
+		<div className={classes.wrapper}>
 			<h1 className={classes.title}>Environments</h1>
 			{isFetching && <p>Loading...</p>}
-			<div className={classes.wrapper}>
+			<div className={classes.environments}>
 				{environments &&
 					environments.map(environment => (
 						<Card
@@ -42,7 +42,7 @@ const ListEnvironments: React.FC = () => {
 				icon={<AddIcon />}
 				onClick={() => navigate('/environments/create')}
 			/>
-		</>
+		</div>
 	)
 }
 

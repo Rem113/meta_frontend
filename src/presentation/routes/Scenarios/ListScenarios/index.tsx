@@ -20,7 +20,7 @@ const ListScenarios: React.FC = () => {
 	const navigate = useNavigate()
 
 	return (
-		<>
+		<div className={classes.wrapper}>
 			<h1>Scenarios</h1>
 			<div className={classes.scenarios}>
 				{isLoading && <p>Loading...</p>}
@@ -35,7 +35,7 @@ const ListScenarios: React.FC = () => {
 						/>
 					))}
 			</div>
-		</>
+		</div>
 	)
 }
 

@@ -7,7 +7,6 @@ interface RaisedButtonProps {
 	onClick: () => void
 	disabled?: boolean
 	icon?: React.ReactNode
-	error?: string
 	color?: 'primary' | 'secondary'
 	size?: 'small' | 'medium' | 'large'
 }
@@ -17,21 +16,18 @@ const RaisedButton: React.FC<RaisedButtonProps> = ({
 	onClick,
 	disabled,
 	icon,
-	error,
 	color = 'primary',
 	size = 'medium',
 }) => (
-	<div className={classes.wrapper}>
-		<button
-			className={`${classes[size]} ${classes[color]}`}
-			type={'button'}
-			onClick={onClick}
-			disabled={disabled}
-		>
-			{icon}{text}
-		</button>
-		<small className={classes.error}>{error}</small>
-	</div>
+	<button
+		className={`${classes[size]} ${classes[color]}`}
+		type={'button'}
+		onClick={onClick}
+		disabled={disabled}
+	>
+		{icon}
+		{text}
+	</button>
 )
 
 export default RaisedButton

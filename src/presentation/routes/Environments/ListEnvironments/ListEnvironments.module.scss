@@ -1,10 +1,11 @@
 .wrapper {
-	display: grid;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-	gap: 1rem;
-
 	.title {
 		font-size: 2rem;
-		margin-bottom: 1rem;
+		margin-bottom: 3rem;
+	}
+	.environments {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1rem;
 	}
 }

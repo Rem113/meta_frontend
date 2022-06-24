@@ -95,7 +95,7 @@ const CreateImage: React.FC = () => {
 
 	return (
 		<>
-			<h1 className={classes.h1}>Add an image</h1>
+			<h1 className={classes.title}>Add an image</h1>
 			<form onSubmit={submit}>
 				<TextInput
 					value={name}
@@ -121,13 +121,13 @@ const CreateImage: React.FC = () => {
 					onFileSelected={setFile}
 					error={errors.file}
 				/>
-				<RaisedButton
-					text={'Add image'}
-					icon={<AddIcon />}
-					onClick={submit}
-					disabled={isCreatingImage}
-				/>
 			</form>
+			<RaisedButton
+				text={'Add image'}
+				icon={<AddIcon />}
+				onClick={submit}
+				disabled={isCreatingImage}
+			/>
 		</>
 	)
 }

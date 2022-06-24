@@ -1,5 +1,11 @@
-.scenarios {
-	display: grid;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-	gap: 1rem;
+.wrapper {
+	h1 {
+		margin-bottom: 3rem;
+	}
+
+	.scenarios {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1rem;
+	}
 }

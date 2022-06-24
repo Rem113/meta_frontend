@@ -23,7 +23,7 @@ const ViewEnvironment: React.FC = () => {
 	)
 
 	return (
-		<>
+		<div className={classes.wrapper}>
 			{environment !== undefined && <h1>{environment.name}</h1>}
 			<div className={classes.simulators}>
 				{simulators !== undefined &&
@@ -31,7 +31,7 @@ const ViewEnvironment: React.FC = () => {
 						<SimulatorCard key={simulator.id} simulator={simulator} />
 					))}
 			</div>
-		</>
+		</div>
 	)
 }
 
