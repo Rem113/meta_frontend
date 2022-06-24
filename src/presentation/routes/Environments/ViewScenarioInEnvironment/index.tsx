@@ -120,13 +120,13 @@ const ViewScenarioInEnvironment: React.FC = () => {
 				const timestamp_index = log.message.indexOf(' ')
 
 				setLogs(logs => [
-					...logs,
 					{
 						timestamp: log.message.substring(0, timestamp_index),
 						simulatorName: log.simulatorName,
 						message: log.message.substring(timestamp_index),
 						isError: log.isError,
 					},
+					...logs,
 				])
 			}
 		}
@@ -159,7 +159,10 @@ const ViewScenarioInEnvironment: React.FC = () => {
 						</div>
 						<div className={classes.logs}>
 							{logs.map(log => (
-								<p key={log.timestamp} className={log.isError ? classes.error : ""}>
+								<p
+									key={log.timestamp}
+									className={log.isError ? classes.error : ''}
+								>
 									{log.simulatorName}: {log.timestamp} - {log.message}
 								</p>
 							))}
