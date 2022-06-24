@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { QueryName } from '../../../../data'
@@ -22,15 +22,30 @@ interface ScenarioPlayEvent {
 }
 
 interface StepPassed extends ScenarioPlayEvent {
+	step: number
 	message: string
 }
 
 interface StepFailed extends ScenarioPlayEvent {
+	step: number
 	status: string
 	message: string
 }
 
 interface LogReceived extends ScenarioPlayEvent {
+	simulatorName: string
+	message: string
+	isError: boolean
+}
+
+export enum StepState {
+	PASSED = 'passed',
+	FAILED = 'failed',
+	UNKNOWN = 'unknown',
+}
+
+interface Log {
+	timestamp: string
 	simulatorName: string
 	message: string
 	isError: boolean
@@ -53,38 +68,66 @@ const ViewScenarioInEnvironment: React.FC = () => {
 		}
 	)
 
+	const [stepStatus, setStepStatus] = useState<Record<number, StepState>>({})
+	const [stepMessage, setStepMessage] = useState<Record<number, string>>({})
+	const [logs, setLogs] = useState<Log[]>([])
+
 	const playScenario = () => {
 		const websocket = new WebSocket(
 			`ws://${process.env.SERVER_URL}/api/environments/${environmentId}/scenarios/${scenarioId}`
 		)
 
-		let i = 1
-
 		websocket.onmessage = (message: MessageEvent<string>) => {
 			const event = JSON.parse(message.data) as ScenarioPlayEvent
 
 			if (event.type === ScenarioPlayEventType.STEP_PASSED) {
+				const stepPassed = event as StepPassed
 				console.log(
-					`Step ${i} passed with message ${(event as StepPassed).message}`
+					`Step ${stepPassed.step} passed with message ${stepPassed.message}`
 				)
-				i += 1
+				setStepStatus(stepStatus => ({
+					...stepStatus,
+					[stepPassed.step]: StepState.PASSED,
+				}))
+				setStepMessage(stepMessage => ({
+					...stepMessage,
+					[stepPassed.step]: JSON.parse(stepPassed.message).message,
+				}))
 			} else if (event.type === ScenarioPlayEventType.STEP_FAILED) {
+				const stepFailed = event as StepFailed
+
 				console.error(
-					`Step ${i} failed with status ${(event as StepFailed).status}: ${
-						(event as StepFailed).message
-					}`
+					`Step ${stepFailed.step} failed with status ${stepFailed.status}: ${stepFailed.message}`
 				)
-				i += 1
+
+				setStepStatus(stepStatus => ({
+					...stepStatus,
+					[stepFailed.step]: StepState.FAILED,
+				}))
+				setStepMessage(stepMessage => ({
+					...stepMessage,
+					[stepFailed.step]: JSON.parse(stepFailed.message).message,
+				}))
 			} else {
 				const log = event as LogReceived
-
-				console.log(event)
 
 				if (log.isError) {
 					console.error(`${log.simulatorName}: ${log.message}`)
 				} else {
 					console.log(`${log.simulatorName}: ${log.message}`)
 				}
+
+				const timestamp_index = log.message.indexOf(' ')
+
+				setLogs(logs => [
+					...logs,
+					{
+						timestamp: log.message.substring(0, timestamp_index),
+						simulatorName: log.simulatorName,
+						message: log.message.substring(timestamp_index),
+						isError: log.isError,
+					},
+				])
 			}
 		}
 	}
@@ -104,9 +147,16 @@ const ViewScenarioInEnvironment: React.FC = () => {
 								key={step.imageId + index}
 								number={index + 1}
 								step={step}
+								state={stepStatus[index + 1]}
+								message={stepMessage[index + 1]}
 							/>
 						))}
 					</div>
+					{logs.map(log => (
+						<p key={log.timestamp}>
+							{log.simulatorName}: {log.timestamp} - {log.message}
+						</p>
+					))}
 					<FloatingActionButton icon={<PlayIcon />} onClick={playScenario} />
 				</>
 			)}

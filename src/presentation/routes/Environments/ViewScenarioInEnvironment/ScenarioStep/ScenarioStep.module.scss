@@ -73,4 +73,16 @@
 			display: none;
 		}
 	}
+
+	.passed {
+		color: var(--color-success);
+	}
+
+	.failed {
+		color: var(--color-error);
+	}
+
+	.message.passed {
+		color: inherit;
+	}
 }

@@ -9,13 +9,21 @@ import * as classes from './ScenarioStep.module.scss'
 
 import GlobeIcon from '../../../../components/Icons/GlobeIcon'
 import TagIcon from '../../../../components/Icons/TagIcon'
+import { StepState } from '..'
 
 interface ScenarioStepProps {
 	number: number
 	step: Step
+	state?: StepState
+	message?: string
 }
 
-const ScenarioStep: React.FC<ScenarioStepProps> = ({ number, step }) => {
+const ScenarioStep: React.FC<ScenarioStepProps> = ({
+	number,
+	step,
+	state = StepState.UNKNOWN,
+	message,
+}) => {
 	const {
 		data: image,
 		isLoading,
@@ -35,7 +43,7 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({ number, step }) => {
 	return (
 		<div className={classes.wrapper}>
 			<div className={classes.inner}>
-				<h2 className={classes.number}>{number}</h2>
+				<h2 className={`${classes.number} ${classes[state]}`}>{number}</h2>
 				<div className={classes.info}>
 					{isLoading && <p>Loading...</p>}
 					{isError && error !== undefined && (
@@ -70,6 +78,7 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({ number, step }) => {
 					{JSON.stringify(step.arguments, null, 4)}
 				</Highlight>
 			</div>
+			{message && <p className={`${classes.message} ${classes[state]}`}>{message}</p>}
 		</div>
 	)
 }
