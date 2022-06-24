@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import * as classes from '../Images/Images.module.scss'
-import TextInput from '../../components/TextInput'
+import TextInput from '../../../components/TextInput'
 import { useMutation } from 'react-query'
-import { ImageRepository } from '../../../data/repositories/ImageRepository'
-import { queryClient, QueryName } from '../../../data'
-import RaisedButton from '../../components/RaisedButton'
+import { ImageRepository } from '../../../../data/repositories/ImageRepository'
+import { queryClient, QueryName } from '../../../../data'
+import RaisedButton from '../../../components/RaisedButton'
 
 import { toast } from 'react-toastify'
-import FileInput from '../../components/FileInput'
+import FileInput from '../../../components/FileInput'
 import { useNavigate } from 'react-router-dom'
-import AddIcon from '../../components/Icons/AddIcon'
+import AddIcon from '../../../components/Icons/AddIcon'
+
+import * as classes from './CreateImage.module.scss'
 
 interface CreateImageFormErrors {
 	name?: string

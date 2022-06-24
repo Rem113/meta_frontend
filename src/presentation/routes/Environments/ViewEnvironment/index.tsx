@@ -1,8 +1,8 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
-import { QueryName } from '../../../data'
-import { EnvironmentRepository } from '../../../data/repositories/EnvironmentRepository'
+import { QueryName } from '../../../../data'
+import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import SimulatorCard from './SimulatorCard'
 
 import * as classes from "./ViewEnvironment.module.scss"

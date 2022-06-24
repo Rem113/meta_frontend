@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import TextInput from '../../components/TextInput'
-import RaisedButton from '../../components/RaisedButton'
+import TextInput from '../../../components/TextInput'
+import RaisedButton from '../../../components/RaisedButton'
 
 import add from '../../../assets/icons/add.svg'
-import { EnvironmentRepository } from '../../../data/repositories/EnvironmentRepository'
+import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import { useMutation } from 'react-query'
-import { queryClient, QueryName } from '../../../data'
+import { queryClient, QueryName } from '../../../../data'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import AddIcon from '../../components/Icons/AddIcon'
+import AddIcon from '../../../components/Icons/AddIcon'
 
 interface CreateEnvironmentFormErrors {
 	name?: string

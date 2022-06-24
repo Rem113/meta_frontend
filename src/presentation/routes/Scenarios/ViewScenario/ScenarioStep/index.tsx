@@ -1,14 +1,14 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import { QueryName, Step } from '../../../../data'
-import { ImageRepository } from '../../../../data/repositories/ImageRepository'
+import { QueryName, Step } from '../../../../../data'
+import { ImageRepository } from '../../../../../data/repositories/ImageRepository'
 
 import * as classes from './ScenarioStep.module.scss'
 
 import tag from '../../../../assets/icons/tag.svg'
 import globe from '../../../../assets/icons/globe.svg'
-import GlobeIcon from '../../../components/Icons/GlobeIcon'
-import TagIcon from '../../../components/Icons/TagIcon'
+import GlobeIcon from '../../../../components/Icons/GlobeIcon'
+import TagIcon from '../../../../components/Icons/TagIcon'
 
 interface ScenarioStepProps {
 	number: number
