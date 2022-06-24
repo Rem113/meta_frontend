@@ -1,6 +1,11 @@
 .wrapper {
 	h1 {
 		margin-bottom: 3rem;
+
+		strong {
+			font-weight: normal;
+			color: var(--color-primary);
+		}
 	}
 
 	.scenarios {

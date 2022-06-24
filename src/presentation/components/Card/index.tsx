@@ -22,7 +22,7 @@ const Card: React.FC<CardProps> = ({
 	<div className={classes.wrapper} onClick={() => onClick()}>
 		<div className={classes.info}>
 			<h3>{name}</h3>
-			<p className={classes.description}>{ellipsized(description, 70)}</p>
+			<p className={classes.description}>{ellipsized(description, 100)}</p>
 		</div>
 		<RightArrowIcon className={classes.icon} />
 	</div>

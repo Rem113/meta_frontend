@@ -5,10 +5,10 @@ import { QueryName } from '../../../../data'
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import SimulatorCard from './SimulatorCard'
 
-import * as classes from "./ViewEnvironment.module.scss"
+import * as classes from './SimilatorsForEnvironment.module.scss'
 
-const ViewEnvironment: React.FC = () => {
-	const { id: environmentId } = useParams()
+const SimilatorsForEnvironment: React.FC = () => {
+	const { environmentId } = useParams()
 
 	const { data: environment } = useQuery(
 		[QueryName.ENVIRONMENTS, environmentId],
@@ -24,7 +24,11 @@ const ViewEnvironment: React.FC = () => {
 
 	return (
 		<div className={classes.wrapper}>
-			{environment !== undefined && <h1>{environment.name}</h1>}
+			{environment !== undefined && (
+				<h1>
+					Similators for environment <strong>{environment.name}</strong>
+				</h1>
+			)}
 			<div className={classes.simulators}>
 				{simulators !== undefined &&
 					simulators.map(simulator => (
@@ -35,4 +39,4 @@ const ViewEnvironment: React.FC = () => {
 	)
 }
 
-export default ViewEnvironment
+export default SimilatorsForEnvironment

@@ -5,20 +5,22 @@ import { QueryName } from '../../../../data'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
 
 import FloatingActionButton from '../../../components/FloatingActionButton'
-
-import * as classes from './ViewScenario.module.scss'
 import ScenarioStep from './ScenarioStep'
 import PlayIcon from '../../../components/Icons/PlayIcon'
 
-const ViewScenario: React.FC = () => {
-	const { id: scenarioId } = useParams()
+import * as classes from './ViewScenarioInEnvironment.module.scss'
+import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 
-	const {
-		data: scenario,
-		isLoading,
-		isError,
-		error,
-	} = useQuery(
+const ViewScenarioInEnvironment: React.FC = () => {
+	const { environmentId, scenarioId } = useParams()
+
+	const { data: environment } = useQuery(
+		[QueryName.ENVIRONMENTS, environmentId],
+		() => EnvironmentRepository.find(environmentId!),
+		{ refetchOnWindowFocus: false }
+	)
+
+	const { data: scenario } = useQuery(
 		[QueryName.SCENARIOS, scenarioId],
 		() => ScenarioRepository.find(scenarioId!),
 		{
@@ -26,14 +28,13 @@ const ViewScenario: React.FC = () => {
 		}
 	)
 
-	// const {
-	// 	data: environment
-	// } = useQuery([QueryName.ENVIRONMENTS, environmentId])
-
 	return (
 		<>
 			{scenario !== undefined && (
 				<>
+					{environment !== undefined && (
+						<strong className={classes.environment}>{environment.name}</strong>
+					)}
 					<h1>{scenario.name}</h1>
 					<h3>{scenario.description}</h3>
 					<div className={classes.wrapper}>
@@ -52,4 +53,4 @@ const ViewScenario: React.FC = () => {
 	)
 }
 
-export default ViewScenario
+export default ViewScenarioInEnvironment

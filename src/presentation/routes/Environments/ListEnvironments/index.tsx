@@ -9,6 +9,7 @@ import FloatingActionButton from '../../../components/FloatingActionButton'
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '../../../components/Icons/AddIcon'
 import Card from '../../../components/Card'
+import EnvironmentCard from './EnvironmentCard'
 
 const ListEnvironments: React.FC = () => {
 	const {
@@ -29,12 +30,7 @@ const ListEnvironments: React.FC = () => {
 			<div className={classes.environments}>
 				{environments &&
 					environments.map(environment => (
-						<Card
-							key={environment.id}
-							name={environment.name}
-							description={environment.description}
-							onClick={() => navigate(`/environments/${environment.id}`)}
-						/>
+						<EnvironmentCard key={environment.id} environment={environment} />
 					))}
 			</div>
 			{isError && error && <p>{error as string}</p>}

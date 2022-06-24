@@ -1,0 +1,36 @@
+.wrapper {
+	background: var(--color-dark-background);
+	border-radius: var(--border-radius);
+	padding: 1.25rem;
+	gap: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.info {
+		.description {
+			color: var(--color-light-text);
+		}
+	}
+
+	.actions {
+		display: flex;
+		justify-content: end;
+		gap: 2.5rem;
+
+		a {
+			display: flex;
+			gap: 0.5rem;
+			color: var(--color-primary);
+			text-decoration: none;
+
+			svg {
+				width: 1rem;
+
+				path {
+					stroke: var(--color-primary);
+				}
+			}
+		}
+	}
+}

@@ -9,7 +9,6 @@ import Environments from './src/presentation/routes/Environments'
 
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
-import Scenarios from './src/presentation/routes/Scenarios'
 
 const App = () => (
 	<QueryClientProvider client={queryClient}>
@@ -19,7 +18,6 @@ const App = () => (
 				<Routes>
 					<Route path={'environments/*'} element={<Environments />} />
 					<Route path={'images/*'} element={<Images />} />
-					<Route path={'scenarios/*'} element={<Scenarios />} />
 				</Routes>
 			</Wrapper>
 			<ToastContainer />
