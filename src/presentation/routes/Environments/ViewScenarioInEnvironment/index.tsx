@@ -134,32 +134,40 @@ const ViewScenarioInEnvironment: React.FC = () => {
 
 	return (
 		<>
-			{scenario !== undefined && (
-				<>
-					{environment !== undefined && (
-						<strong className={classes.environment}>{environment.name}</strong>
-					)}
-					<h1>{scenario.name}</h1>
-					<h3>{scenario.description}</h3>
-					<div className={classes.wrapper}>
-						{scenario.steps.map((step, index) => (
-							<ScenarioStep
-								key={step.imageId + index}
-								number={index + 1}
-								step={step}
-								state={stepStatus[index + 1]}
-								message={stepMessage[index + 1]}
-							/>
-						))}
-					</div>
-					{logs.map(log => (
-						<p key={log.timestamp}>
-							{log.simulatorName}: {log.timestamp} - {log.message}
-						</p>
-					))}
-					<FloatingActionButton icon={<PlayIcon />} onClick={playScenario} />
-				</>
-			)}
+			<div className={classes.wrapper}>
+				{scenario !== undefined && (
+					<>
+						<div className={classes.scenario}>
+							{environment !== undefined && (
+								<strong className={classes.environment}>
+									{environment.name}
+								</strong>
+							)}
+							<h1>{scenario.name}</h1>
+							<h3>{scenario.description}</h3>
+							<div className={classes.steps}>
+								{scenario.steps.map((step, index) => (
+									<ScenarioStep
+										key={step.imageId + index}
+										number={index + 1}
+										step={step}
+										state={stepStatus[index + 1]}
+										message={stepMessage[index + 1]}
+									/>
+								))}
+							</div>
+						</div>
+						<div className={classes.logs}>
+							{logs.map(log => (
+								<p key={log.timestamp} className={log.isError ? classes.error : ""}>
+									{log.simulatorName}: {log.timestamp} - {log.message}
+								</p>
+							))}
+						</div>
+					</>
+				)}
+			</div>
+			<FloatingActionButton icon={<PlayIcon />} onClick={playScenario} />
 		</>
 	)
 }

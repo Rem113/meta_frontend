@@ -1,15 +1,26 @@
-.environment {
-	font-family: 'JetBrains Mono';
-	font-variant: all-petite-caps;
-	font-size: 1.25rem;
-	letter-spacing: 0.25rem;
-	color: var(--color-primary);
-}
-
 .wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 2.5rem;
-	margin-top: 3rem;
-	width: fit-content;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+
+	.environment {
+		font-family: 'JetBrains Mono';
+		font-variant: all-petite-caps;
+		font-size: 1.25rem;
+		letter-spacing: 0.25rem;
+		color: var(--color-primary);
+	}
+
+	.steps {
+		display: flex;
+		flex-direction: column;
+		gap: 2.5rem;
+		margin-top: 3rem;
+		width: fit-content;
+	}
+
+	.logs {
+		.error {
+			color: var(--color-error);
+		}
+	}
 }
