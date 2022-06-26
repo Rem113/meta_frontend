@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { QueryName } from '../../../../data'
@@ -14,7 +14,7 @@ import * as classes from './ViewScenarioInEnvironment.module.scss'
 enum ScenarioPlayEventType {
 	STEP_PASSED = 'StepPassed',
 	STEP_FAILED = 'StepFailed',
-	LOG = 'Log',
+	LOG_RECEIVED = 'LogReceived',
 }
 
 interface ScenarioPlayEvent {
@@ -80,7 +80,7 @@ const usePlayScenario = (environmentId: string, scenarioId: string) => {
 				}))
 				setStepMessage(stepMessage => ({
 					...stepMessage,
-					[stepPassed.step]: JSON.parse(stepPassed.message),
+					[stepPassed.step]: stepPassed.message,
 				}))
 			} else if (event.type === ScenarioPlayEventType.STEP_FAILED) {
 				const stepFailed = event as StepFailed
@@ -91,7 +91,7 @@ const usePlayScenario = (environmentId: string, scenarioId: string) => {
 				}))
 				setStepMessage(stepMessage => ({
 					...stepMessage,
-					[stepFailed.step]: JSON.parse(stepFailed.message),
+					[stepFailed.step]: stepFailed.message,
 				}))
 			} else {
 				const log = event as LogReceived

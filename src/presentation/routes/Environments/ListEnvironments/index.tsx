@@ -8,7 +8,6 @@ import FloatingActionButton from '../../../components/FloatingActionButton'
 
 import { useNavigate } from 'react-router-dom'
 import AddIcon from '../../../components/Icons/AddIcon'
-import Card from '../../../components/Card'
 import EnvironmentCard from './EnvironmentCard'
 
 const ListEnvironments: React.FC = () => {
@@ -16,7 +15,6 @@ const ListEnvironments: React.FC = () => {
 		data: environments,
 		isFetching,
 		isError,
-		error,
 	} = useQuery(QueryName.ENVIRONMENTS, EnvironmentRepository.all, {
 		refetchOnWindowFocus: false,
 	})
@@ -27,13 +25,17 @@ const ListEnvironments: React.FC = () => {
 		<div className={classes.wrapper}>
 			<h1 className={classes.title}>Environments</h1>
 			{isFetching && <p>Loading...</p>}
+			{isError && (
+				<p>
+					An error has occurred while fetching environments. Please try again later.
+				</p>
+			)}
 			<div className={classes.environments}>
 				{environments &&
 					environments.map(environment => (
 						<EnvironmentCard key={environment.id} environment={environment} />
 					))}
 			</div>
-			{isError && error && <p>{error as string}</p>}
 			<FloatingActionButton
 				icon={<AddIcon />}
 				onClick={() => navigate('/environments/create')}
