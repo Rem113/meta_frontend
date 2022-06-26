@@ -80,7 +80,7 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({
 			</div>
 			{message && (
 				<p className={`${classes.message} ${classes[state]}`}>
-					Message: {message}
+					Message: {JSON.stringify(message)}
 				</p>
 			)}
 		</div>

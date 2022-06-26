@@ -51,6 +51,73 @@ interface Log {
 	isError: boolean
 }
 
+const usePlayScenario = (environmentId: string, scenarioId: string) => {
+	const [stepStatus, setStepStatus] = useState<Record<number, StepState>>({})
+	const [stepMessage, setStepMessage] = useState<Record<number, string>>({})
+	const [logs, setLogs] = useState<Log[]>([])
+	const [isPlaying, setIsPlaying] = useState(false)
+
+	const playScenario = () => {
+		const websocket = new WebSocket(
+			`ws://${process.env.SERVER_URL}/api/environments/${environmentId}/scenarios/${scenarioId}`
+		)
+
+		websocket.onopen = () => {
+			setStepStatus({})
+			setStepMessage({})
+			setLogs([])
+			setIsPlaying(true)
+		}
+
+		websocket.onmessage = (message: MessageEvent<string>) => {
+			const event = JSON.parse(message.data) as ScenarioPlayEvent
+
+			if (event.type === ScenarioPlayEventType.STEP_PASSED) {
+				const stepPassed = event as StepPassed
+				setStepStatus(stepStatus => ({
+					...stepStatus,
+					[stepPassed.step]: StepState.PASSED,
+				}))
+				setStepMessage(stepMessage => ({
+					...stepMessage,
+					[stepPassed.step]: JSON.parse(stepPassed.message),
+				}))
+			} else if (event.type === ScenarioPlayEventType.STEP_FAILED) {
+				const stepFailed = event as StepFailed
+
+				setStepStatus(stepStatus => ({
+					...stepStatus,
+					[stepFailed.step]: StepState.FAILED,
+				}))
+				setStepMessage(stepMessage => ({
+					...stepMessage,
+					[stepFailed.step]: JSON.parse(stepFailed.message),
+				}))
+			} else {
+				const log = event as LogReceived
+
+				const timestamp_index = log.message.indexOf(' ')
+
+				setLogs(logs => [
+					{
+						timestamp: log.message.substring(0, timestamp_index),
+						simulatorName: log.simulatorName,
+						message: log.message.substring(timestamp_index),
+						isError: log.isError,
+					},
+					...logs,
+				])
+			}
+		}
+
+		websocket.onclose = () => {
+			setIsPlaying(false)
+		}
+	}
+
+	return { playScenario, stepStatus, stepMessage, logs, isPlaying }
+}
+
 const ViewScenarioInEnvironment: React.FC = () => {
 	const { environmentId, scenarioId } = useParams()
 
@@ -68,69 +135,8 @@ const ViewScenarioInEnvironment: React.FC = () => {
 		}
 	)
 
-	const [stepStatus, setStepStatus] = useState<Record<number, StepState>>({})
-	const [stepMessage, setStepMessage] = useState<Record<number, string>>({})
-	const [logs, setLogs] = useState<Log[]>([])
-
-	const playScenario = () => {
-		const websocket = new WebSocket(
-			`ws://${process.env.SERVER_URL}/api/environments/${environmentId}/scenarios/${scenarioId}`
-		)
-
-		websocket.onmessage = (message: MessageEvent<string>) => {
-			const event = JSON.parse(message.data) as ScenarioPlayEvent
-
-			if (event.type === ScenarioPlayEventType.STEP_PASSED) {
-				const stepPassed = event as StepPassed
-				console.log(
-					`Step ${stepPassed.step} passed with message ${stepPassed.message}`
-				)
-				setStepStatus(stepStatus => ({
-					...stepStatus,
-					[stepPassed.step]: StepState.PASSED,
-				}))
-				setStepMessage(stepMessage => ({
-					...stepMessage,
-					[stepPassed.step]: JSON.parse(stepPassed.message).message,
-				}))
-			} else if (event.type === ScenarioPlayEventType.STEP_FAILED) {
-				const stepFailed = event as StepFailed
-
-				console.error(
-					`Step ${stepFailed.step} failed with status ${stepFailed.status}: ${stepFailed.message}`
-				)
-
-				setStepStatus(stepStatus => ({
-					...stepStatus,
-					[stepFailed.step]: StepState.FAILED,
-				}))
-				setStepMessage(stepMessage => ({
-					...stepMessage,
-					[stepFailed.step]: JSON.parse(stepFailed.message).message,
-				}))
-			} else {
-				const log = event as LogReceived
-
-				if (log.isError) {
-					console.error(`${log.simulatorName}: ${log.message}`)
-				} else {
-					console.log(`${log.simulatorName}: ${log.message}`)
-				}
-
-				const timestamp_index = log.message.indexOf(' ')
-
-				setLogs(logs => [
-					{
-						timestamp: log.message.substring(0, timestamp_index),
-						simulatorName: log.simulatorName,
-						message: log.message.substring(timestamp_index),
-						isError: log.isError,
-					},
-					...logs,
-				])
-			}
-		}
-	}
+	const { playScenario, stepStatus, stepMessage, logs, isPlaying } =
+		usePlayScenario(environmentId!, scenarioId!)
 
 	return (
 		<>
@@ -170,7 +176,11 @@ const ViewScenarioInEnvironment: React.FC = () => {
 					</>
 				)}
 			</div>
-			<FloatingActionButton icon={<PlayIcon />} onClick={playScenario} />
+			<FloatingActionButton
+				icon={<PlayIcon />}
+				onClick={playScenario}
+				disabled={isPlaying}
+			/>
 		</>
 	)
 }
