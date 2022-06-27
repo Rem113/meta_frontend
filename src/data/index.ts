@@ -55,6 +55,7 @@ export interface Image {
 export interface Simulator {
 	id: string
 	name: string
+	port: number
 	imageId: string
 	configuration: Record<string, string>
 }

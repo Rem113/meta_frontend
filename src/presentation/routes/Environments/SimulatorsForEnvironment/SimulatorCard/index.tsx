@@ -7,6 +7,7 @@ import EditIcon from '../../../../components/Icons/EditIcon'
 import FileIcon from '../../../../components/Icons/FileIcon'
 import RightArrowIcon from '../../../../components/Icons/RightArrowIcon'
 import TagIcon from '../../../../components/Icons/TagIcon'
+import WifiIcon from '../../../../components/Icons/WifiIcon'
 
 import * as classes from './SimulatorCard.module.scss'
 
@@ -25,13 +26,17 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({ simulator }) => {
 			<div className={classes.info}>
 				<h2>{simulator.name}</h2>
 				<div className={classes.image}>
-					<div>
+					<div title='image name'>
 						<FileIcon className={classes.icon} />
-						{image !== undefined && image.tag.name}
+						{image !== undefined && <p>{image.tag.name}</p>}
 					</div>
-					<div>
+					<div title='version'>
 						<TagIcon className={classes.icon} />
-						{image !== undefined && image.tag.version}
+						{image !== undefined && <p>{image.tag.version}</p>}
+					</div>
+					<div title='port'>
+						<WifiIcon className={classes.icon} />
+						<p>{simulator.port}</p>
 					</div>
 				</div>
 			</div>
