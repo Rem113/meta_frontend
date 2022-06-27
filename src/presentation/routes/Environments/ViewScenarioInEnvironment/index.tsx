@@ -35,10 +35,15 @@ interface StepFailed extends ScenarioPlayEvent {
 	message: string
 }
 
-interface LogReceived extends ScenarioPlayEvent {
+interface LogMessage {
 	simulatorName: string
+	timestamp: string
 	message: string
 	isError: boolean
+}
+
+interface LogReceived extends ScenarioPlayEvent {
+	logMessage: LogMessage
 }
 
 export enum StepState {
@@ -48,17 +53,10 @@ export enum StepState {
 	UNKNOWN = 'unknown',
 }
 
-interface Log {
-	timestamp: string
-	simulatorName: string
-	message: string
-	isError: boolean
-}
-
 const usePlayScenario = (environmentId: string, scenarioId: string) => {
 	const [stepStatus, setStepStatus] = useState<Record<number, StepState>>({})
 	const [stepMessage, setStepMessage] = useState<Record<number, string>>({})
-	const [logs, setLogs] = useState<Log[]>([])
+	const [logs, setLogs] = useState<LogMessage[]>([])
 	const [isPlaying, setIsPlaying] = useState(false)
 
 	const playScenario = () => {
@@ -104,19 +102,9 @@ const usePlayScenario = (environmentId: string, scenarioId: string) => {
 					[stepFailed.step]: stepFailed.message,
 				}))
 			} else {
-				const log = event as LogReceived
+				const logMessage = (event as LogReceived).logMessage
 
-				const timestamp_index = log.message.indexOf(' ')
-
-				setLogs(logs => [
-					{
-						timestamp: log.message.substring(0, timestamp_index),
-						simulatorName: log.simulatorName,
-						message: log.message.substring(timestamp_index),
-						isError: log.isError,
-					},
-					...logs,
-				])
+				setLogs(logs => [logMessage, ...logs])
 			}
 		}
 
