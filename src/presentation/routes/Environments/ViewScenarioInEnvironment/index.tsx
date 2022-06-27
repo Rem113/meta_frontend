@@ -12,6 +12,7 @@ import { EnvironmentRepository } from '../../../../data/repositories/Environment
 import * as classes from './ViewScenarioInEnvironment.module.scss'
 
 enum ScenarioPlayEventType {
+	SCENARIO_STARTING = 'ScenarioStarting',
 	STEP_PASSED = 'StepPassed',
 	STEP_FAILED = 'StepFailed',
 	LOG_RECEIVED = 'LogReceived',
@@ -20,6 +21,8 @@ enum ScenarioPlayEventType {
 interface ScenarioPlayEvent {
 	type: ScenarioPlayEventType
 }
+
+interface ScenarioStarting extends ScenarioPlayEvent {}
 
 interface StepPassed extends ScenarioPlayEvent {
 	step: number
@@ -41,6 +44,7 @@ interface LogReceived extends ScenarioPlayEvent {
 export enum StepState {
 	PASSED = 'passed',
 	FAILED = 'failed',
+	RUNNING = 'running',
 	UNKNOWN = 'unknown',
 }
 
@@ -72,11 +76,17 @@ const usePlayScenario = (environmentId: string, scenarioId: string) => {
 		websocket.onmessage = (message: MessageEvent<string>) => {
 			const event = JSON.parse(message.data) as ScenarioPlayEvent
 
-			if (event.type === ScenarioPlayEventType.STEP_PASSED) {
+			if (event.type === ScenarioPlayEventType.SCENARIO_STARTING) {
+				setStepStatus(stepStatus => ({
+					...stepStatus,
+					1: StepState.RUNNING,
+				}))
+			} else if (event.type === ScenarioPlayEventType.STEP_PASSED) {
 				const stepPassed = event as StepPassed
 				setStepStatus(stepStatus => ({
 					...stepStatus,
 					[stepPassed.step]: StepState.PASSED,
+					[stepPassed.step + 1]: StepState.RUNNING,
 				}))
 				setStepMessage(stepMessage => ({
 					...stepMessage,

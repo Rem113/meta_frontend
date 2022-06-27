@@ -78,11 +78,11 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({
 					{JSON.stringify(step.arguments, null, 4)}
 				</Highlight>
 			</div>
-			{message && (
+			{/* {message && (
 				<p className={`${classes.message} ${classes[state]}`}>
 					Returned: {JSON.stringify(message)}
 				</p>
-			)}
+			)} */}
 		</div>
 	)
 }
