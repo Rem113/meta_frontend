@@ -1,4 +1,5 @@
 import { QueryClient } from 'react-query'
+import { ScenarioPlayingEvent } from './scenario'
 
 export const BASE_URL = `http://${process.env.SERVER_URL}/api`
 
@@ -6,6 +7,7 @@ export const queryClient = new QueryClient()
 
 export enum QueryName {
 	ENVIRONMENTS = 'ENVIRONMENTS',
+	EXECUTIONS = 'EXECUTIONS',
 	IMAGES = 'IMAGES',
 	SCENARIOS = 'SCENARIOS',
 	SIMULATORS = 'SIMULATORS',
@@ -58,4 +60,10 @@ export interface Simulator {
 	port: number
 	imageId: string
 	configuration: Record<string, string>
+}
+
+export interface Execution {
+	timestamp: string,
+    events: ScenarioPlayingEvent[],
+    successful: boolean,
 }

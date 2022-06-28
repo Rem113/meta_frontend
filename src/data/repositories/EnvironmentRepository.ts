@@ -1,4 +1,4 @@
-import { BASE_URL, Environment, Simulator } from '..'
+import { BASE_URL, Environment, Execution, Simulator } from '..'
 
 const baseUrl = `${BASE_URL}/environments`
 
@@ -37,6 +37,21 @@ export namespace EnvironmentRepository {
 	export const simulatorsFor = async (id: string): Promise<Simulator[]> => {
 		console.log(`Querying simulators for environment with id ${id}...`)
 		const res = await fetch(`${baseUrl}/${id}/simulators`)
+		return res.json()
+	}
+
+	export const executionsFor = async (
+		environmentId: string,
+		scenarioId: string
+	): Promise<Execution[]> => {
+		console.log(
+			`Querying executions for scenario with id ${scenarioId} in environment ${environmentId}...`
+		)
+
+		const res = await fetch(
+			`${baseUrl}/${environmentId}/scenarios/${scenarioId}/executions`
+		)
+
 		return res.json()
 	}
 }

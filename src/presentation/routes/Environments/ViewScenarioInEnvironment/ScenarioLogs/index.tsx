@@ -1,5 +1,5 @@
 import React from 'react'
-import { LogMessage } from '../../../../../hooks/usePlayScenario'
+import { LogMessage } from '../../../../../data/scenario'
 import ClockIcon from '../../../../components/Icons/ClockIcon'
 
 import * as classes from './ScenarioLogs.module.scss'

@@ -12,6 +12,7 @@ import usePlayScenario from '../../../../hooks/usePlayScenario'
 import ScenarioLogs from './ScenarioLogs'
 
 import * as classes from './ViewScenarioInEnvironment.module.scss'
+import ScenarioExecutions from './ScenarioExecutions'
 
 const ViewScenarioInEnvironment: React.FC = () => {
 	const { environmentId, scenarioId } = useParams()
@@ -38,7 +39,13 @@ const ViewScenarioInEnvironment: React.FC = () => {
 							stepStatus={stepStatus}
 							stepMessage={stepMessage}
 						/>
-						<ScenarioLogs logs={logs} />
+						<div className={classes.info}>
+							<ScenarioExecutions
+								environmentId={environmentId!}
+								scenarioId={scenarioId!}
+							/>
+							<ScenarioLogs logs={logs} />
+						</div>
 					</>
 				)}
 			</div>

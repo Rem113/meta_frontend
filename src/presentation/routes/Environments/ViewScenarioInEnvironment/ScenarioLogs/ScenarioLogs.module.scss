@@ -3,10 +3,6 @@
 	flex-direction: column;
 	gap: 0.5rem;
 
-	h1 {
-		margin-top: 1.65rem;
-	}
-
 	.log {
 		display: grid;
 		grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) 8fr;

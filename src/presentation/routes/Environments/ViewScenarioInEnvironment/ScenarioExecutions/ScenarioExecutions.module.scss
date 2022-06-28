@@ -1,0 +1,12 @@
+.wrapper {
+	.last {
+		color: var(--color-light-text);
+		margin-bottom: 1rem;
+	}
+
+	.executions {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+}

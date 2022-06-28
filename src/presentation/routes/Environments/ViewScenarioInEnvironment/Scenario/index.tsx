@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { QueryName, Scenario } from '../../../../../data'
 import { EnvironmentRepository } from '../../../../../data/repositories/EnvironmentRepository'
-import { StepState } from '../../../../../hooks/usePlayScenario'
+import { StepState } from '../../../../../data/scenario'
 import ScenarioStep from '../ScenarioStep'
 
 import * as classes from './Scenario.module.scss'

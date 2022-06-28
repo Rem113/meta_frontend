@@ -1,44 +1,13 @@
 import { useState } from 'react'
-
-enum ScenarioPlayEventType {
-	SCENARIO_STARTING = 'ScenarioStarting',
-	STEP_PASSED = 'StepPassed',
-	STEP_FAILED = 'StepFailed',
-	LOG_RECEIVED = 'LogReceived',
-}
-
-interface ScenarioPlayEvent {
-	type: ScenarioPlayEventType
-}
-
-interface StepPassed extends ScenarioPlayEvent {
-	step: number
-	message: string
-}
-
-interface StepFailed extends ScenarioPlayEvent {
-	step: number
-	status: string
-	message: string
-}
-
-export interface LogMessage {
-	simulatorName: string
-	timestamp: string
-	message: string
-	isError: boolean
-}
-
-interface LogReceived extends ScenarioPlayEvent {
-	logMessage: LogMessage
-}
-
-export enum StepState {
-	PASSED = 'passed',
-	FAILED = 'failed',
-	RUNNING = 'running',
-	UNKNOWN = 'unknown',
-}
+import {
+	LogMessage,
+	LogReceived,
+	ScenarioPlayingEvent,
+	ScenarioPlayingEventType,
+	StepFailed,
+	StepPassed,
+	StepState,
+} from '../data/scenario'
 
 const usePlayScenario = (environmentId: string, scenarioId: string) => {
 	const [stepStatus, setStepStatus] = useState<Record<number, StepState>>({})
@@ -59,14 +28,14 @@ const usePlayScenario = (environmentId: string, scenarioId: string) => {
 		}
 
 		websocket.onmessage = (message: MessageEvent<string>) => {
-			const event = JSON.parse(message.data) as ScenarioPlayEvent
+			const event = JSON.parse(message.data) as ScenarioPlayingEvent
 
-			if (event.type === ScenarioPlayEventType.SCENARIO_STARTING) {
+			if (event.type === ScenarioPlayingEventType.SCENARIO_STARTING) {
 				setStepStatus(stepStatus => ({
 					...stepStatus,
 					1: StepState.RUNNING,
 				}))
-			} else if (event.type === ScenarioPlayEventType.STEP_PASSED) {
+			} else if (event.type === ScenarioPlayingEventType.STEP_PASSED) {
 				const stepPassed = event as StepPassed
 				setStepStatus(stepStatus => ({
 					...stepStatus,
@@ -77,7 +46,7 @@ const usePlayScenario = (environmentId: string, scenarioId: string) => {
 					...stepMessage,
 					[stepPassed.step]: stepPassed.message,
 				}))
-			} else if (event.type === ScenarioPlayEventType.STEP_FAILED) {
+			} else if (event.type === ScenarioPlayingEventType.STEP_FAILED) {
 				const stepFailed = event as StepFailed
 
 				setStepStatus(stepStatus => ({
