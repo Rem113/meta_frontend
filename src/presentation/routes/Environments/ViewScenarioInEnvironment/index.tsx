@@ -10,6 +10,7 @@ import ScenarioStep from './ScenarioStep'
 
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import * as classes from './ViewScenarioInEnvironment.module.scss'
+import ClockIcon from '../../../components/Icons/ClockIcon'
 
 enum ScenarioPlayEventType {
 	SCENARIO_STARTING = 'ScenarioStarting',
@@ -21,8 +22,6 @@ enum ScenarioPlayEventType {
 interface ScenarioPlayEvent {
 	type: ScenarioPlayEventType
 }
-
-interface ScenarioStarting extends ScenarioPlayEvent {}
 
 interface StepPassed extends ScenarioPlayEvent {
 	step: number
@@ -52,6 +51,8 @@ export enum StepState {
 	RUNNING = 'running',
 	UNKNOWN = 'unknown',
 }
+
+const pad = (number: number) => (number < 10 ? `0${number}` : number)
 
 const usePlayScenario = (environmentId: string, scenarioId: string) => {
 	const [stepStatus, setStepStatus] = useState<Record<number, StepState>>({})
@@ -162,14 +163,30 @@ const ViewScenarioInEnvironment: React.FC = () => {
 							</div>
 						</div>
 						<div className={classes.logs}>
-							{logs.map(log => (
-								<p
-									key={log.timestamp}
-									className={log.isError ? classes.error : ''}
-								>
-									{log.simulatorName}: {log.timestamp} - {log.message}
-								</p>
-							))}
+							<h1>Logs</h1>
+							{logs.map((log, index) => {
+								const timestamp = new Date(log.timestamp)
+								return (
+									<div key={log.simulatorName + index} className={classes.log}>
+										<p className={classes.timestamp}>
+											<ClockIcon className={classes['timestamp-icon']} />
+											<span>{`${pad(timestamp.getHours())}:${pad(
+												timestamp.getMinutes()
+											)}:${pad(timestamp.getSeconds())}`}</span>
+										</p>
+										<p className={classes['simulator-name']}>
+											{log.simulatorName}
+										</p>
+										<p
+											className={`${log.isError ? classes.error : ''} ${
+												classes.message
+											}`}
+										>
+											{log.message}
+										</p>
+									</div>
+								)
+							})}
 						</div>
 					</>
 				)}

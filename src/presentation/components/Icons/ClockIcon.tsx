@@ -1,7 +1,7 @@
 import React from 'react'
 import IconProps from './IconProps'
 
-const WifiIcon: React.FC<IconProps> = ({ className }) => (
+const ClockIcon: React.FC<IconProps> = ({ className }) => (
 	<svg
 		width='24'
 		height='24'
@@ -11,14 +11,14 @@ const WifiIcon: React.FC<IconProps> = ({ className }) => (
 		className={className}
 	>
 		<path
-			d='M2 10C8 3.33301 16 3.33301 22 10M6 14C9.6 10 14.4 10 18 14'
+			d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z'
 			stroke='white'
 			strokeWidth='2'
 			strokeLinecap='round'
 			strokeLinejoin='round'
 		/>
 		<path
-			d='M12 19C12.5523 19 13 18.5523 13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19 12 19Z'
+			d='M15 16L12.586 13.586C12.2109 13.211 12.0001 12.7024 12 12.172V6'
 			stroke='white'
 			strokeWidth='2'
 			strokeLinecap='round'
@@ -27,4 +27,4 @@ const WifiIcon: React.FC<IconProps> = ({ className }) => (
 	</svg>
 )
 
-export default WifiIcon
+export default ClockIcon
