@@ -27,7 +27,8 @@ const ListEnvironments: React.FC = () => {
 			{isFetching && <p>Loading...</p>}
 			{isError && (
 				<p>
-					An error has occurred while fetching environments. Please try again later.
+					An error has occurred while fetching environments. Please try again
+					later.
 				</p>
 			)}
 			<div className={classes.environments}>

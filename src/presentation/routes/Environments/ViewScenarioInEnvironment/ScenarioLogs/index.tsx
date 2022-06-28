@@ -14,7 +14,7 @@ const ScenarioLogs: React.FC<ScenarioLogsProps> = ({ logs }) => {
 	return (
 		<div className={classes.wrapper}>
 			<h1>Logs</h1>
-            {logs.length === 0 && <p>No logs</p>}
+			{logs.length === 0 && <p>No logs for now.</p>}
 			{logs.map((log, index) => {
 				const timestamp = new Date(log.timestamp)
 				return (

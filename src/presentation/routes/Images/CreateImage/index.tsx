@@ -38,12 +38,6 @@ const CreateImage: React.FC = () => {
 
 	const navigate = useNavigate()
 
-	const change =
-		(callback: (value: string) => void) =>
-		(e: React.ChangeEvent<HTMLInputElement>): void => {
-			callback(e.target.value)
-		}
-
 	const validate = (
 		name: string,
 		version: string,
@@ -99,19 +93,19 @@ const CreateImage: React.FC = () => {
 			<form onSubmit={submit}>
 				<TextInput
 					value={name}
-					onChange={change(setName)}
+					onChange={setName}
 					label={'Name'}
 					error={errors.name}
 				/>
 				<TextInput
 					value={version}
-					onChange={change(setVersion)}
+					onChange={setVersion}
 					label={'Version'}
 					error={errors.version}
 				/>
 				<TextInput
 					value={commands}
-					onChange={change(setCommands)}
+					onChange={setCommands}
 					label={'Commands'}
 					error={errors.command}
 				/>

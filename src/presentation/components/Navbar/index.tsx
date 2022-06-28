@@ -27,6 +27,12 @@ const Navbar: React.FC<null> = () => {
 					Images
 				</Link>
 				<Link
+					className={`${path.startsWith('/scenarios') ? classes.active : ''}`}
+					to={'/scenarios'}
+				>
+					Scenarios
+				</Link>
+				<Link
 					className={`${path.startsWith('/executions') ? classes.active : ''}`}
 					to={'/executions'}
 				>

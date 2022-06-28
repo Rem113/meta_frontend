@@ -60,7 +60,7 @@ const CreateEnvironment: React.FC = () => {
 			<form>
 				<TextInput
 					value={name}
-					onChange={e => setName(e.currentTarget.value)}
+					onChange={setName}
 					label={'Name'}
 					error={errors.name}
 				/>

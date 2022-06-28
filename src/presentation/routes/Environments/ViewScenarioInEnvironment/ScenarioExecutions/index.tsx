@@ -23,7 +23,7 @@ const ScenarioExecutions: React.FC<ScenarioExecutionsProps> = ({
 
 	const successfulExecutions =
 		executions !== undefined
-			? executions.filter(execution => execution.successful)
+			? executions.reverse().filter(execution => execution.successful)
 			: []
 	const lastSuccessfulExecutionText =
 		successfulExecutions.length > 0
@@ -37,13 +37,18 @@ const ScenarioExecutions: React.FC<ScenarioExecutionsProps> = ({
 			<h1>Executions</h1>
 			<p className={classes.last}>{lastSuccessfulExecutionText}</p>
 			{executions !== undefined && executions.length === 0 && (
-				<p>No executions</p>
+				<p>No executions found.</p>
 			)}
 			<div className={classes.executions}>
 				{executions !== undefined &&
-					executions.map(execution => (
-						<ExecutionSummary key={execution.timestamp} execution={execution} />
-					))}
+					executions
+						.reverse()
+						.map(execution => (
+							<ExecutionSummary
+								key={execution.timestamp}
+								execution={execution}
+							/>
+						))}
 			</div>
 		</div>
 	)

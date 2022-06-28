@@ -4,7 +4,7 @@ import * as classes from './TextInput.module.scss'
 
 interface TextInputProps {
 	value: string
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onChange: (value: string) => void
 	placeholder?: string
 	label?: string
 	error?: string
@@ -24,7 +24,7 @@ const TextInput: React.FC<TextInputProps> = ({
 			type='text'
 			placeholder={placeholder}
 			value={value}
-			onChange={onChange}
+			onChange={e => onChange(e.currentTarget.value)}
 		/>
 		<small className={classes.error}>{error}</small>
 	</div>

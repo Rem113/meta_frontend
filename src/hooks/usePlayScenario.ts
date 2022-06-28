@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { queryClient, QueryName } from '../data'
 import {
 	LogMessage,
 	LogReceived,
@@ -66,6 +67,7 @@ const usePlayScenario = (environmentId: string, scenarioId: string) => {
 
 		websocket.onclose = () => {
 			setIsPlaying(false)
+			queryClient.invalidateQueries(QueryName.EXECUTIONS)
 		}
 	}
 
