@@ -1,0 +1,48 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	h1 {
+		margin-top: 1.65rem;
+	}
+
+	.log {
+		display: grid;
+		grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) 8fr;
+		gap: 1rem;
+
+		.timestamp {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			color: var(--color-light-text);
+
+			.timestamp-icon {
+				width: 1rem;
+
+				path {
+					stroke: var(--color-light-text);
+				}
+			}
+
+			span {
+				font-family: 'JetBrains Mono';
+			}
+		}
+
+		.simulator-name {
+			display: flex;
+			align-items: center;
+		}
+
+		.message {
+			display: flex;
+			align-items: center;
+		}
+
+		.error {
+			color: var(--color-error);
+		}
+	}
+}

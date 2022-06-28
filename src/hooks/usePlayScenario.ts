@@ -22,7 +22,7 @@ interface StepFailed extends ScenarioPlayEvent {
 	message: string
 }
 
-interface LogMessage {
+export interface LogMessage {
 	simulatorName: string
 	timestamp: string
 	message: string

@@ -27,7 +27,7 @@ const Scenario: React.FC<ScenarioProps> = ({
 	)
 
 	return (
-		<div className={classes.scenario}>
+		<div>
 			{environment !== undefined && (
 				<strong className={classes.environment}>{environment.name}</strong>
 			)}
