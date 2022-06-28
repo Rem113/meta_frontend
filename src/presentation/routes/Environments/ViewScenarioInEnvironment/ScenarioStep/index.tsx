@@ -9,7 +9,7 @@ import * as classes from './ScenarioStep.module.scss'
 
 import GlobeIcon from '../../../../components/Icons/GlobeIcon'
 import TagIcon from '../../../../components/Icons/TagIcon'
-import { StepState } from '..'
+import { StepState } from '../../../../../hooks/usePlayScenario'
 
 interface ScenarioStepProps {
 	number: number

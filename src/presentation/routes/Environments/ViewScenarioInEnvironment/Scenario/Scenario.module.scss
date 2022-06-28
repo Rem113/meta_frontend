@@ -1,0 +1,14 @@
+.environment {
+	font-family: 'JetBrains Mono';
+	font-variant: all-petite-caps;
+	font-size: 1.25rem;
+	letter-spacing: 0.25rem;
+	color: var(--color-primary);
+}
+
+.steps {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	margin-top: 3rem;
+}
