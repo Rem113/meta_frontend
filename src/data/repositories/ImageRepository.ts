@@ -1,13 +1,19 @@
-import { BASE_URL, Image } from '..'
+import { BASE_URL, Command, Image, Tag } from '..'
 
 const baseUrl = `${BASE_URL}/images`
 
-export interface CreateImageParams {
-	file: File
-	data: Image
-}
-
 export namespace ImageRepository {
+	export interface CreateImageParams {
+		file: File
+		data: ImageData
+	}
+
+	export interface ImageData {
+		tag: Tag
+		description: string
+		commands: Command[]
+	}
+
 	export const all = async (): Promise<Image[]> => {
 		console.log('Querying images...')
 		const res = await fetch(baseUrl)

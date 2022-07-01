@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import FloatingActionButton from '../../../components/FloatingActionButton'
 import AddIcon from '../../../components/Icons/AddIcon'
 import * as classes from './ListImages.module.scss'
+import Card from '../../../components/Card'
 
 const ListImages: React.FC = () => {
 	const {
@@ -20,8 +21,8 @@ const ListImages: React.FC = () => {
 	const navigate = useNavigate()
 
 	return (
-		<>
-			<h1 className={classes.h1}>Images</h1>
+		<div className={classes.wrapper}>
+			<h1>Images</h1>
 			{isFetching && <p>Loading...</p>}
 			{isError && (
 				<p>
@@ -29,20 +30,21 @@ const ListImages: React.FC = () => {
 					try again later
 				</p>
 			)}
-			{images !== undefined && (
-				<ul>
-					{images.map(image => (
-						<li key={`${image.tag.name}:${image.tag.version}`}>
-							{image.tag.name}: {image.tag.version}
-						</li>
+			<div className={classes.images}>
+				{images !== undefined &&
+					images.map(image => (
+						<Card
+							key={image.id}
+							name={`${image.tag.name}:${image.tag.version}`}
+							description={image.description}
+						/>
 					))}
-				</ul>
-			)}
+			</div>
 			<FloatingActionButton
 				icon={<AddIcon />}
 				onClick={() => navigate('/images/create')}
 			/>
-		</>
+		</div>
 	)
 }
 

@@ -51,6 +51,7 @@ export interface Command {
 
 export interface Image {
 	id: string
+	description: string
 	tag: Tag
 	commands: Command[]
 }
@@ -65,7 +66,7 @@ export interface Simulator {
 
 export interface Execution {
 	id: string
-	timestamp: string,
-    events: ScenarioPlayingEvent[],
-    successful: boolean,
+	timestamp: string
+	events: ScenarioPlayingEvent[]
+	successful: boolean
 }

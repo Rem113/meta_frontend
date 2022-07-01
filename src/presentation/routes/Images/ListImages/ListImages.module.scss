@@ -1,4 +1,12 @@
-.h1 {
-	font-size: 2rem;
-	margin-bottom: 3rem;
+.wrapper {
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 3rem;
+	}
+
+	.images {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1rem;
+	}
 }

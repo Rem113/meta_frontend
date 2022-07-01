@@ -15,6 +15,7 @@ import * as classes from './CreateImage.module.scss'
 interface CreateImageFormErrors {
 	name?: string
 	version?: string
+	description?: string
 	command?: string
 	file?: string
 }
@@ -23,15 +24,13 @@ const CreateImage: React.FC = () => {
 	const {
 		mutateAsync: createImage,
 		isLoading: isCreatingImage,
-		isError: failedCreatingImage,
-		isSuccess: successfullyCreatedImage,
-		error: createImageError,
 	} = useMutation(ImageRepository.create, {
 		onSuccess: () => queryClient.invalidateQueries(QueryName.IMAGES),
 	})
 
 	const [name, setName] = useState<string>('')
 	const [version, setVersion] = useState<string>('')
+	const [description, setDescription] = useState<string>('')
 	const [commands, setCommands] = useState<string>('')
 	const [file, setFile] = useState<File | null>(null)
 	const [errors, setErrors] = useState<CreateImageFormErrors>({})
@@ -49,6 +48,8 @@ const CreateImage: React.FC = () => {
 		if (name.trim().length === 0) errors.name = 'Please enter a name'
 		if (version.trim().length === 0)
 			errors.version = 'Please enter a version number'
+		if (description.trim().length === 0)
+			errors.description = 'Please enter a description'
 		// TODO: Validate command schema
 		if (file === null) errors.file = 'Please select a file'
 
@@ -67,6 +68,7 @@ const CreateImage: React.FC = () => {
 						name,
 						version,
 					},
+					description,
 					commands: JSON.parse(commands),
 				},
 			}
@@ -102,6 +104,12 @@ const CreateImage: React.FC = () => {
 					onChange={setVersion}
 					label={'Version'}
 					error={errors.version}
+				/>
+				<TextInput
+					value={description}
+					onChange={setDescription}
+					label={'Description'}
+					error={errors.description}
 				/>
 				<TextInput
 					value={commands}
