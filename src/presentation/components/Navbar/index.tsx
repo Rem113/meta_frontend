@@ -33,12 +33,6 @@ const Navbar: React.FC<null> = () => {
 					Scenarios
 				</Link>
 				<Link
-					className={`${path.startsWith('/executions') ? classes.active : ''}`}
-					to={'/executions'}
-				>
-					Executions
-				</Link>
-				<Link
 					className={`${path.startsWith('/suites') ? classes.active : ''}`}
 					to={'/suites'}
 				>

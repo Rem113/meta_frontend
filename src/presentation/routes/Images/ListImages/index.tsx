@@ -13,7 +13,6 @@ const ListImages: React.FC = () => {
 		data: images,
 		isFetching,
 		isError,
-		error,
 	} = useQuery(QueryName.IMAGES, ImageRepository.all, {
 		refetchOnWindowFocus: false,
 	})
@@ -24,10 +23,10 @@ const ListImages: React.FC = () => {
 		<>
 			<h1 className={classes.h1}>Images</h1>
 			{isFetching && <p>Loading...</p>}
-			{isError && error !== null && error !== undefined && (
+			{isError && (
 				<p>
-					There was an error while fetching the images from the server:{' '}
-					{error as string}
+					There was an error while fetching the images from the server. Please
+					try again later
 				</p>
 			)}
 			{images !== undefined && (
