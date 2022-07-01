@@ -21,6 +21,9 @@ const JSONInput: React.FC<JSONInputProps> = ({ value, onChange, label }) => {
 					className={classes.editor}
 					mode={'json'}
 					fontSize={'1rem'}
+					setOptions={{
+						useWorker: false
+					  }}
 					minLines={3}
 					maxLines={10}
 					showGutter={false}
