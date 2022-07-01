@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
-import Highlight from 'react-highlight'
 
 import { QueryName, Step } from '../../../../../data'
 import { ImageRepository } from '../../../../../data/repositories/ImageRepository'
@@ -10,6 +9,7 @@ import * as classes from './ScenarioStep.module.scss'
 import GlobeIcon from '../../../../components/Icons/GlobeIcon'
 import TagIcon from '../../../../components/Icons/TagIcon'
 import { StepState } from '../../../../../data/scenario'
+import Highlight from '../../../../components/Highlight'
 
 interface ScenarioStepProps {
 	number: number
@@ -74,9 +74,10 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({
 				<p onClick={toggleShowArguments}>
 					{showArguments ? 'Hide' : 'Show'} arguments
 				</p>
-				<Highlight className={`json ${showArguments ? '' : classes.hidden}`}>
-					{JSON.stringify(step.arguments, null, 4)}
-				</Highlight>
+				<Highlight
+					className={`json ${classes.json} ${showArguments ? '' : classes.hidden}`}
+					value={JSON.stringify(step.arguments, null, 4)}
+				/>
 			</div>
 			{/* {message && (
 				<p className={`${classes.message} ${classes[state]}`}>

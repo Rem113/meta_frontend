@@ -1,0 +1,49 @@
+#ace-editor {
+	width: 100% !important;
+}
+
+.ace-tm {
+	background: var(--color-dark-background);
+	color: white;
+	width: 100%;
+
+	* {
+		font-family: 'JetBrains Mono', monospace;
+	}
+
+	.ace_cursor {
+		color: white;
+	}
+
+	.ace_marker-layer {
+		.ace_active-line {
+			background: #3c3836;
+		}
+
+		.ace_selection {
+			background: var(--color-darker-background);
+		}
+		.ace_selected-word {
+			background: black;
+			border: 1px solid white;
+		}
+	}
+
+	.ace_constant {
+		&.ace_numeric {
+			color: var(--color-primary);
+		}
+
+		&.ace_language.ace_escape {
+			color: var(--color-primary);
+		}
+	}
+
+	.ace_string {
+		color: var(--color-primary);
+	}
+
+	.ace_variable {
+		color: white;
+	}
+}

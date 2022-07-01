@@ -2,11 +2,12 @@ import { BASE_URL, Environment, Execution, Simulator } from '..'
 
 const baseUrl = `${BASE_URL}/environments`
 
-export interface CreateEnvironmentParams {
-	name: string
-}
-
 export namespace EnvironmentRepository {
+	export interface CreateEnvironmentParams {
+		name: string
+		description: string
+	}
+
 	export const all = async (): Promise<Environment[]> => {
 		console.log('Querying environments...')
 		const res = await fetch(baseUrl)

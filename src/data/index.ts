@@ -50,6 +50,7 @@ export interface Command {
 }
 
 export interface Image {
+	id: string
 	tag: Tag
 	commands: Command[]
 }

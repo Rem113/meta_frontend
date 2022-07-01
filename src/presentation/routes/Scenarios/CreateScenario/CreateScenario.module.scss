@@ -1,3 +1,29 @@
-form {
-	margin-bottom: 3rem;
+.wrapper {
+	h1 {
+		margin-bottom: 3rem;
+	}
+
+	form {
+		margin-bottom: 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.steps {
+		margin-top: 3rem;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.add-step {
+		width: fit-content;
+		margin-top: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.add-scenario {
+		width: fit-content;
+	}
 }

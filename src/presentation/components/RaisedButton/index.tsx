@@ -4,7 +4,8 @@ import * as classes from './RaisedButton.module.scss'
 
 interface RaisedButtonProps {
 	text: string
-	onClick: () => void
+	className?: string
+	onClick?: () => void
 	disabled?: boolean
 	icon?: React.ReactNode
 	color?: 'primary' | 'secondary'
@@ -13,14 +14,15 @@ interface RaisedButtonProps {
 
 const RaisedButton: React.FC<RaisedButtonProps> = ({
 	text,
-	onClick,
+	className,
+	onClick = () => {},
 	disabled,
 	icon,
 	color = 'primary',
 	size = 'medium',
 }) => (
 	<button
-		className={`${classes[size]} ${classes[color]}`}
+		className={`${classes[size]} ${classes[color]} ${className}`}
 		type={'button'}
 		onClick={onClick}
 		disabled={disabled}

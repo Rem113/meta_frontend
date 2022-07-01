@@ -9,10 +9,11 @@
   "author": "Hillel Saal",
   "license": "MIT",
   "dependencies": {
+    "highlight.js": "^11.5.1",
     "parcel": "^2.3.2",
     "react": "^17.0.2",
+    "react-ace": "^10.1.0",
     "react-dom": "^17.0.2",
-    "react-highlight": "^0.14.0",
     "react-query": "^3.34.16",
     "react-router-dom": "^6.2.2",
     "react-toastify": "^9.0.5",
@@ -23,8 +24,8 @@
     "@tsconfig/recommended": "^1.0.1",
     "@types/node": "^18.0.0",
     "@types/react": "^17.0.40",
-    "@types/react-highlight": "^0.12.5",
     "postcss": "^8.0.0",
-    "postcss-modules": "^4.3.0"
+    "postcss-modules": "^4.3.0",
+    "querystring-es3": "^0.2.1"
   }
 }

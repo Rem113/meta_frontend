@@ -3,7 +3,7 @@ import React from 'react'
 import * as classes from './TextInput.module.scss'
 
 interface TextInputProps {
-	value: string
+	value?: string
 	onChange: (value: string) => void
 	placeholder?: string
 	label?: string
@@ -21,7 +21,7 @@ const TextInput: React.FC<TextInputProps> = ({
 		{label && <label className={classes.label}>{label}:</label>}
 		<input
 			className={classes.input}
-			type='text'
+			type={'text'}
 			placeholder={placeholder}
 			value={value}
 			onChange={e => onChange(e.currentTarget.value)}

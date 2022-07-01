@@ -35,9 +35,7 @@ const FileInput: React.FC<FileInputProps> = ({
 			/>
 			<RaisedButton
 				text={buttonText}
-				onClick={() => {
-					inputRef.current?.click()
-				}}
+				onClick={() => inputRef.current?.click()}
 				icon={<UploadIcon />}
 				size={'small'}
 				color={'secondary'}
