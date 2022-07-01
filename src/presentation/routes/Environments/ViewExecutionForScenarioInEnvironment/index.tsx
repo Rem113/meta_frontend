@@ -13,6 +13,7 @@ import {
 	StepState,
 } from '../../../../data/scenario'
 import Scenario from '../PlayScenarioInEnvironment/Scenario'
+import ScenarioExecutions from '../PlayScenarioInEnvironment/ScenarioExecutions'
 import ScenarioLogs from '../PlayScenarioInEnvironment/ScenarioLogs'
 
 import * as classes from './ViewExecutionForScenarioInEnvironment.module.scss'
@@ -38,6 +39,7 @@ const ViewExecutionForScenarioInEnvironment: React.FC = () => {
 
 	useEffect(() => {
 		if (execution !== undefined) {
+			// TODO: Refactor
 			const failedStatuses = execution.events
 				.filter(event => event.type === ScenarioPlayingEventType.STEP_FAILED)
 				.reduce(
@@ -109,6 +111,12 @@ const ViewExecutionForScenarioInEnvironment: React.FC = () => {
 							stepMessage={stepMessage}
 						/>
 						<div className={classes.info}>
+							<small>
+								Run on{' '}
+								<span>
+									{new Date(execution.timestamp).toLocaleDateString()}
+								</span>
+							</small>
 							<ScenarioLogs logs={logs} />
 						</div>
 					</>
