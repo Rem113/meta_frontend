@@ -64,6 +64,7 @@ export interface Simulator {
 }
 
 export interface Execution {
+	id: string
 	timestamp: string,
     events: ScenarioPlayingEvent[],
     successful: boolean,

@@ -11,10 +11,10 @@ import Scenario from './Scenario'
 import usePlayScenario from '../../../../hooks/usePlayScenario'
 import ScenarioLogs from './ScenarioLogs'
 
-import * as classes from './ViewScenarioInEnvironment.module.scss'
+import * as classes from './PlayScenarioInEnvironment.module.scss'
 import ScenarioExecutions from './ScenarioExecutions'
 
-const ViewScenarioInEnvironment: React.FC = () => {
+const PlayScenarioInEnvironment: React.FC = () => {
 	const { environmentId, scenarioId } = useParams()
 
 	const { data: scenario } = useQuery(
@@ -58,4 +58,4 @@ const ViewScenarioInEnvironment: React.FC = () => {
 	)
 }
 
-export default ViewScenarioInEnvironment
+export default PlayScenarioInEnvironment

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Execution } from '../../../../../../data'
 import FailureIcon from '../../../../../components/Icons/FailureIcon'
 import RightArrowIcon from '../../../../../components/Icons/RightArrowIcon'
@@ -12,7 +12,9 @@ interface ExecutionSummaryProps {
 }
 
 const ExecutionSummary: React.FC<ExecutionSummaryProps> = ({ execution }) => {
-	let timestamp = new Date(execution.timestamp)
+	const { environmentId, scenarioId } = useParams()
+
+	const timestamp = new Date(execution.timestamp)
 
 	return (
 		<div className={classes.wrapper}>
@@ -24,7 +26,10 @@ const ExecutionSummary: React.FC<ExecutionSummaryProps> = ({ execution }) => {
 				)}
 				<p>{timestamp.toLocaleString()}</p>
 			</div>
-			<Link className={classes.details} to={'/'}>
+			<Link
+				className={classes.details}
+				to={`/environments/${environmentId}/scenarios/${scenarioId}/executions/${execution.id}`}
+			>
 				<p>Details</p>
 				<RightArrowIcon className={classes.arrow} />
 			</Link>
