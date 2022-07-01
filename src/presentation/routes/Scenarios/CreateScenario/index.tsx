@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { queryClient, QueryName, Step } from '../../../../data'
 import { ImageRepository } from '../../../../data/repositories/ImageRepository'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
+import useQuery from '../../../../hooks/useQuery'
 import AddIcon from '../../../components/Icons/AddIcon'
 import RaisedButton from '../../../components/RaisedButton'
 import TextInput from '../../../components/TextInput'
@@ -26,9 +27,7 @@ const CreateScenario: React.FC = () => {
 	const [description, setDescription] = useState<string>('')
 	const [stepsData, setStepsData] = useState<StepData[]>([])
 
-	const { data: images } = useQuery(QueryName.IMAGES, ImageRepository.all, {
-		refetchOnWindowFocus: false,
-	})
+	const { data: images } = useQuery(QueryName.IMAGES, ImageRepository.all)
 
 	const { mutateAsync: createScenario } = useMutation(
 		ScenarioRepository.create,

@@ -1,9 +1,9 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { QueryName } from '../../../../data'
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
+import useQuery from '../../../../hooks/useQuery'
 import Card from '../../../components/Card'
 
 import * as classes from './ScenariosForEnvironment.module.scss'
@@ -12,17 +12,13 @@ const ScenariosForEnvironment: React.FC = () => {
 	const { environmentId } = useParams()
 
 	const { data: environment } = useQuery(
-		[QueryName.ENVIRONMENTS, environmentId],
-		() => EnvironmentRepository.find(environmentId!),
-		{ refetchOnWindowFocus: false }
+		[QueryName.ENVIRONMENTS, environmentId!],
+		() => EnvironmentRepository.find(environmentId!)
 	)
 
 	const { data: scenarios } = useQuery(
 		QueryName.SCENARIOS,
-		ScenarioRepository.all,
-		{
-			refetchOnWindowFocus: false,
-		}
+		ScenarioRepository.all
 	)
 
 	const navigate = useNavigate()

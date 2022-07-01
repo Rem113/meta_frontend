@@ -1,7 +1,8 @@
-import { BASE_URL, Scenario } from '..'
+
+import { BASE_URL, QueryName, Scenario } from '..'
+import useQuery from '../../hooks/useQuery'
 
 const baseUrl = `${BASE_URL}/scenarios`
-
 
 export namespace ScenarioRepository {
 	export interface CreateScenarioParams {
@@ -34,7 +35,9 @@ export namespace ScenarioRepository {
 		return res.json()
 	}
 
-	export const create = async (params: CreateScenarioParams): Promise<Scenario> => {
+	export const create = async (
+		params: CreateScenarioParams
+	): Promise<Scenario> => {
 		const body = JSON.stringify(params)
 		const res = await fetch(baseUrl, {
 			method: 'POST',

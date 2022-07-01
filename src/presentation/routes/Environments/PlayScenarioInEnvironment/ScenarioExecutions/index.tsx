@@ -1,7 +1,7 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import { QueryName } from '../../../../../data'
 import { EnvironmentRepository } from '../../../../../data/repositories/EnvironmentRepository'
+import useQuery from '../../../../../hooks/useQuery'
 import ExecutionSummary from './ExecutionSummary'
 
 import * as classes from './ScenarioExecutions.module.scss'
@@ -17,8 +17,7 @@ const ScenarioExecutions: React.FC<ScenarioExecutionsProps> = ({
 }) => {
 	const { data: executions } = useQuery(
 		[QueryName.EXECUTIONS, environmentId, scenarioId],
-		() => EnvironmentRepository.executionsFor(environmentId, scenarioId),
-		{ refetchOnWindowFocus: false }
+		() => EnvironmentRepository.executionsFor(environmentId, scenarioId)
 	)
 
 	const successfulExecutions =

@@ -1,7 +1,7 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import { QueryName, Simulator } from '../../../../../data'
 import { ImageRepository } from '../../../../../data/repositories/ImageRepository'
+import useQuery from '../../../../../hooks/useQuery'
 import DeleteIcon from '../../../../components/Icons/DeleteIcon'
 import EditIcon from '../../../../components/Icons/EditIcon'
 import FileIcon from '../../../../components/Icons/FileIcon'
@@ -16,10 +16,8 @@ interface SimulatorCardProps {
 }
 
 const SimulatorCard: React.FC<SimulatorCardProps> = ({ simulator }) => {
-	const { data: image } = useQuery(
-		[QueryName.IMAGES, simulator.imageId],
-		() => ImageRepository.find(simulator.imageId),
-		{ refetchOnWindowFocus: false }
+	const { data: image } = useQuery([QueryName.IMAGES, simulator.imageId!], () =>
+		ImageRepository.find(simulator.imageId)
 	)
 	return (
 		<div className={classes.wrapper}>

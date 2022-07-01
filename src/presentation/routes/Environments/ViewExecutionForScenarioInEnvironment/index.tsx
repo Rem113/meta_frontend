@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { QueryName } from '../../../../data'
 import { ExecutionRepository } from '../../../../data/repositories/ExecutionRepository'
@@ -12,8 +11,8 @@ import {
 	StepPassed,
 	StepState,
 } from '../../../../data/scenario'
+import useQuery from '../../../../hooks/useQuery'
 import Scenario from '../PlayScenarioInEnvironment/Scenario'
-import ScenarioExecutions from '../PlayScenarioInEnvironment/ScenarioExecutions'
 import ScenarioLogs from '../PlayScenarioInEnvironment/ScenarioLogs'
 
 import * as classes from './ViewExecutionForScenarioInEnvironment.module.scss'
@@ -22,15 +21,13 @@ const ViewExecutionForScenarioInEnvironment: React.FC = () => {
 	const { environmentId, scenarioId, executionId } = useParams()
 
 	const { data: scenario } = useQuery(
-		[QueryName.SCENARIOS, environmentId, scenarioId],
-		() => ScenarioRepository.find(scenarioId!),
-		{ refetchOnWindowFocus: false }
+		[QueryName.SCENARIOS, environmentId!, scenarioId!],
+		() => ScenarioRepository.find(scenarioId!)
 	)
 
 	const { data: execution } = useQuery(
-		[QueryName.EXECUTIONS, executionId],
-		() => ExecutionRepository.find(executionId!),
-		{ refetchOnWindowFocus: false }
+		[QueryName.EXECUTIONS, executionId!],
+		() => ExecutionRepository.find(executionId!)
 	)
 
 	const [stepStatus, setStepStatus] = useState<Record<number, StepState>>({})

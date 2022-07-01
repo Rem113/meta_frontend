@@ -1,5 +1,4 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import { QueryName } from '../../../../data'
 import { ImageRepository } from '../../../../data/repositories/ImageRepository'
 
@@ -8,15 +7,14 @@ import FloatingActionButton from '../../../components/FloatingActionButton'
 import AddIcon from '../../../components/Icons/AddIcon'
 import * as classes from './ListImages.module.scss'
 import Card from '../../../components/Card'
+import useQuery from '../../../../hooks/useQuery'
 
 const ListImages: React.FC = () => {
 	const {
 		data: images,
 		isFetching,
 		isError,
-	} = useQuery(QueryName.IMAGES, ImageRepository.all, {
-		refetchOnWindowFocus: false,
-	})
+	} = useQuery(QueryName.IMAGES, ImageRepository.all)
 
 	const navigate = useNavigate()
 

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useQuery } from 'react-query'
 
 import { QueryName, Step } from '../../../../../data'
 import { ImageRepository } from '../../../../../data/repositories/ImageRepository'
@@ -10,6 +9,7 @@ import GlobeIcon from '../../../../components/Icons/GlobeIcon'
 import TagIcon from '../../../../components/Icons/TagIcon'
 import { StepState } from '../../../../../data/scenario'
 import Highlight from '../../../../components/Highlight'
+import useQuery from '../../../../../hooks/useQuery'
 
 interface ScenarioStepProps {
 	number: number
@@ -29,10 +29,8 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({
 		isLoading,
 		isError,
 		error,
-	} = useQuery(
-		[QueryName.IMAGES, step.imageId],
-		() => ImageRepository.find(step.imageId),
-		{ refetchOnWindowFocus: false }
+	} = useQuery([QueryName.IMAGES, step.imageId], () =>
+		ImageRepository.find(step.imageId)
 	)
 
 	const [showArguments, setShowArguments] = useState(false)
@@ -75,7 +73,9 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({
 					{showArguments ? 'Hide' : 'Show'} arguments
 				</p>
 				<Highlight
-					className={`json ${classes.json} ${showArguments ? '' : classes.hidden}`}
+					className={`json ${classes.json} ${
+						showArguments ? '' : classes.hidden
+					}`}
 					value={JSON.stringify(step.arguments, null, 4)}
 				/>
 			</div>

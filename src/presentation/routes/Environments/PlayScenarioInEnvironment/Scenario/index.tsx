@@ -1,8 +1,8 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import { QueryName, Scenario } from '../../../../../data'
 import { EnvironmentRepository } from '../../../../../data/repositories/EnvironmentRepository'
 import { StepState } from '../../../../../data/scenario'
+import useQuery from '../../../../../hooks/useQuery'
 import ScenarioStep from '../ScenarioStep'
 
 import * as classes from './Scenario.module.scss'
@@ -22,8 +22,7 @@ const Scenario: React.FC<ScenarioProps> = ({
 }) => {
 	const { data: environment } = useQuery(
 		[QueryName.ENVIRONMENTS, environmentId],
-		() => EnvironmentRepository.find(environmentId),
-		{ refetchOnWindowFocus: false }
+		() => EnvironmentRepository.find(environmentId)
 	)
 
 	return (

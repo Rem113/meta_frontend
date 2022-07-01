@@ -1,25 +1,23 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { QueryName } from '../../../../data'
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import SimulatorCard from './SimulatorCard'
 
 import * as classes from './SimilatorsForEnvironment.module.scss'
+import useQuery from '../../../../hooks/useQuery'
 
 const SimilatorsForEnvironment: React.FC = () => {
 	const { environmentId } = useParams()
 
 	const { data: environment } = useQuery(
-		[QueryName.ENVIRONMENTS, environmentId],
-		() => EnvironmentRepository.find(environmentId!),
-		{ refetchOnWindowFocus: false }
+		[QueryName.ENVIRONMENTS, environmentId!],
+		() => EnvironmentRepository.find(environmentId!)
 	)
 
 	const { data: simulators } = useQuery(
-		[QueryName.SIMULATORS, environmentId],
-		() => EnvironmentRepository.simulatorsFor(environmentId!),
-		{ refetchOnWindowFocus: false }
+		[QueryName.SIMULATORS, environmentId!],
+		() => EnvironmentRepository.simulatorsFor(environmentId!)
 	)
 
 	return (

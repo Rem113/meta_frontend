@@ -1,5 +1,4 @@
 import React from 'react'
-import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { QueryName } from '../../../../data'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
@@ -13,16 +12,13 @@ import ScenarioLogs from './ScenarioLogs'
 
 import * as classes from './PlayScenarioInEnvironment.module.scss'
 import ScenarioExecutions from './ScenarioExecutions'
+import useQuery from '../../../../hooks/useQuery'
 
 const PlayScenarioInEnvironment: React.FC = () => {
 	const { environmentId, scenarioId } = useParams()
 
-	const { data: scenario } = useQuery(
-		[QueryName.SCENARIOS, scenarioId],
-		() => ScenarioRepository.find(scenarioId!),
-		{
-			refetchOnWindowFocus: false,
-		}
+	const { data: scenario } = useQuery([QueryName.SCENARIOS, scenarioId!], () =>
+		ScenarioRepository.find(scenarioId!)
 	)
 
 	const { playScenario, stepStatus, stepMessage, logs, isPlaying } =
