@@ -20,12 +20,13 @@
     "tsc": "^2.0.4"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "2.3.2",
+    "@parcel/transformer-sass": "2.6.2",
     "@tsconfig/recommended": "^1.0.1",
     "@types/node": "^18.0.0",
     "@types/react": "^17.0.40",
     "postcss": "^8.0.0",
     "postcss-modules": "^4.3.0",
+    "process": "^0.11.10",
     "querystring-es3": "^0.2.1"
   }
 }
