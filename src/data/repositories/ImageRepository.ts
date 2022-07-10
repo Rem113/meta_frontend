@@ -20,13 +20,6 @@ export namespace ImageRepository {
         return res.json()
     }
 
-    export const unique = async (): Promise<Image[]> => {
-        console.log('Querying unique images...')
-        // TODO: Fix this
-        const res = await fetch(`${baseUrl}`)
-        return res.json()
-    }
-
     export const create = async (params: CreateImageParams): Promise<Image> => {
         const formData = new FormData()
         formData.append('image', params.file)

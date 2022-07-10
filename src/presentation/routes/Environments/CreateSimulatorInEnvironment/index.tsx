@@ -10,24 +10,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import { useMutation } from 'react-query'
 import { toast } from 'react-toastify'
-
-const compareSemver = (first: string, second: string) => {
-    const [firstMajor, firstMinor, firstPatch] = first.split('.')
-    const [secondMajor, secondMinor, secondPatch] = second.split('.')
-
-    if (firstMajor > secondMajor) return 1
-    if (firstMajor < secondMajor) return -1
-    if (firstMinor > secondMinor) return 1
-    if (firstMinor < secondMinor) return -1
-    if (firstPatch > secondPatch) return 1
-    if (firstPatch < secondPatch) return -1
-    return 0
-}
+import dedupeImages from '../../../../utils/dedupeImages'
 
 const CreateSimulatorInEnvironment: React.FC = () => {
     const { environmentId } = useParams()
 
-    const { data: images } = useQuery(QueryName.IMAGES, ImageRepository.unique)
+    const { data: images } = useQuery(QueryName.IMAGES, ImageRepository.all)
 
     const { data: environment } = useQuery(
         [QueryName.ENVIRONMENTS, environmentId!],
@@ -44,7 +32,7 @@ const CreateSimulatorInEnvironment: React.FC = () => {
         const addSimulatorParams = {
             name,
             environmentId: environmentId!,
-            imageId: imageVersions!.find(
+            imageId: selectedImageVersions!.find(
                 image =>
                     image.tag.name === image.tag.name &&
                     image.tag.version === version
@@ -65,9 +53,9 @@ const CreateSimulatorInEnvironment: React.FC = () => {
         undefined
     )
 
-    const [imageVersions, setImageVersions] = useState<Image[] | undefined>(
-        undefined
-    )
+    const [selectedImageVersions, setSelectedImageVersions] = useState<
+        Image[] | undefined
+    >(undefined)
 
     const [version, setVersion] = useState('')
     const [name, setName] = useState('')
@@ -75,20 +63,14 @@ const CreateSimulatorInEnvironment: React.FC = () => {
 
     useEffect(() => {
         if (selectedImage !== undefined) {
-            const imageVersions = images!.filter(
+            const selectedImageVersions = images!.filter(
                 image => image.tag.name === selectedImage!.tag.name
             )
-            imageVersions
-                .sort((first, second) =>
-                    compareSemver(first.tag.version, second.tag.version)
-                )
-                .reverse()
-            setImageVersions(
-                images!.filter(
-                    image => image.tag.name === selectedImage!.tag.name
-                )
+            setSelectedImageVersions(selectedImageVersions)
+            setVersion(
+                selectedImageVersions[selectedImageVersions.length - 1].tag
+                    .version
             )
-            setVersion(imageVersions[0].tag.version)
         }
     }, [selectedImage])
 
@@ -98,24 +80,25 @@ const CreateSimulatorInEnvironment: React.FC = () => {
         <div className={classes.wrapper}>
             {selectedImage === undefined && environment !== undefined && (
                 <PickImage
-                    images={images}
+                    images={dedupeImages(images)}
                     environment={environment}
                     onPick={setSelectedImage}
                 />
             )}
-            {selectedImage !== undefined && imageVersions !== undefined && (
-                <ConfigureImage
-                    images={imageVersions}
-                    environment={environment!}
-                    addSimulator={submit}
-                    name={name}
-                    configuration={configuration}
-                    version={version!}
-                    setName={setName}
-                    setConfiguration={setConfiguration}
-                    setVersion={setVersion}
-                />
-            )}
+            {selectedImage !== undefined &&
+                selectedImageVersions !== undefined && (
+                    <ConfigureImage
+                        images={selectedImageVersions}
+                        environment={environment!}
+                        addSimulator={submit}
+                        name={name}
+                        configuration={configuration}
+                        version={version!}
+                        setName={setName}
+                        setConfiguration={setConfiguration}
+                        setVersion={setVersion}
+                    />
+                )}
         </div>
     )
 }

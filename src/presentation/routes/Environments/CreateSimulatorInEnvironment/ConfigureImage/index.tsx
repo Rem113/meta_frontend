@@ -9,6 +9,7 @@ import JSONInput from '../../../../components/JSONInput'
 import RaisedButton from '../../../../components/RaisedButton'
 import AddIcon from '../../../../components/Icons/AddIcon'
 import TextInput from '../../../../components/TextInput'
+import compareSemver from '../../../../../utils/compareSemver'
 
 interface ConfigureImageProps {
     images: Image[]
@@ -41,15 +42,20 @@ const ConfigureImage: React.FC<ConfigureImageProps> = ({
             </h1>
             <div className={classes['pick-version']}>
                 <div className={classes.images}>
-                    {images.map(image => (
-                        <Chip
-                            key={image.id}
-                            selected={version === image.tag.version}
-                            onClick={() => setVersion(image.tag.version)}
-                            icon={<TagIcon className={classes.icon} />}
-                            text={image.tag.version}
-                        />
-                    ))}
+                    {images
+                        .sort((first, second) =>
+                            compareSemver(first.tag.version, second.tag.version)
+                        )
+                        .reverse()
+                        .map(image => (
+                            <Chip
+                                key={image.id}
+                                selected={version === image.tag.version}
+                                onClick={() => setVersion(image.tag.version)}
+                                icon={<TagIcon className={classes.icon} />}
+                                text={image.tag.version}
+                            />
+                        ))}
                 </div>
                 <h3 className={classes['image-description']}>
                     {

@@ -8,6 +8,7 @@ import AddIcon from '../../../components/Icons/AddIcon'
 import * as classes from './ListImages.module.scss'
 import Card from '../../../components/Card'
 import useQuery from '../../../../hooks/useQuery'
+import dedupeImages from '../../../../utils/dedupeImages'
 
 const ListImages: React.FC = () => {
     const {
@@ -30,10 +31,10 @@ const ListImages: React.FC = () => {
             )}
             <div className={classes.images}>
                 {images !== undefined &&
-                    images.map(image => (
+                    dedupeImages(images).map(image => (
                         <Card
                             key={image.id}
-                            name={`${image.tag.name}:${image.tag.version}`}
+                            name={image.tag.name}
                             description={image.description}
                         />
                     ))}
