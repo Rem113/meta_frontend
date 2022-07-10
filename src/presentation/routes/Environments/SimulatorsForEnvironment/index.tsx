@@ -1,40 +1,54 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { QueryName } from '../../../../data'
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import SimulatorCard from './SimulatorCard'
 
-import * as classes from './SimilatorsForEnvironment.module.scss'
+import * as classes from './SimulatorsForEnvironment.module.scss'
 import useQuery from '../../../../hooks/useQuery'
+import FloatingActionButton from '../../../components/FloatingActionButton'
+import AddIcon from '../../../components/Icons/AddIcon'
 
-const SimilatorsForEnvironment: React.FC = () => {
-	const { environmentId } = useParams()
+const SimulatorsForEnvironment: React.FC = () => {
+    const { environmentId } = useParams()
 
-	const { data: environment } = useQuery(
-		[QueryName.ENVIRONMENTS, environmentId!],
-		() => EnvironmentRepository.find(environmentId!)
-	)
+    const { data: environment } = useQuery(
+        [QueryName.ENVIRONMENTS, environmentId!],
+        () => EnvironmentRepository.find(environmentId!)
+    )
 
-	const { data: simulators } = useQuery(
-		[QueryName.SIMULATORS, environmentId!],
-		() => EnvironmentRepository.simulatorsFor(environmentId!)
-	)
+    const { data: simulators } = useQuery(
+        [QueryName.SIMULATORS, environmentId!],
+        () => EnvironmentRepository.simulatorsFor(environmentId!)
+    )
 
-	return (
-		<div className={classes.wrapper}>
-			{environment !== undefined && (
-				<h1>
-					Similators for environment <strong>{environment.name}</strong>
-				</h1>
-			)}
-			<div className={classes.simulators}>
-				{simulators !== undefined &&
-					simulators.map(simulator => (
-						<SimulatorCard key={simulator.id} simulator={simulator} />
-					))}
-			</div>
-		</div>
-	)
+    const navigate = useNavigate()
+
+    return (
+        <div className={classes.wrapper}>
+            {environment !== undefined && (
+                <h1>
+                    Simulators for environment{' '}
+                    <strong>{environment.name}</strong>
+                </h1>
+            )}
+            <div className={classes.simulators}>
+                {simulators !== undefined &&
+                    simulators.map(simulator => (
+                        <SimulatorCard
+                            key={simulator.id}
+                            simulator={simulator}
+                        />
+                    ))}
+            </div>
+            <FloatingActionButton
+                icon={<AddIcon />}
+                onClick={() =>
+                    navigate(`/environments/${environmentId}/simulators/create`)
+                }
+            />
+        </div>
+    )
 }
 
-export default SimilatorsForEnvironment
+export default SimulatorsForEnvironment

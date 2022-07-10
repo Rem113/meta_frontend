@@ -1,36 +1,36 @@
 .wrapper {
-	position: relative;
-	gap: 1rem;
-	width: 100%;
-	box-sizing: border-box;
+  position: relative;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 
-	.label {
-		font-size: 1rem;
-		color: var(--color-light-text);
-		margin-bottom: 0.5rem;
-		display: block;
-	}
+  .label {
+    font-size: 1rem;
+    color: var(--color-light-text);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
 
-	.select {
-		background: var(--color-dark-background);
-		border-radius: var(--border-radius);
-		padding: 0.8rem;
-		width: 100%;
-		color: white;
-		border: none;
-		appearance: none;
-		outline: none;
+  .select {
+    background: var(--color-dark-background);
+    border-radius: var(--border-radius);
+    padding: 0.8rem;
+    width: 100%;
+    color: white;
+    border: none;
+    appearance: none;
+    outline: none;
 
-		option {
-			background: var(--color-dark-background);
-		}
-	}
+    option {
+      background: var(--color-dark-background);
+    }
+  }
 
-	.arrow {
-		width: 1rem;
-		position: absolute;
-		right: 0.8rem;
-		bottom: 0.7rem;
-		pointer-events: none;
-	}
+  .arrow {
+    width: 1rem;
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.7rem;
+    pointer-events: none;
+  }
 }

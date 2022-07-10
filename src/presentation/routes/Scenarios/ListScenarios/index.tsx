@@ -10,33 +10,33 @@ import AddIcon from '../../../components/Icons/AddIcon'
 import * as classes from './ListScenarios.module.scss'
 
 const ListScenarios: React.FC = () => {
-	const { data: scenarios, isLoading } = useQuery(
-		QueryName.SCENARIOS,
-		ScenarioRepository.all
-	)
+    const { data: scenarios, isLoading } = useQuery(
+        QueryName.SCENARIOS,
+        ScenarioRepository.all
+    )
 
-	const navigate = useNavigate()
+    const navigate = useNavigate()
 
-	return (
-		<div className={classes.wrapper}>
-			<h1>Scenarios</h1>
-			{isLoading && <p>Loading...</p>}
-			<div className={classes.scenarios}>
-				{scenarios !== undefined &&
-					scenarios.map(scenario => (
-						<Card
-							key={scenario.id}
-							name={scenario.name}
-							description={scenario.description}
-						/>
-					))}
-			</div>
-			<FloatingActionButton
-				icon={<AddIcon />}
-				onClick={() => navigate('/scenarios/create')}
-			/>
-		</div>
-	)
+    return (
+        <div className={classes.wrapper}>
+            <h1>Scenarios</h1>
+            {isLoading && <p>Loading...</p>}
+            <div className={classes.scenarios}>
+                {scenarios !== undefined &&
+                    scenarios.map(scenario => (
+                        <Card
+                            key={scenario.id}
+                            name={scenario.name}
+                            description={scenario.description}
+                        />
+                    ))}
+            </div>
+            <FloatingActionButton
+                icon={<AddIcon />}
+                onClick={() => navigate('/scenarios/create')}
+            />
+        </div>
+    )
 }
 
 export default ListScenarios

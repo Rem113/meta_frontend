@@ -10,40 +10,40 @@ import Card from '../../../components/Card'
 import useQuery from '../../../../hooks/useQuery'
 
 const ListImages: React.FC = () => {
-	const {
-		data: images,
-		isFetching,
-		isError,
-	} = useQuery(QueryName.IMAGES, ImageRepository.all)
+    const {
+        data: images,
+        isFetching,
+        isError,
+    } = useQuery(QueryName.IMAGES, ImageRepository.all)
 
-	const navigate = useNavigate()
+    const navigate = useNavigate()
 
-	return (
-		<div className={classes.wrapper}>
-			<h1>Images</h1>
-			{isFetching && <p>Loading...</p>}
-			{isError && (
-				<p>
-					There was an error while fetching the images from the server. Please
-					try again later
-				</p>
-			)}
-			<div className={classes.images}>
-				{images !== undefined &&
-					images.map(image => (
-						<Card
-							key={image.id}
-							name={`${image.tag.name}:${image.tag.version}`}
-							description={image.description}
-						/>
-					))}
-			</div>
-			<FloatingActionButton
-				icon={<AddIcon />}
-				onClick={() => navigate('/images/create')}
-			/>
-		</div>
-	)
+    return (
+        <div className={classes.wrapper}>
+            <h1>Images</h1>
+            {isFetching && <p>Loading...</p>}
+            {isError && (
+                <p>
+                    There was an error while fetching the images from the
+                    server. Please try again later
+                </p>
+            )}
+            <div className={classes.images}>
+                {images !== undefined &&
+                    images.map(image => (
+                        <Card
+                            key={image.id}
+                            name={`${image.tag.name}:${image.tag.version}`}
+                            description={image.description}
+                        />
+                    ))}
+            </div>
+            <FloatingActionButton
+                icon={<AddIcon />}
+                onClick={() => navigate('/images/create')}
+            />
+        </div>
+    )
 }
 
 export default ListImages

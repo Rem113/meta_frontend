@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    h1 {
+        strong {
+            font-weight: normal;
+            color: var(--color-primary);
+        }
+    }
+
+    .images {
+        display: flex;
+        gap: 1rem;
+
+        .icon {
+            width: 1rem;
+        }
+    }
+
+    .image-description {
+        margin-top: 1rem;
+        color: var(--color-light-text);
+        font-size: 1rem;
+    }
+
+    .commands {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3rem;
+    }
+
+    .config {
+        h2 {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .button {
+        width: fit-content;
+        margin-bottom: 3rem;
+    }
+}

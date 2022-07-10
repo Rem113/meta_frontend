@@ -9,44 +9,45 @@ import Card from '../../../components/Card'
 import * as classes from './ScenariosForEnvironment.module.scss'
 
 const ScenariosForEnvironment: React.FC = () => {
-	const { environmentId } = useParams()
+    const { environmentId } = useParams()
 
-	const { data: environment } = useQuery(
-		[QueryName.ENVIRONMENTS, environmentId!],
-		() => EnvironmentRepository.find(environmentId!)
-	)
+    const { data: environment } = useQuery(
+        [QueryName.ENVIRONMENTS, environmentId!],
+        () => EnvironmentRepository.find(environmentId!)
+    )
 
-	const { data: scenarios } = useQuery(
-		QueryName.SCENARIOS,
-		ScenarioRepository.all
-	)
+    const { data: scenarios } = useQuery(
+        QueryName.SCENARIOS,
+        ScenarioRepository.all
+    )
 
-	const navigate = useNavigate()
+    const navigate = useNavigate()
 
-	return (
-		<div className={classes.wrapper}>
-			{environment !== undefined && (
-				<h1>
-					Scenarios for environment <strong>{environment.name}</strong>
-				</h1>
-			)}
-			<div className={classes.scenarios}>
-				{scenarios !== undefined &&
-					scenarios.map(scenario => (
-						<Card
-							key={scenario.id}
-							name={scenario.name}
-							description={scenario.description}
-							onClick={() =>
-								navigate(
-									`/environments/${environmentId}/scenarios/${scenario.id}`
-								)
-							}
-						/>
-					))}
-			</div>
-		</div>
-	)
+    return (
+        <div className={classes.wrapper}>
+            {environment !== undefined && (
+                <h1>
+                    Scenarios for environment{' '}
+                    <strong>{environment.name}</strong>
+                </h1>
+            )}
+            <div className={classes.scenarios}>
+                {scenarios !== undefined &&
+                    scenarios.map(scenario => (
+                        <Card
+                            key={scenario.id}
+                            name={scenario.name}
+                            description={scenario.description}
+                            onClick={() =>
+                                navigate(
+                                    `/environments/${environmentId}/scenarios/${scenario.id}`
+                                )
+                            }
+                        />
+                    ))}
+            </div>
+        </div>
+    )
 }
 
 export default ScenariosForEnvironment

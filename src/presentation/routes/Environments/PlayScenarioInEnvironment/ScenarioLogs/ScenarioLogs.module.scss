@@ -1,44 +1,44 @@
 .wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
-	.log {
-		display: grid;
-		grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) 8fr;
-		gap: 1rem;
+    .log {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) 8fr;
+        gap: 1rem;
 
-		.timestamp {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-			color: var(--color-light-text);
+        .timestamp {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-light-text);
 
-			.timestamp-icon {
-				width: 1rem;
+            .timestamp-icon {
+                width: 1rem;
 
-				path {
-					stroke: var(--color-light-text);
-				}
-			}
+                path {
+                    stroke: var(--color-light-text);
+                }
+            }
 
-			span {
-				font-family: 'JetBrains Mono';
-			}
-		}
+            span {
+                font-family: 'JetBrains Mono', monospace;
+            }
+        }
 
-		.simulator-name {
-			display: flex;
-			align-items: center;
-		}
+        .simulator-name {
+            display: flex;
+            align-items: center;
+        }
 
-		.message {
-			display: flex;
-			align-items: center;
-		}
+        .message {
+            display: flex;
+            align-items: center;
+        }
 
-		.error {
-			color: var(--color-error);
-		}
-	}
+        .error {
+            color: var(--color-error);
+        }
+    }
 }

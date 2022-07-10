@@ -1,12 +1,12 @@
 .wrapper {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
 
-	.info {
-		margin-top: 1.65rem;
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
+  .info {
+    margin-top: 1.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 }

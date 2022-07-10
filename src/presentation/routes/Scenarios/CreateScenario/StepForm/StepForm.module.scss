@@ -1,52 +1,52 @@
 .wrapper {
-	display: flex;
-	gap: 2rem;
+  display: flex;
+  gap: 2rem;
 
-	.controls {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 1rem;
-		font-size: 1.5rem;
-		position: relative;
+  .controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    position: relative;
 
-		.move-up {
-			cursor: pointer;
-		}
+    .move-up {
+      cursor: pointer;
+    }
 
-		.move-down {
-			cursor: pointer;
-		}
+    .move-down {
+      cursor: pointer;
+    }
 
-		.step {
-			font-family: 'JetBrains Mono', monospace;
-		}
+    .step {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-		.copy {
-			position: absolute;
-			top: 0.8rem;
-			cursor: pointer;
-		}
+    .copy {
+      position: absolute;
+      top: 0.8rem;
+      cursor: pointer;
+    }
 
-		.delete {
-			position: absolute;
-			bottom: 0.8rem;
-			cursor: pointer;
+    .delete {
+      position: absolute;
+      bottom: 0.8rem;
+      cursor: pointer;
 
-			path {
-				stroke: var(--color-error);
-			}
-		}
-	}
+      path {
+        stroke: var(--color-error);
+      }
+    }
+  }
 
-	.inputs {
-		width: 100%;
+  .inputs {
+    width: 100%;
 
-		.first-row {
-			display: grid;
-			grid-template-columns: 4fr 2fr 4fr;
-			column-gap: 1rem;
-		}
-	}
+    .first-row {
+      display: grid;
+      grid-template-columns: 4fr 2fr 4fr;
+      column-gap: 1rem;
+    }
+  }
 }

@@ -3,39 +3,46 @@ import { BASE_URL, Command, Image, Tag } from '..'
 const baseUrl = `${BASE_URL}/images`
 
 export namespace ImageRepository {
-	export interface CreateImageParams {
-		file: File
-		data: ImageData
-	}
+    export interface CreateImageParams {
+        file: File
+        data: ImageData
+    }
 
-	export interface ImageData {
-		tag: Tag
-		description: string
-		commands: Command[]
-	}
+    export interface ImageData {
+        tag: Tag
+        description: string
+        commands: Command[]
+    }
 
-	export const all = async (): Promise<Image[]> => {
-		console.log('Querying images...')
-		const res = await fetch(baseUrl)
-		return res.json()
-	}
+    export const all = async (): Promise<Image[]> => {
+        console.log('Querying images...')
+        const res = await fetch(baseUrl)
+        return res.json()
+    }
 
-	export const create = async (params: CreateImageParams): Promise<Image> => {
-		const formData = new FormData()
-		formData.append('image', params.file)
-		formData.append('image_data', JSON.stringify(params.data))
+    export const unique = async (): Promise<Image[]> => {
+        console.log('Querying unique images...')
+        // TODO: Fix this
+        const res = await fetch(`${baseUrl}`)
+        return res.json()
+    }
 
-		const res = await fetch(baseUrl, {
-			method: 'POST',
-			body: formData,
-		})
+    export const create = async (params: CreateImageParams): Promise<Image> => {
+        const formData = new FormData()
+        formData.append('image', params.file)
+        formData.append('image_data', JSON.stringify(params.data))
 
-		return res.json()
-	}
+        const res = await fetch(baseUrl, {
+            method: 'POST',
+            body: formData,
+        })
 
-	export const find = async (id: string): Promise<Image> => {
-		console.log(`Querying for image with id ${id}...`)
-		const res = await fetch(`${baseUrl}/${id}`)
-		return res.json()
-	}
+        return res.json()
+    }
+
+    export const find = async (id: string): Promise<Image> => {
+        console.log(`Querying for image with id ${id}...`)
+        const res = await fetch(`${baseUrl}/${id}`)
+        return res.json()
+    }
 }

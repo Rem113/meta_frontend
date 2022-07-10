@@ -1,0 +1,16 @@
+.wrapper {
+    h1 {
+        margin-bottom: 3rem;
+
+        strong {
+            font-weight: normal;
+            color: var(--color-primary);
+        }
+    }
+
+    .images {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+    }
+}
