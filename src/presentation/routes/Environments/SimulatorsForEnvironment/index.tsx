@@ -38,6 +38,7 @@ const SimulatorsForEnvironment: React.FC = () => {
                         <SimulatorCard
                             key={simulator.id}
                             simulator={simulator}
+                            environmentId={environmentId!}
                         />
                     ))}
             </div>

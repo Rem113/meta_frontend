@@ -1,6 +1,15 @@
-import { useQuery as useReactQuery } from 'react-query'
+import { useQuery as useReactQuery, UseQueryOptions } from 'react-query'
 
-const useQuery = <T>(queryName: string | string[], query: () => Promise<T>) =>
-    useReactQuery(queryName, query, { refetchOnWindowFocus: false })
+const useQuery = <T>(
+    queryName: string | string[],
+    query: () => Promise<T>,
+    options?:
+        | Omit<
+              UseQueryOptions<T, unknown, T, string | string[]>,
+              'queryKey' | 'queryFn'
+          >
+        | undefined
+) =>
+    useReactQuery(queryName, query, { refetchOnWindowFocus: false, ...options })
 
 export default useQuery

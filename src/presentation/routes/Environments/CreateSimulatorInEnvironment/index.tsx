@@ -5,7 +5,7 @@ import useQuery from '../../../../hooks/useQuery'
 import { Image, QueryName } from '../../../../data'
 import { ImageRepository } from '../../../../data/repositories/ImageRepository'
 import PickImage from './PickImage'
-import ConfigureImage from './ConfigureImage'
+import SimulatorForm from '../SimulatorForm'
 import { useNavigate, useParams } from 'react-router-dom'
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
 import { useMutation } from 'react-query'
@@ -45,7 +45,7 @@ const CreateSimulatorInEnvironment: React.FC = () => {
                 theme: 'dark',
                 type: 'success',
             })
-            navigate(`/environments/${environmentId}`)
+            navigate(`/environments/${environmentId}/simulators`)
         })
     }
 
@@ -87,16 +87,16 @@ const CreateSimulatorInEnvironment: React.FC = () => {
             )}
             {selectedImage !== undefined &&
                 selectedImageVersions !== undefined && (
-                    <ConfigureImage
+                    <SimulatorForm
                         images={selectedImageVersions}
                         environment={environment!}
                         addSimulator={submit}
-                        name={name}
+                        simulatorName={name}
                         configuration={configuration}
-                        version={version!}
-                        setName={setName}
+                        imageVersion={version!}
+                        setSimulatorName={setName}
                         setConfiguration={setConfiguration}
-                        setVersion={setVersion}
+                        setImageVersion={setVersion}
                     />
                 )}
         </div>

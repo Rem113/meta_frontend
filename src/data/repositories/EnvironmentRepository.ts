@@ -35,9 +35,13 @@ export namespace EnvironmentRepository {
         return res.json()
     }
 
-    export const simulatorsFor = async (id: string): Promise<Simulator[]> => {
-        console.log(`Querying simulators for environment with id ${id}...`)
-        const res = await fetch(`${baseUrl}/${id}/simulators`)
+    export const simulatorsFor = async (
+        environmentId: string
+    ): Promise<Simulator[]> => {
+        console.log(
+            `Querying simulators for environment with id ${environmentId}...`
+        )
+        const res = await fetch(`${baseUrl}/${environmentId}/simulators`)
         return res.json()
     }
 
@@ -78,6 +82,43 @@ export namespace EnvironmentRepository {
             }
         )
 
+        return res.json()
+    }
+
+    export interface UpdateSimulatorParams {
+        simulatorId: string
+        name: string
+        environmentId: string
+        imageId: string
+        configuration: any
+    }
+
+    export const updateSimulator = async (params: UpdateSimulatorParams) => {
+        const body = JSON.stringify(params)
+        const res = await fetch(
+            `${baseUrl}/${params.environmentId}/simulators/${params.simulatorId}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body,
+            }
+        )
+
+        return res.json()
+    }
+
+    export const findSimulatorInEnvironment = async (
+        environmentId: string,
+        simulatorId: string
+    ): Promise<Simulator> => {
+        console.log(
+            `Querying simulator with id ${simulatorId} in environment ${environmentId}...`
+        )
+        const res = await fetch(
+            `${baseUrl}/${environmentId}/simulators/${simulatorId}`
+        )
         return res.json()
     }
 }

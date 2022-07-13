@@ -6,19 +6,18 @@ h4,
 h5,
 h6,
 p {
-	margin: 0;
-	font-weight: normal;
-	font-size: normal;
+    margin: 0;
+    font-weight: normal;
 }
 
 :root {
-	--color-primary: #7b61ffff;
-	--color-success: #70d260ff;
-	--color-error: #ff8686;
-	--color-light-text: #ffffff9f;
-	--color-dark-background: #222222ff;
-	--color-darker-background: #1b1b1bff;
-	--border-radius: 8px;
+    --color-primary: #7b61ffff;
+    --color-success: #70d260ff;
+    --color-error: #ff8686;
+    --color-light-text: #ffffff9f;
+    --color-dark-background: #222222ff;
+    --color-darker-background: #1b1b1bff;
+    --border-radius: 8px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,700&display=swap');
@@ -26,12 +25,17 @@ p {
 
 html,
 body {
-	margin: 0;
-	padding: 0;
-	background: var(--color-darker-background);
-	color: white;
+    margin: 0;
+    padding: 0;
+    background: var(--color-darker-background);
+    color: white;
 }
 
 * {
-	font-family: 'Poppins', 'sans-serif';
+    font-family: 'Poppins', 'sans-serif';
+
+    &::selection {
+        color: white;
+        background: var(--color-primary);
+    }
 }

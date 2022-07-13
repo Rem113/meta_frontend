@@ -1,85 +1,90 @@
 .wrapper {
-  padding: 1.25rem;
-  background: var(--color-dark-background);
-  width: 100%;
-  border-radius: var(--border-radius);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
-  box-sizing: border-box;
-
-  .info {
+    padding: 1.25rem;
+    background: var(--color-dark-background);
+    width: 100%;
+    border-radius: var(--border-radius);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
 
-    .image {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-
-      & > div {
+    .info {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 0.5rem;
-        color: var(--color-light-text);
-      }
 
-      .icon {
-        width: 1rem;
+        .image {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
 
-        path {
-          stroke: var(--color-light-text);
+            & > div {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: var(--color-light-text);
+            }
+
+            .icon {
+                width: 1rem;
+
+                path {
+                    stroke: var(--color-light-text);
+                }
+            }
         }
-      }
-    }
-  }
-
-  .config {
-    .value {
-      display: grid;
-      grid-template-columns: 3fr 1fr 6fr;
-      word-break: break-all;
-
-      .arrow {
-        width: 1.25rem;
-      }
-    }
-  }
-
-  .actions {
-    display: flex;
-    justify-content: space-between;
-
-    & > div {
-      display: flex;
-      gap: 0.5rem;
-      cursor: pointer;
     }
 
-    .edit {
-      color: var(--color-primary);
+    .config {
+        .value {
+            display: grid;
+            grid-template-columns: 3fr 1fr 6fr;
+            word-break: break-all;
 
-      .edit-icon {
-        width: 1.25rem;
-
-        path {
-          stroke: var(--color-primary);
+            .arrow {
+                width: 1.25rem;
+            }
         }
-      }
     }
 
-    .delete {
-      color: var(--color-error);
+    .actions {
+        display: flex;
+        justify-content: end;
+        gap: 2rem;
 
-      .delete-icon {
-        width: 1.25rem;
-
-        path {
-          stroke: var(--color-error);
+        & > div {
+            display: flex;
+            gap: 0.5rem;
+            cursor: pointer;
         }
-      }
+
+        .edit {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            color: var(--color-primary);
+            text-decoration: none;
+
+            .edit-icon {
+                width: 1.25rem;
+
+                path {
+                    stroke: var(--color-primary);
+                }
+            }
+        }
+
+        .delete {
+            color: var(--color-error);
+
+            .delete-icon {
+                width: 1.25rem;
+
+                path {
+                    stroke: var(--color-error);
+                }
+            }
+        }
     }
-  }
 }

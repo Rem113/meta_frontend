@@ -1,8 +1,8 @@
 import React from 'react'
-import { Command } from '../../../../../../data'
+import { Command } from '../../../../../data'
 
 import * as classes from './CommandCard.module.scss'
-import GlobeIcon from '../../../../../components/Icons/GlobeIcon'
+import GlobeIcon from '../../../../components/Icons/GlobeIcon'
 
 interface CommandCardProps {
     command: Command

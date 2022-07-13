@@ -10,12 +10,17 @@ import TagIcon from '../../../../components/Icons/TagIcon'
 import WifiIcon from '../../../../components/Icons/WifiIcon'
 
 import * as classes from './SimulatorCard.module.scss'
+import { Link } from 'react-router-dom'
 
 interface SimulatorCardProps {
     simulator: Simulator
+    environmentId: string
 }
 
-const SimulatorCard: React.FC<SimulatorCardProps> = ({ simulator }) => {
+const SimulatorCard: React.FC<SimulatorCardProps> = ({
+    simulator,
+    environmentId,
+}) => {
     const { data: image } = useQuery(
         [QueryName.IMAGES, simulator.imageId!],
         () => ImageRepository.find(simulator.imageId)
@@ -49,10 +54,13 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({ simulator }) => {
                 ))}
             </div>
             <div className={classes.actions}>
-                <div className={classes.edit}>
+                <Link
+                    className={classes.edit}
+                    to={`/environments/${environmentId}/simulators/${simulator.id}/edit`}
+                >
                     <EditIcon className={classes['edit-icon']} />
-                    <p>Edit</p>
-                </div>
+                    Edit
+                </Link>
                 <div className={classes.delete}>
                     <DeleteIcon className={classes['delete-icon']} />
                     <p>Delete</p>

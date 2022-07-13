@@ -38,4 +38,10 @@ export namespace ImageRepository {
         const res = await fetch(`${baseUrl}/${id}`)
         return res.json()
     }
+
+    export const findByName = async (name: string): Promise<Image[]> => {
+        console.log(`Querying for image with name ${name}...`)
+        const res = await fetch(`${baseUrl}/name/${name}`)
+        return res.json()
+    }
 }

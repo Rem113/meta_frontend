@@ -7,6 +7,7 @@ import ScenariosForEnvironment from './ScenariosForEnvironment'
 import PlayScenarioInEnvironment from './PlayScenarioInEnvironment'
 import ViewExecutionForScenarioInEnvironment from './ViewExecutionForScenarioInEnvironment'
 import CreateSimulatorInEnvironment from './CreateSimulatorInEnvironment'
+import EditSimulator from './EditSimulator'
 
 const Environments: React.FC = () => (
     <Routes>
@@ -14,6 +15,10 @@ const Environments: React.FC = () => (
         <Route
             path={':environmentId/simulators'}
             element={<SimulatorsForEnvironment />}
+        />
+        <Route
+            path={':environmentId/simulators/:simulatorId/edit'}
+            element={<EditSimulator />}
         />
         <Route
             path={':environmentId/simulators/create'}
