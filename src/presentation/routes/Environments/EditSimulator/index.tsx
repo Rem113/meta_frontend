@@ -9,6 +9,8 @@ import { useMutation } from 'react-query'
 import { SimulatorRepository } from '../../../../data/repositories/SimulatorRepository'
 import { toast } from 'react-toastify'
 
+import * as classes from './EditSimulator.module.scss'
+
 const EditSimulator: React.FC = () => {
     const [simulatorName, setSimulatorName] = useState<string | undefined>(
         undefined
@@ -97,17 +99,22 @@ const EditSimulator: React.FC = () => {
     }
 
     return (
-        <SimulatorForm
-            images={imageVersions}
-            environment={environment}
-            imageVersion={imageVersion!}
-            simulatorName={simulatorName!}
-            configuration={configuration!}
-            setImageVersion={setImageVersion}
-            setSimulatorName={setSimulatorName}
-            setConfiguration={setConfiguration}
-            updateSimulator={submit}
-        />
+        <div className={classes.wrapper}>
+            <h1>
+                Edit <strong>{imageName}</strong> in{' '}
+                <strong>{environment.name}</strong>
+            </h1>
+            <SimulatorForm
+                images={imageVersions}
+                imageVersion={imageVersion!}
+                simulatorName={simulatorName!}
+                configuration={configuration!}
+                setImageVersion={setImageVersion}
+                setSimulatorName={setSimulatorName}
+                setConfiguration={setConfiguration}
+                updateSimulator={submit}
+            />
+        </div>
     )
 }
 

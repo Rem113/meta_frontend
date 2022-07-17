@@ -87,17 +87,22 @@ const CreateSimulatorInEnvironment: React.FC = () => {
             )}
             {selectedImage !== undefined &&
                 selectedImageVersions !== undefined && (
-                    <SimulatorForm
-                        images={selectedImageVersions}
-                        environment={environment!}
-                        addSimulator={submit}
-                        simulatorName={name}
-                        configuration={configuration}
-                        imageVersion={version!}
-                        setSimulatorName={setName}
-                        setConfiguration={setConfiguration}
-                        setImageVersion={setVersion}
-                    />
+                    <div>
+                        <h1>
+                            Add <strong>{images[0].tag.name}</strong> to{' '}
+                            <strong>{environment?.name}</strong>
+                        </h1>
+                        <SimulatorForm
+                            images={selectedImageVersions}
+                            addSimulator={submit}
+                            simulatorName={name}
+                            configuration={configuration}
+                            imageVersion={version!}
+                            setSimulatorName={setName}
+                            setConfiguration={setConfiguration}
+                            setImageVersion={setVersion}
+                        />
+                    </div>
                 )}
         </div>
     )

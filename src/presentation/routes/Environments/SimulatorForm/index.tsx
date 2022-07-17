@@ -1,7 +1,7 @@
 import React from 'react'
 
 import * as classes from './SimulatorForm.module.scss'
-import { Environment, Image } from '../../../../data'
+import { Image } from '../../../../data'
 import Chip from '../../../components/Chip'
 import TagIcon from '../../../components/Icons/TagIcon'
 import CommandCard from './CommandCard'
@@ -14,7 +14,6 @@ import EditIcon from '../../../components/Icons/EditIcon'
 
 interface SimulatorFormProps {
     images: Image[]
-    environment: Environment
     simulatorName: string
     imageVersion: string
     configuration: string
@@ -27,7 +26,6 @@ interface SimulatorFormProps {
 
 const SimulatorForm: React.FC<SimulatorFormProps> = ({
     images,
-    environment,
     addSimulator,
     updateSimulator,
     simulatorName,
@@ -39,10 +37,6 @@ const SimulatorForm: React.FC<SimulatorFormProps> = ({
 }) => {
     return (
         <div className={classes.wrapper}>
-            <h1>
-                Add <strong>{images[0].tag.name}</strong> to{' '}
-                <strong>{environment.name}</strong>
-            </h1>
             <div className={classes['pick-version']}>
                 <div className={classes.images}>
                     {images
