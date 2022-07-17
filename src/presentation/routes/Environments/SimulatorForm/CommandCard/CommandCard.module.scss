@@ -1,23 +1,30 @@
-.name-and-version {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    h1 {
-        font-size: 1.25rem;
-    }
-
-    .version {
+.wrapper {
+    .name-and-version {
         display: flex;
-        gap: 0.5rem;
-        color: var(--color-light-text);
+        justify-content: space-between;
+        align-items: center;
 
-        .icon {
-            width: 1rem;
+        h1 {
+            font-size: 1.25rem;
+        }
 
-            path {
-                stroke: var(--color-light-text);
+        .version {
+            display: flex;
+            gap: 0.5rem;
+            color: var(--color-light-text);
+
+            .icon {
+                width: 1rem;
+
+                path {
+                    stroke: var(--color-light-text);
+                }
             }
         }
+    }
+
+    h3 {
+        color: var(--color-light-text);
+        font-size: 1rem;
     }
 }
