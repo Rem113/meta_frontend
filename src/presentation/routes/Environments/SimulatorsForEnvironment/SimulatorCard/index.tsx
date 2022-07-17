@@ -11,6 +11,9 @@ import WifiIcon from '../../../../components/Icons/WifiIcon'
 
 import * as classes from './SimulatorCard.module.scss'
 import { Link } from 'react-router-dom'
+import { useMutation } from 'react-query'
+import { SimulatorRepository } from '../../../../../data/repositories/SimulatorRepository'
+import { toast } from 'react-toastify'
 
 interface SimulatorCardProps {
     simulator: Simulator
@@ -25,6 +28,24 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({
         [QueryName.IMAGES, simulator.imageId!],
         () => ImageRepository.find(simulator.imageId)
     )
+
+    const { mutateAsync: removeSimulator } = useMutation(
+        SimulatorRepository.remove
+    )
+
+    const handleRemove = async () => {
+        if (confirm('Are you sure you want to remove this simulator?')) {
+            removeSimulator(simulator!.id)
+                .then(() => {
+                    toast('Simulator removed', {
+                        type: 'success',
+                        theme: 'dark',
+                    })
+                })
+                .catch(err => console.error(err))
+        }
+    }
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.info}>
@@ -61,7 +82,7 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({
                     <EditIcon className={classes['edit-icon']} />
                     Edit
                 </Link>
-                <div className={classes.delete}>
+                <div className={classes.delete} onClick={handleRemove}>
                     <DeleteIcon className={classes['delete-icon']} />
                     <p>Delete</p>
                 </div>

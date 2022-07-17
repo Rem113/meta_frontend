@@ -85,30 +85,6 @@ export namespace EnvironmentRepository {
         return res.json()
     }
 
-    export interface UpdateSimulatorParams {
-        simulatorId: string
-        name: string
-        environmentId: string
-        imageId: string
-        configuration: any
-    }
-
-    export const updateSimulator = async (params: UpdateSimulatorParams) => {
-        const body = JSON.stringify(params)
-        const res = await fetch(
-            `${baseUrl}/${params.environmentId}/simulators/${params.simulatorId}`,
-            {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body,
-            }
-        )
-
-        return res.json()
-    }
-
     export const findSimulatorInEnvironment = async (
         environmentId: string,
         simulatorId: string

@@ -1,4 +1,4 @@
-import { BASE_URL } from '..'
+import { BASE_URL, queryClient, QueryName, Simulator } from '..'
 
 const baseUrl = `${BASE_URL}/simulators`
 
@@ -12,7 +12,9 @@ export namespace SimulatorRepository {
         configuration: any
     }
 
-    export const update = async (params: UpdateSimulatorParams) => {
+    export const update = async (
+        params: UpdateSimulatorParams
+    ): Promise<Simulator> => {
         const body = JSON.stringify(params)
         const res = await fetch(`${baseUrl}/${params.simulatorId}`, {
             method: 'PUT',
@@ -21,6 +23,16 @@ export namespace SimulatorRepository {
             },
             body,
         })
+
+        return res.json()
+    }
+
+    export const remove = async (simulatorId: string): Promise<Simulator> => {
+        const res = await fetch(`${baseUrl}/${simulatorId}`, {
+            method: 'DELETE',
+        })
+
+        queryClient.invalidateQueries(QueryName.SIMULATORS)
 
         return res.json()
     }
