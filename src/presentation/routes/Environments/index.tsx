@@ -4,9 +4,9 @@ import CreateEnvironment from './CreateEnvironment'
 import SimulatorsForEnvironment from './SimulatorsForEnvironment'
 import ListEnvironments from './ListEnvironments'
 import ScenariosForEnvironment from './ScenariosForEnvironment'
-import PlayScenarioInEnvironment from './PlayScenarioInEnvironment'
+import PlayScenario from './PlayScenario'
 import ViewExecutionForScenarioInEnvironment from './ViewExecutionForScenarioInEnvironment'
-import CreateSimulatorInEnvironment from './CreateSimulatorInEnvironment'
+import CreateSimulator from './CreateSimulator'
 import EditSimulator from './EditSimulator'
 
 const Environments: React.FC = () => (
@@ -22,7 +22,7 @@ const Environments: React.FC = () => (
         />
         <Route
             path={':environmentId/simulators/create'}
-            element={<CreateSimulatorInEnvironment />}
+            element={<CreateSimulator />}
         />
         <Route
             path={':environmentId/scenarios'}
@@ -30,7 +30,7 @@ const Environments: React.FC = () => (
         />
         <Route
             path={':environmentId/scenarios/:scenarioId'}
-            element={<PlayScenarioInEnvironment />}
+            element={<PlayScenario />}
         />
         <Route
             path={

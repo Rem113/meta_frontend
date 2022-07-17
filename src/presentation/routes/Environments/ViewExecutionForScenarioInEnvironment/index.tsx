@@ -12,8 +12,8 @@ import {
     StepState,
 } from '../../../../data/scenario'
 import useQuery from '../../../../hooks/useQuery'
-import Scenario from '../PlayScenarioInEnvironment/Scenario'
-import ScenarioLogs from '../PlayScenarioInEnvironment/ScenarioLogs'
+import Scenario from '../PlayScenario/Scenario'
+import ScenarioLogs from '../PlayScenario/ScenarioLogs'
 
 import * as classes from './ViewExecutionForScenarioInEnvironment.module.scss'
 

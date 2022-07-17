@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import * as classes from './CreateSimulatorInEnvironment.module.scss'
+import * as classes from './CreateSimulator.module.scss'
 import useQuery from '../../../../hooks/useQuery'
 import { Image, QueryName } from '../../../../data'
 import { ImageRepository } from '../../../../data/repositories/ImageRepository'
@@ -12,7 +12,7 @@ import { useMutation } from 'react-query'
 import { toast } from 'react-toastify'
 import dedupeImages from '../../../../utils/dedupeImages'
 
-const CreateSimulatorInEnvironment: React.FC = () => {
+const CreateSimulator: React.FC = () => {
     const { environmentId } = useParams()
 
     const { data: images } = useQuery(QueryName.IMAGES, ImageRepository.all)
@@ -108,4 +108,4 @@ const CreateSimulatorInEnvironment: React.FC = () => {
     )
 }
 
-export default CreateSimulatorInEnvironment
+export default CreateSimulator
