@@ -1,28 +1,28 @@
 .wrapper {
-  padding: 0.5rem 0;
-  width: 100%;
-
-  .label {
-    font-size: 1rem;
-    color: var(--color-light-text);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  .input {
-    background: var(--color-dark-background);
-    border: none;
-    padding: 0.8rem;
-    color: white;
-    border-radius: var(--border-radius);
+    padding: 0.5rem 0;
     width: 100%;
-    box-sizing: border-box;
-    outline: none;
-  }
 
-  .error {
-    color: var(--color-error);
-    display: block;
-    margin-top: 0.25rem;
-  }
+    .label {
+        font-size: 1rem;
+        color: var(--color-light-text);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .input {
+        background: var(--color-dark-background);
+        border: none;
+        padding: 0.8rem;
+        color: white;
+        border-radius: var(--border-radius);
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    .error {
+        color: var(--color-error);
+        display: block;
+        margin-top: 0.25rem;
+    }
 }

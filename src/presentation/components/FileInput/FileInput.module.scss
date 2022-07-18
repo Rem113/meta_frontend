@@ -1,18 +1,18 @@
 .wrapper {
-  padding: 0.5rem 0;
+    padding: 0.5rem 0;
 
-  .hidden {
-    display: none;
-  }
+    .hidden {
+        display: none;
+    }
 
-  .label {
-    font-size: 1rem;
-    color: var(--color-light-text);
-    margin-bottom: 0.5rem;
-    display: block;
-  }
+    .label {
+        font-size: 1rem;
+        color: var(--color-light-text);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
 
-  .error {
-    color: var(--color-error);
-  }
+    .error {
+        color: var(--color-error);
+    }
 }

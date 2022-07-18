@@ -1,37 +1,37 @@
 .wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .info {
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
 
-    .failure-icon {
-      path {
-        stroke: var(--color-error);
-      }
+    .info {
+        display: flex;
+        gap: 0.5rem;
+
+        .failure-icon {
+            path {
+                stroke: var(--color-error);
+            }
+        }
+
+        .success-icon {
+            path {
+                stroke: var(--color-success);
+            }
+        }
     }
 
-    .success-icon {
-      path {
-        stroke: var(--color-success);
-      }
+    .details {
+        color: var(--color-primary);
+        text-decoration: none;
+        display: flex;
+        gap: 0.25rem;
+
+        .arrow {
+            width: 1rem;
+
+            path {
+                stroke: var(--color-primary);
+            }
+        }
     }
-  }
-
-  .details {
-    color: var(--color-primary);
-    text-decoration: none;
-    display: flex;
-    gap: 0.25rem;
-
-    .arrow {
-      width: 1rem;
-
-      path {
-        stroke: var(--color-primary);
-      }
-    }
-  }
 }
