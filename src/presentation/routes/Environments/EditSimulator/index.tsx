@@ -24,7 +24,7 @@ const EditSimulator: React.FC = () => {
 
     const { environmentId, simulatorId } = useParams()
 
-    const { data: simulator } = useQuery(
+    const { data: simulator, isLoading: simulatorLoading } = useQuery(
         [QueryName.SIMULATORS, simulatorId!],
         () =>
             EnvironmentRepository.findSimulatorInEnvironment(
@@ -33,10 +33,14 @@ const EditSimulator: React.FC = () => {
             )
     )
 
-    const { data: images } = useQuery(QueryName.IMAGES, ImageRepository.all, {
-        enabled: simulator !== undefined,
-    })
-    const { data: environment } = useQuery(
+    const { data: images, isLoading: imagesLoading } = useQuery(
+        QueryName.IMAGES,
+        ImageRepository.all,
+        {
+            enabled: simulator !== undefined,
+        }
+    )
+    const { data: environment, isLoading: environmentLoading } = useQuery(
         [QueryName.ENVIRONMENTS, environmentId!],
         () => EnvironmentRepository.find(environmentId!)
     )
@@ -90,9 +94,9 @@ const EditSimulator: React.FC = () => {
     }
 
     if (
-        images === [] ||
-        environment === undefined ||
-        simulator === undefined ||
+        imagesLoading ||
+        environmentLoading ||
+        simulatorLoading ||
         imageVersion === undefined
     ) {
         return <p>Loading...</p>
@@ -102,7 +106,7 @@ const EditSimulator: React.FC = () => {
         <div className={classes.wrapper}>
             <h1>
                 Edit <strong>{imageName}</strong> in{' '}
-                <strong>{environment.name}</strong>
+                <strong>{environment!.name}</strong>
             </h1>
             <SimulatorForm
                 images={imageVersions}
