@@ -3,21 +3,6 @@
     flex-direction: column;
     gap: 3rem;
 
-    .images {
-        display: flex;
-        gap: 1rem;
-
-        .icon {
-            width: 1rem;
-        }
-    }
-
-    .image-description {
-        margin-top: 1rem;
-        color: var(--color-light-text);
-        font-size: 1rem;
-    }
-
     .commands {
         margin-top: 1rem;
         display: grid;

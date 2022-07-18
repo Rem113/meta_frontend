@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .images {
+        display: flex;
+        gap: 1rem;
+
+        .icon {
+            width: 1rem;
+        }
+    }
+
+    .description {
+        margin-top: 1rem;
+        color: var(--color-light-text);
+        font-size: 1rem;
+    }
+}

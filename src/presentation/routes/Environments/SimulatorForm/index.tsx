@@ -2,15 +2,13 @@ import React from 'react'
 
 import * as classes from './SimulatorForm.module.scss'
 import { Image } from '../../../../data'
-import Chip from '../../../components/Chip'
-import TagIcon from '../../../components/Icons/TagIcon'
 import CommandCard from './CommandCard'
 import JSONInput from '../../../components/JSONInput'
 import RaisedButton from '../../../components/RaisedButton'
 import AddIcon from '../../../components/Icons/AddIcon'
 import TextInput from '../../../components/TextInput'
-import compareSemver from '../../../../utils/compareSemver'
 import EditIcon from '../../../components/Icons/EditIcon'
+import ImageVersions from '../../../components/ImageVersions'
 
 interface SimulatorFormProps {
     images: Image[]
@@ -37,33 +35,11 @@ const SimulatorForm: React.FC<SimulatorFormProps> = ({
 }) => {
     return (
         <div className={classes.wrapper}>
-            <div className={classes['pick-version']}>
-                <div className={classes.images}>
-                    {images
-                        .sort((first, second) =>
-                            compareSemver(first.tag.version, second.tag.version)
-                        )
-                        .reverse()
-                        .map(image => (
-                            <Chip
-                                key={image.id}
-                                selected={imageVersion === image.tag.version}
-                                onClick={() =>
-                                    setImageVersion(image.tag.version)
-                                }
-                                icon={<TagIcon className={classes.icon} />}
-                                text={image.tag.version}
-                            />
-                        ))}
-                </div>
-                <h3 className={classes['image-description']}>
-                    {
-                        images.find(
-                            image => image.tag.version === imageVersion
-                        )!.description
-                    }
-                </h3>
-            </div>
+            <ImageVersions
+                images={images}
+                imageVersion={imageVersion}
+                setImageVersion={setImageVersion}
+            />
             <div>
                 <h2>Commands</h2>
                 <div className={classes.commands}>
