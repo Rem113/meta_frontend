@@ -15,7 +15,10 @@ import dedupeImages from '../../../../utils/dedupeImages'
 const CreateSimulator: React.FC = () => {
     const { environmentId } = useParams()
 
-    const { data: images } = useQuery(QueryName.IMAGES, ImageRepository.all)
+    const { data: images, isLoading: imagesLoading } = useQuery(
+        QueryName.IMAGES,
+        ImageRepository.all
+    )
 
     const { data: environment } = useQuery(
         [QueryName.ENVIRONMENTS, environmentId!],
@@ -74,13 +77,13 @@ const CreateSimulator: React.FC = () => {
         }
     }, [selectedImage])
 
-    if (images === undefined) return <p>Loading...</p>
+    if (imagesLoading) return <p>Loading...</p>
 
     return (
         <div className={classes.wrapper}>
             {selectedImage === undefined && environment !== undefined && (
                 <PickImage
-                    images={dedupeImages(images)}
+                    images={dedupeImages(images!)}
                     environment={environment}
                     onPick={setSelectedImage}
                 />
@@ -89,7 +92,7 @@ const CreateSimulator: React.FC = () => {
                 selectedImageVersions !== undefined && (
                     <div>
                         <h1>
-                            Add <strong>{images[0].tag.name}</strong> to{' '}
+                            Add <strong>{images![0].tag.name}</strong> to{' '}
                             <strong>{environment?.name}</strong>
                         </h1>
                         <SimulatorForm

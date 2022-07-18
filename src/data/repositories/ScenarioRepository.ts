@@ -6,19 +6,26 @@ export namespace ScenarioRepository {
     export interface CreateScenarioParams {
         name: string
         description: string
-        steps: CreateScenarioStepData[]
+        steps: ScenarioStepData[]
     }
 
-    export interface CreateScenarioStepData {
+    export interface ScenarioStepData {
         imageId: string
-        command: CreateScenarioStepCommandData
+        command: ScenarioStepCommandData
         arguments: any
     }
 
-    export interface CreateScenarioStepCommandData {
+    export interface ScenarioStepCommandData {
         name: string
         description: string
         path: string
+    }
+
+    export interface UpdateScenarioParams {
+        id: string
+        name: string
+        description: string
+        steps: ScenarioStepData[]
     }
 
     export const all = async (): Promise<Scenario[]> => {
@@ -43,6 +50,29 @@ export namespace ScenarioRepository {
                 'Content-Type': 'application/json',
             },
             body,
+        })
+
+        return res.json()
+    }
+
+    export const update = async (
+        params: UpdateScenarioParams
+    ): Promise<Scenario> => {
+        const body = JSON.stringify(params)
+        const res = await fetch(`${baseUrl}/${params.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body,
+        })
+
+        return res.json()
+    }
+
+    export const remove = async (scenarioId: string): Promise<Scenario> => {
+        const res = await fetch(`${baseUrl}/${scenarioId}`, {
+            method: 'DELETE',
         })
 
         return res.json()

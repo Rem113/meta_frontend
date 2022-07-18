@@ -17,23 +17,24 @@ const ImageVersions: React.FC<ImageVersionsProps> = ({
     imageVersion,
     setImageVersion,
 }) => {
+    const sorted = images
+        .sort((first, second) =>
+            compareSemver(first.tag.version, second.tag.version)
+        )
+        .reverse()
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.images}>
-                {images
-                    .sort((first, second) =>
-                        compareSemver(first.tag.version, second.tag.version)
-                    )
-                    .reverse()
-                    .map(image => (
-                        <Chip
-                            key={image.id}
-                            selected={imageVersion === image.tag.version}
-                            onClick={() => setImageVersion(image.tag.version)}
-                            icon={<TagIcon className={classes.icon} />}
-                            text={image.tag.version}
-                        />
-                    ))}
+                {sorted.map(image => (
+                    <Chip
+                        key={image.id}
+                        selected={imageVersion === image.tag.version}
+                        onClick={() => setImageVersion(image.tag.version)}
+                        icon={<TagIcon className={classes.icon} />}
+                        text={image.tag.version}
+                    />
+                ))}
             </div>
             <h3 className={classes.description}>
                 {

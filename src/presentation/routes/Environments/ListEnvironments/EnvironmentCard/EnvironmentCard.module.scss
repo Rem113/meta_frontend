@@ -8,6 +8,10 @@
     justify-content: space-between;
 
     .info {
+        h3 {
+            font-size: 1.25rem;
+        }
+
         .description {
             color: var(--color-light-text);
         }

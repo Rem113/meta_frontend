@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { QueryName } from '../../../../data'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
 import useQuery from '../../../../hooks/useQuery'
-import Card from '../../../components/Card'
 import FloatingActionButton from '../../../components/FloatingActionButton'
 import AddIcon from '../../../components/Icons/AddIcon'
 
 import * as classes from './ListScenarios.module.scss'
+import ScenarioCard from './ScenarioCard'
 
 const ListScenarios: React.FC = () => {
     const { data: scenarios, isLoading } = useQuery(
@@ -24,11 +24,7 @@ const ListScenarios: React.FC = () => {
             <div className={classes.scenarios}>
                 {scenarios !== undefined &&
                     scenarios.map(scenario => (
-                        <Card
-                            key={scenario.id}
-                            name={scenario.name}
-                            description={scenario.description}
-                        />
+                        <ScenarioCard key={scenario.id} scenario={scenario} />
                     ))}
             </div>
             <FloatingActionButton

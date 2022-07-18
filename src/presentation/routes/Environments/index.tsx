@@ -5,7 +5,7 @@ import SimulatorsForEnvironment from './SimulatorsForEnvironment'
 import ListEnvironments from './ListEnvironments'
 import ScenariosForEnvironment from './ScenariosForEnvironment'
 import PlayScenario from './PlayScenario'
-import ViewExecutionForScenarioInEnvironment from './ViewExecutionForScenarioInEnvironment'
+import ViewExecutionForScenario from './ViewExecutionForScenario'
 import CreateSimulator from './CreateSimulator'
 import EditSimulator from './EditSimulator'
 
@@ -36,7 +36,7 @@ const Environments: React.FC = () => (
             path={
                 ':environmentId/scenarios/:scenarioId/executions/:executionId'
             }
-            element={<ViewExecutionForScenarioInEnvironment />}
+            element={<ViewExecutionForScenario />}
         />
         <Route index element={<ListEnvironments />} />
     </Routes>

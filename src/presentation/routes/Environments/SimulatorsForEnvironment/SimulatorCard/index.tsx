@@ -80,7 +80,7 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({
                     to={`/environments/${environmentId}/simulators/${simulator.id}/edit`}
                 >
                     <EditIcon className={classes['edit-icon']} />
-                    Edit
+                    <p>Edit</p>
                 </Link>
                 <div className={classes.delete} onClick={handleRemove}>
                     <DeleteIcon className={classes['delete-icon']} />
