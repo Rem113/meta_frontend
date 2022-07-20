@@ -11,7 +11,7 @@ import RaisedButton from '../../../components/RaisedButton'
 import TextInput from '../../../components/TextInput'
 
 import * as classes from './EditScenario.module.scss'
-import StepForm from './StepForm'
+import StepForm from '../StepForm'
 import EditIcon from '../../../components/Icons/EditIcon'
 
 export interface StepData {

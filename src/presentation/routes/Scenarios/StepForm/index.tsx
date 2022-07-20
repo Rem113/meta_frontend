@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
-import { StepData } from '..'
+import { StepData } from '../EditScenario'
 
-import { Image } from '../../../../../data'
-import CopyIcon from '../../../../components/Icons/CopyIcon'
-import DeleteIcon from '../../../../components/Icons/DeleteIcon'
-import DownArrowIcon from '../../../../components/Icons/DownArrowIcon'
-import UpArrowIcon from '../../../../components/Icons/UpArrowIcon'
-import JSONInput from '../../../../components/JSONInput'
-import SelectInput from '../../../../components/SelectInput'
-import TextInput from '../../../../components/TextInput'
+import { Image } from '../../../../data'
+import CopyIcon from '../../../components/Icons/CopyIcon'
+import DeleteIcon from '../../../components/Icons/DeleteIcon'
+import DownArrowIcon from '../../../components/Icons/DownArrowIcon'
+import UpArrowIcon from '../../../components/Icons/UpArrowIcon'
+import JSONInput from '../../../components/JSONInput'
+import SelectInput from '../../../components/SelectInput'
+import TextInput from '../../../components/TextInput'
 
 import * as classes from './StepForm.module.scss'
+import dedupeImages from '../../../../utils/dedupeImages'
 
 interface StepFormProps {
     stepData: StepData
@@ -103,7 +104,9 @@ const StepForm: React.FC<StepFormProps> = ({
                         label={'Image name'}
                         value={stepData.imageName}
                         onChange={setImageName}
-                        options={images.map(image => image.tag.name)}
+                        options={dedupeImages(images).map(
+                            image => image.tag.name
+                        )}
                     />
                     <SelectInput
                         label={'Image version'}
