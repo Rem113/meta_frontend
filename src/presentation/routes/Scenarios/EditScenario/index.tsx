@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { Image, queryClient, QueryName, Scenario } from '../../../../data'
+import { queryClient, QueryName, Scenario } from '../../../../data'
 import { ImageRepository } from '../../../../data/repositories/ImageRepository'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
 import useQuery from '../../../../hooks/useQuery'
@@ -32,21 +32,7 @@ const EditScenario: React.FC = () => {
 
     const { data: images, isLoading: imagesLoading } = useQuery(
         QueryName.IMAGES,
-        ImageRepository.all,
-        {
-            onSuccess: (images: Image[]) => {
-                setStepsData([
-                    {
-                        step: 0,
-                        imageName: images[0].tag.name,
-                        imageVersion: images[0].tag.version,
-                        commandName: images[0].commands[0].name,
-                        commandDescription: images[0].commands[0].description,
-                        arguments: '',
-                    },
-                ])
-            },
-        }
+        ImageRepository.all
     )
 
     const { data: scenario } = useQuery(
