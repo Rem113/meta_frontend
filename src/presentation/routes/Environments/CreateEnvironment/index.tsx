@@ -24,8 +24,14 @@ const CreateEnvironment: React.FC = () => {
 
     const { mutateAsync: createEnvironment, isLoading: isCreatingEnvironment } =
         useMutation(EnvironmentRepository.create, {
-            onSuccess: () =>
-                queryClient.invalidateQueries(QueryName.ENVIRONMENTS),
+            onSuccess: environment => {
+                queryClient.invalidateQueries(QueryName.ENVIRONMENTS)
+                toast('Environment created!', {
+                    theme: 'dark',
+                    type: 'success',
+                })
+                navigate(`/environments/${environment.id}`)
+            },
         })
 
     const validate = (
@@ -47,15 +53,7 @@ const CreateEnvironment: React.FC = () => {
         const errors = validate(name, description)
 
         if (Object.keys(errors).length > 0) setErrors(errors)
-        else {
-            createEnvironment({ name, description }).then(() => {
-                toast('Environment created!', {
-                    theme: 'dark',
-                    type: 'success',
-                })
-                navigate(-1)
-            })
-        }
+        else createEnvironment({ name, description })
     }
 
     return (
