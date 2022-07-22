@@ -1,0 +1,33 @@
+.wrapper {
+    background: var(--color-dark-background);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .info {
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        .description {
+            color: var(--color-light-text);
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: end;
+        gap: 1.5rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+    }
+}

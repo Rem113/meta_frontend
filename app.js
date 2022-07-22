@@ -1,30 +1,42 @@
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { QueryClientProvider } from 'react-query'
-import { queryClient } from './src/data'
-import Images from './src/presentation/routes/Images'
-import Scenarios from './src/presentation/routes/Scenarios'
-import Navbar from './src/presentation/components/Navbar'
-import Wrapper from './src/presentation/components/Wrapper'
-import Environments from './src/presentation/routes/Environments'
+import { queryClient } from './src/core/data'
+import environmentRoutes from './src/environment/presentation/routes'
+import imageRoutes from './src/image/presentation/routes'
+import simulatorRoutes from './src/scenario/presentation/routes'
+import scenarioRoutes from './src/simulator/presentation/routes'
+import executionRoutes from './src/execution/presentation/routes'
+import Navbar from './src/core/presentation/Navbar'
+import Wrapper from './src/core/presentation/Wrapper'
 
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 
 const App = () => (
-	<QueryClientProvider client={queryClient}>
-		<BrowserRouter>
-			<Wrapper>
-				<Navbar />
-				<Routes>
-					<Route path={'environments/*'} element={<Environments />} />
-					<Route path={'images/*'} element={<Images />} />
-					<Route path={'scenarios/*'} element={<Scenarios />} />
-				</Routes>
-			</Wrapper>
-			<ToastContainer />
-		</BrowserRouter>
-	</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+            <Wrapper>
+                <Navbar />
+                <Routes>
+                    {[
+                        ...environmentRoutes,
+                        ...imageRoutes,
+                        ...scenarioRoutes,
+                        ...executionRoutes,
+                        ...simulatorRoutes,
+                    ].map(route => (
+                        <Route
+                            key={route.path}
+                            path={route.path}
+                            element={<route.element />}
+                        />
+                    ))}
+                </Routes>
+            </Wrapper>
+            <ToastContainer />
+        </BrowserRouter>
+    </QueryClientProvider>
 )
 
 ReactDOM.render(<App />, document.getElementById('app'))
