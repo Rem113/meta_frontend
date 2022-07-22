@@ -1,7 +1,7 @@
 import React from 'react'
-import DownArrowIcon from '../Icons/DownArrowIcon'
 
 import * as classes from './SelectInput.module.scss'
+import { ArrowDown } from 'tabler-icons-react'
 
 interface SelectInputProps {
     value: string
@@ -30,7 +30,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
                     </option>
                 ))}
             </select>
-            <DownArrowIcon className={classes.arrow} />
+            <ArrowDown className={classes.arrow} />
         </div>
     )
 }

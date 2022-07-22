@@ -2,16 +2,13 @@ import React, { useEffect } from 'react'
 import { StepData } from '../EditScenario'
 
 import { Image } from '../../../../data'
-import CopyIcon from '../../../components/Icons/CopyIcon'
-import DeleteIcon from '../../../components/Icons/DeleteIcon'
-import DownArrowIcon from '../../../components/Icons/DownArrowIcon'
-import UpArrowIcon from '../../../components/Icons/UpArrowIcon'
 import JSONInput from '../../../components/JSONInput'
 import SelectInput from '../../../components/SelectInput'
 import TextInput from '../../../components/TextInput'
 
 import * as classes from './StepForm.module.scss'
 import dedupeImages from '../../../../utils/dedupeImages'
+import { ArrowDown, ArrowUp, Copy, Trash } from 'tabler-icons-react'
 
 interface StepFormProps {
     stepData: StepData
@@ -89,14 +86,14 @@ const StepForm: React.FC<StepFormProps> = ({
     return (
         <div className={classes.wrapper}>
             <div className={classes.controls}>
-                <CopyIcon className={classes.copy} onClick={duplicate} />
-                <UpArrowIcon className={classes['move-up']} onClick={moveUp} />
+                <Copy className={classes.copy} onClick={duplicate} />
+                <ArrowUp className={classes['move-up']} onClick={moveUp} />
                 <p className={classes.step}>#{stepData.step + 1}</p>
-                <DownArrowIcon
+                <ArrowDown
                     className={classes['move-down']}
                     onClick={moveDown}
                 />
-                <DeleteIcon className={classes.delete} onClick={remove} />
+                <Trash className={classes.delete} onClick={remove} />
             </div>
             <div className={classes.inputs}>
                 <div className={classes['first-row']}>

@@ -17,38 +17,31 @@
 
     .actions {
         display: flex;
-        gap: 2rem;
+        gap: 1rem;
         justify-content: end;
+
+        .icon {
+            width: 1rem;
+        }
 
         & > * {
             cursor: pointer;
             display: flex;
-            gap: 0.5rem;
+            gap: 0.25rem;
+            align-items: center;
         }
 
         .duplicate {
             color: var(--color-primary);
-
-            path {
-                stroke: var(--color-primary);
-            }
         }
 
         .edit {
             color: var(--color-primary);
             text-decoration: none;
-
-            path {
-                stroke: var(--color-primary);
-            }
         }
 
         .delete {
             color: var(--color-error);
-
-            path {
-                stroke: var(--color-error);
-            }
         }
     }
 }

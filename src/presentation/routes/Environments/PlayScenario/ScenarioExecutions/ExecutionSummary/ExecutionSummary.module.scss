@@ -6,17 +6,14 @@
     .info {
         display: flex;
         gap: 0.5rem;
+        align-items: center;
 
         .failure-icon {
-            path {
-                stroke: var(--color-error);
-            }
+            color: var(--color-error);
         }
 
         .success-icon {
-            path {
-                stroke: var(--color-success);
-            }
+            color: var(--color-success);
         }
     }
 
@@ -24,14 +21,7 @@
         color: var(--color-primary);
         text-decoration: none;
         display: flex;
+        align-items: center;
         gap: 0.25rem;
-
-        .arrow {
-            width: 1rem;
-
-            path {
-                stroke: var(--color-primary);
-            }
-        }
     }
 }

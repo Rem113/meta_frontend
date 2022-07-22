@@ -10,15 +10,13 @@
 
         .version {
             display: flex;
-            gap: 0.5rem;
+            align-items: center;
+            gap: 0.25rem;
             color: var(--color-light-text);
 
             .icon {
+                color: var(--color-light-text);
                 width: 1rem;
-
-                path {
-                    stroke: var(--color-light-text);
-                }
             }
         }
     }

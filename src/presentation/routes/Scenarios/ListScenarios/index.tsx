@@ -4,10 +4,10 @@ import { QueryName } from '../../../../data'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
 import useQuery from '../../../../hooks/useQuery'
 import FloatingActionButton from '../../../components/FloatingActionButton'
-import AddIcon from '../../../components/Icons/AddIcon'
 
 import * as classes from './ListScenarios.module.scss'
 import ScenarioCard from './ScenarioCard'
+import { Plus } from 'tabler-icons-react'
 
 const ListScenarios: React.FC = () => {
     const { data: scenarios, isLoading } = useQuery(
@@ -28,7 +28,7 @@ const ListScenarios: React.FC = () => {
                     ))}
             </div>
             <FloatingActionButton
-                icon={<AddIcon />}
+                icon={<Plus size={'1.5rem'} />}
                 onClick={() => navigate('/scenarios/create')}
             />
         </div>

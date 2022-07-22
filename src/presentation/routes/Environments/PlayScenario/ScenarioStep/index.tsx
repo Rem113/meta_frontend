@@ -4,12 +4,10 @@ import { QueryName, Step } from '../../../../../data'
 import { ImageRepository } from '../../../../../data/repositories/ImageRepository'
 
 import * as classes from './ScenarioStep.module.scss'
-
-import GlobeIcon from '../../../../components/Icons/GlobeIcon'
-import TagIcon from '../../../../components/Icons/TagIcon'
 import { StepState } from '../../../../../data/scenario'
 import Highlight from '../../../../components/Highlight'
 import useQuery from '../../../../../hooks/useQuery'
+import { Tag, Track } from 'tabler-icons-react'
 
 interface ScenarioStepProps {
     number: number
@@ -54,11 +52,11 @@ const ScenarioStep: React.FC<ScenarioStepProps> = ({
                             <h3>{image.tag.name}</h3>
                             <div className={classes['image-info']}>
                                 <div className={classes['icon-wrapper']}>
-                                    <TagIcon className={classes.icon} />
+                                    <Tag className={classes.icon} />
                                     <p>{image.tag.version}</p>
                                 </div>
                                 <div className={classes['icon-wrapper']}>
-                                    <GlobeIcon className={classes.icon} />
+                                    <Track className={classes.icon} />
                                     <p>/{step.command.path}</p>
                                 </div>
                             </div>

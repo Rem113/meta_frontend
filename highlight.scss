@@ -2,19 +2,19 @@
 .hljs-string,
 .hljs-title,
 .hljs-attr {
-	font-family: 'JetBrains Mono', 'monospace';
+    font-family: var(--font-monospace);
 }
 
 .hljs-number,
 .hljs-string {
-	color: var(--color-primary);
+    color: var(--color-primary);
 }
 
 .hljs {
-	display: block;
-	overflow-x: auto;
-	background: var(--color-dark-background);
-	border-radius: var(--border-radius);
-	padding: 1.25rem;
-	font-family: 'JetBrains Mono', 'monospace';
+    display: block;
+    overflow-x: auto;
+    background: var(--color-dark-background);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    font-family: var(--font-monospace);
 }

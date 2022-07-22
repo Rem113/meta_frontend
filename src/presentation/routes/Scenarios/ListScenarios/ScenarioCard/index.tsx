@@ -2,13 +2,11 @@ import React from 'react'
 
 import * as classes from './ScenarioCard.module.scss'
 import { queryClient, QueryName, Scenario } from '../../../../../data'
-import EditIcon from '../../../../components/Icons/EditIcon'
 import { Link, useNavigate } from 'react-router-dom'
-import DeleteIcon from '../../../../components/Icons/DeleteIcon'
-import CopyIcon from '../../../../components/Icons/CopyIcon'
 import { useMutation } from 'react-query'
 import { ScenarioRepository } from '../../../../../data/repositories/ScenarioRepository'
 import { toast } from 'react-toastify'
+import { Copy, Edit, Trash } from 'tabler-icons-react'
 
 interface ScenarioCardProps {
     scenario: Scenario
@@ -63,18 +61,18 @@ const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario }) => {
             <p className={classes.description}>{scenario.description}</p>
             <div className={classes.actions}>
                 <div className={classes.duplicate} onClick={handleDuplicate}>
-                    <CopyIcon />
+                    <Copy className={classes.icon} />
                     <p>Duplicate</p>
                 </div>
                 <Link
                     to={`/scenarios/${scenario.id}/edit`}
                     className={classes.edit}
                 >
-                    <EditIcon />
+                    <Edit className={classes.icon} />
                     <p>Edit</p>
                 </Link>
                 <div className={classes.delete} onClick={handleRemove}>
-                    <DeleteIcon />
+                    <Trash className={classes.icon} />
                     <p>Delete</p>
                 </div>
             </div>

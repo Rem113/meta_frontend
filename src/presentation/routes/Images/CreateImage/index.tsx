@@ -8,10 +8,10 @@ import RaisedButton from '../../../components/RaisedButton'
 import { toast } from 'react-toastify'
 import FileInput from '../../../components/FileInput'
 import { useNavigate } from 'react-router-dom'
-import AddIcon from '../../../components/Icons/AddIcon'
 
 import * as classes from './CreateImage.module.scss'
 import JSONInput from '../../../components/JSONInput'
+import { Plus } from 'tabler-icons-react'
 
 interface CreateImageFormErrors {
     name?: string
@@ -125,7 +125,7 @@ const CreateImage: React.FC = () => {
             </form>
             <RaisedButton
                 text={'Add image'}
-                icon={<AddIcon />}
+                icon={<Plus size={'1.5rem'} />}
                 onClick={submit}
                 disabled={isCreatingImage}
             />

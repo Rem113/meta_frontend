@@ -7,7 +7,7 @@ import SimulatorCard from './SimulatorCard'
 import * as classes from './SimulatorsForEnvironment.module.scss'
 import useQuery from '../../../../hooks/useQuery'
 import FloatingActionButton from '../../../components/FloatingActionButton'
-import AddIcon from '../../../components/Icons/AddIcon'
+import { Plus } from 'tabler-icons-react'
 
 const SimulatorsForEnvironment: React.FC = () => {
     const { environmentId } = useParams()
@@ -43,7 +43,7 @@ const SimulatorsForEnvironment: React.FC = () => {
                     ))}
             </div>
             <FloatingActionButton
-                icon={<AddIcon />}
+                icon={<Plus size={'1.5rem'} />}
                 onClick={() =>
                     navigate(`/environments/${environmentId}/simulators/create`)
                 }

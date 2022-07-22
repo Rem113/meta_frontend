@@ -1,11 +1,9 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Execution } from '../../../../../../data'
-import FailureIcon from '../../../../../components/Icons/FailureIcon'
-import RightArrowIcon from '../../../../../components/Icons/RightArrowIcon'
-import SuccessIcon from '../../../../../components/Icons/SuccessIcon'
 
 import * as classes from './ExecutionSummary.module.scss'
+import { ArrowRight, CircleCheck, CircleX } from 'tabler-icons-react'
 
 interface ExecutionSummaryProps {
     execution: Execution
@@ -20,9 +18,15 @@ const ExecutionSummary: React.FC<ExecutionSummaryProps> = ({ execution }) => {
         <div className={classes.wrapper}>
             <div className={classes.info}>
                 {execution.successful ? (
-                    <SuccessIcon className={classes['success-icon']} />
+                    <CircleCheck
+                        className={classes['success-icon']}
+                        size={'1.5rem'}
+                    />
                 ) : (
-                    <FailureIcon className={classes['failure-icon']} />
+                    <CircleX
+                        className={classes['failure-icon']}
+                        size={'1.5rem'}
+                    />
                 )}
                 <p>{timestamp.toLocaleString()}</p>
             </div>
@@ -31,7 +35,7 @@ const ExecutionSummary: React.FC<ExecutionSummaryProps> = ({ execution }) => {
                 to={`/environments/${environmentId}/scenarios/${scenarioId}/executions/${execution.id}`}
             >
                 <p>Details</p>
-                <RightArrowIcon className={classes.arrow} />
+                <ArrowRight size="1rem" />
             </Link>
         </div>
     )

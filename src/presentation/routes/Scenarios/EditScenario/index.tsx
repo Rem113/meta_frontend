@@ -6,13 +6,12 @@ import { queryClient, QueryName, Scenario } from '../../../../data'
 import { ImageRepository } from '../../../../data/repositories/ImageRepository'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
 import useQuery from '../../../../hooks/useQuery'
-import AddIcon from '../../../components/Icons/AddIcon'
 import RaisedButton from '../../../components/RaisedButton'
 import TextInput from '../../../components/TextInput'
 
 import * as classes from './EditScenario.module.scss'
 import StepForm from '../StepForm'
-import EditIcon from '../../../components/Icons/EditIcon'
+import { Edit, Plus } from 'tabler-icons-react'
 
 export interface StepData {
     step: number
@@ -215,7 +214,7 @@ const EditScenario: React.FC = () => {
                             className={classes['add-step']}
                             text={'Add step'}
                             color={'secondary'}
-                            icon={<AddIcon />}
+                            icon={<Plus size={'1rem'} />}
                             size={'small'}
                             onClick={() =>
                                 setStepsData([
@@ -238,7 +237,7 @@ const EditScenario: React.FC = () => {
                 <RaisedButton
                     className={classes['edit-scenario']}
                     text={'Edit scenario'}
-                    icon={<EditIcon />}
+                    icon={<Edit size="1.5rem" />}
                     onClick={submit}
                 />
             </form>

@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { queryClient, QueryName } from '../../../../data'
 import { EnvironmentRepository } from '../../../../data/repositories/EnvironmentRepository'
-import AddIcon from '../../../components/Icons/AddIcon'
 
 import * as classes from './CreateEnvironment.module.scss'
+import { Plus } from 'tabler-icons-react'
 
 interface CreateEnvironmentFormErrors {
     name?: string
@@ -75,7 +75,7 @@ const CreateEnvironment: React.FC = () => {
             </form>
             <RaisedButton
                 text={'Add environment'}
-                icon={<AddIcon />}
+                icon={<Plus size="1.5rem" />}
                 onClick={submit}
                 disabled={isCreatingEnvironment}
             />

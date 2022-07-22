@@ -11,7 +11,7 @@
         gap: 2rem;
 
         .number {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-monospace);
             font-weight: 500;
             font-size: 3rem;
         }
@@ -44,11 +44,8 @@
                         color: var(--color-light-text);
 
                         .icon {
+                            color: var(--color-light-text);
                             width: 1rem;
-
-                            path {
-                                stroke: var(--color-light-text);
-                            }
                         }
                     }
                 }
@@ -74,7 +71,7 @@
             border-radius: var(--border-radius);
 
             * {
-                font-family: 'JetBrains Mono', monospace;
+                font-family: var(--font-monospace);
             }
         }
 

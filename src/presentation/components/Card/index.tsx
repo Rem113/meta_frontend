@@ -1,7 +1,7 @@
 import React from 'react'
-import RightArrowIcon from '../Icons/RightArrowIcon'
 
 import * as classes from './Card.module.scss'
+import { ArrowRight } from 'tabler-icons-react'
 
 interface CardProps {
     name: string
@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({
                 {ellipsized(description, 100)}
             </p>
         </div>
-        <RightArrowIcon className={classes.icon} />
+        <ArrowRight size={'1.5rem'} />
     </div>
 )
 

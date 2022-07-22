@@ -4,7 +4,6 @@ import { QueryName } from '../../../../data'
 import { ScenarioRepository } from '../../../../data/repositories/ScenarioRepository'
 
 import FloatingActionButton from '../../../components/FloatingActionButton'
-import PlayIcon from '../../../components/Icons/PlayIcon'
 
 import Scenario from './Scenario'
 import usePlayScenario from '../../../../hooks/usePlayScenario'
@@ -13,6 +12,7 @@ import ScenarioLogs from './ScenarioLogs'
 import * as classes from './PlayScenario.module.scss'
 import ScenarioExecutions from './ScenarioExecutions'
 import useQuery from '../../../../hooks/useQuery'
+import { PlayerPlay } from 'tabler-icons-react'
 
 const PlayScenario: React.FC = () => {
     const { environmentId, scenarioId } = useParams()
@@ -47,7 +47,7 @@ const PlayScenario: React.FC = () => {
                 )}
             </div>
             <FloatingActionButton
-                icon={<PlayIcon />}
+                icon={<PlayerPlay size={'1.5rem'} />}
                 onClick={playScenario}
                 disabled={isPlaying}
             />

@@ -5,10 +5,9 @@ import { Image } from '../../../../data'
 import CommandCard from './CommandCard'
 import JSONInput from '../../../components/JSONInput'
 import RaisedButton from '../../../components/RaisedButton'
-import AddIcon from '../../../components/Icons/AddIcon'
 import TextInput from '../../../components/TextInput'
-import EditIcon from '../../../components/Icons/EditIcon'
 import ImageVersions from '../../../components/ImageVersions'
+import { Edit, Plus } from 'tabler-icons-react'
 
 interface SimulatorFormProps {
     images: Image[]
@@ -67,7 +66,7 @@ const SimulatorForm: React.FC<SimulatorFormProps> = ({
                 <RaisedButton
                     className={classes.button}
                     text={'Add simulator'}
-                    icon={<AddIcon />}
+                    icon={<Plus size="1.5rem" />}
                     onClick={addSimulator}
                 />
             )}
@@ -75,7 +74,7 @@ const SimulatorForm: React.FC<SimulatorFormProps> = ({
                 <RaisedButton
                     className={classes.button}
                     text={'Update simulator'}
-                    icon={<EditIcon />}
+                    icon={<Edit size="1.5rem" />}
                     onClick={updateSimulator}
                 />
             )}

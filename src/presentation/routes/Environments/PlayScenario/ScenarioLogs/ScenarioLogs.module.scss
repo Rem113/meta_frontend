@@ -14,16 +14,8 @@
             gap: 0.5rem;
             color: var(--color-light-text);
 
-            .timestamp-icon {
-                width: 1rem;
-
-                path {
-                    stroke: var(--color-light-text);
-                }
-            }
-
             span {
-                font-family: 'JetBrains Mono', monospace;
+                font-family: var(--font-monospace);
             }
         }
 

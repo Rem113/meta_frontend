@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Environment } from '../../../../../data'
-import RightArrowIcon from '../../../../components/Icons/RightArrowIcon'
 
 import * as classes from './EnvironmentCard.module.scss'
+import { ArrowRight } from 'tabler-icons-react'
 
 interface EnvironmentCardProps {
     environment: Environment
@@ -20,13 +20,13 @@ const EnvironmentCard: React.FC<EnvironmentCardProps> = ({ environment }) => {
                 <div className={classes['view-simulators']}>
                     <Link to={`/environments/${environment.id}/simulators`}>
                         <p>Simulators</p>
-                        <RightArrowIcon />
+                        <ArrowRight size="1rem" />
                     </Link>
                 </div>
                 <div className={classes['view-scenarios']}>
                     <Link to={`/environments/${environment.id}/scenarios`}>
                         <p>Scenarios</p>
-                        <RightArrowIcon />
+                        <ArrowRight size="1rem" />
                     </Link>
                 </div>
             </div>

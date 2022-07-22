@@ -4,11 +4,11 @@ import { ImageRepository } from '../../../../data/repositories/ImageRepository'
 
 import { useNavigate } from 'react-router-dom'
 import FloatingActionButton from '../../../components/FloatingActionButton'
-import AddIcon from '../../../components/Icons/AddIcon'
 import * as classes from './ListImages.module.scss'
 import Card from '../../../components/Card'
 import useQuery from '../../../../hooks/useQuery'
 import dedupeImages from '../../../../utils/dedupeImages'
+import { Plus } from 'tabler-icons-react'
 
 const ListImages: React.FC = () => {
     const {
@@ -40,7 +40,7 @@ const ListImages: React.FC = () => {
                     ))}
             </div>
             <FloatingActionButton
-                icon={<AddIcon />}
+                icon={<Plus size={'1.5rem'} />}
                 onClick={() => navigate('/images/create')}
             />
         </div>

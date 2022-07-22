@@ -6,9 +6,9 @@ import { EnvironmentRepository } from '../../../../data/repositories/Environment
 import FloatingActionButton from '../../../components/FloatingActionButton'
 
 import { useNavigate } from 'react-router-dom'
-import AddIcon from '../../../components/Icons/AddIcon'
 import EnvironmentCard from './EnvironmentCard'
 import useQuery from '../../../../hooks/useQuery'
+import { Plus } from 'tabler-icons-react'
 
 const ListEnvironments: React.FC = () => {
     const {
@@ -39,7 +39,7 @@ const ListEnvironments: React.FC = () => {
                     ))}
             </div>
             <FloatingActionButton
-                icon={<AddIcon />}
+                icon={<Plus size={'1.5rem'} />}
                 onClick={() => navigate('/environments/create')}
             />
         </div>

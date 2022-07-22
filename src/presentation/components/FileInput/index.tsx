@@ -3,7 +3,7 @@ import React, { ChangeEvent, useRef } from 'react'
 import * as classes from './FileInput.module.scss'
 
 import RaisedButton from '../RaisedButton'
-import UploadIcon from '../Icons/UploadIcon'
+import { Upload } from 'tabler-icons-react'
 
 interface FileInputProps {
     file: File | null
@@ -36,7 +36,7 @@ const FileInput: React.FC<FileInputProps> = ({
             <RaisedButton
                 text={buttonText}
                 onClick={() => inputRef.current?.click()}
-                icon={<UploadIcon />}
+                icon={<Upload size="1rem" />}
                 size={'small'}
                 color={'secondary'}
             />

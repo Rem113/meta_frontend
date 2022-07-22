@@ -2,7 +2,7 @@ import React from 'react'
 import { Command } from '../../../../../data'
 
 import * as classes from './CommandCard.module.scss'
-import GlobeIcon from '../../../../components/Icons/GlobeIcon'
+import { Track } from 'tabler-icons-react'
 
 interface CommandCardProps {
     command: Command
@@ -14,7 +14,7 @@ const CommandCard: React.FC<CommandCardProps> = ({ command }) => {
             <div className={classes['name-and-version']}>
                 <h1>{command.name}</h1>
                 <div className={classes.version}>
-                    <GlobeIcon className={classes.icon} />
+                    <Track className={classes.icon} />
                     <p>/{command.path}</p>
                 </div>
             </div>

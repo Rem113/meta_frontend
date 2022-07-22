@@ -20,7 +20,7 @@
         }
 
         .step {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-monospace);
         }
 
         .copy {
@@ -33,10 +33,7 @@
             position: absolute;
             bottom: 0.8rem;
             cursor: pointer;
-
-            path {
-                stroke: var(--color-error);
-            }
+            color: var(--color-error);
         }
     }
 

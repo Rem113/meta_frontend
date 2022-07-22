@@ -3,8 +3,8 @@ import React from 'react'
 import * as classes from './ImageVersions.module.scss'
 import compareSemver from '../../../utils/compareSemver'
 import Chip from '../Chip'
-import TagIcon from '../Icons/TagIcon'
 import { Image } from '../../../data'
+import { Tag } from 'tabler-icons-react'
 
 interface ImageVersionsProps {
     images: Image[]
@@ -31,7 +31,7 @@ const ImageVersions: React.FC<ImageVersionsProps> = ({
                         key={image.id}
                         selected={imageVersion === image.tag.version}
                         onClick={() => setImageVersion(image.tag.version)}
-                        icon={<TagIcon className={classes.icon} />}
+                        icon={<Tag size="1rem" />}
                         text={image.tag.version}
                     />
                 ))}

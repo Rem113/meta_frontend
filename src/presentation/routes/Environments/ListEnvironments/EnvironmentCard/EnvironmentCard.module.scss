@@ -24,17 +24,10 @@
 
         a {
             display: flex;
-            gap: 0.5rem;
+            align-items: center;
+            gap: 0.25rem;
             color: var(--color-primary);
             text-decoration: none;
-
-            svg {
-                width: 1rem;
-
-                path {
-                    stroke: var(--color-primary);
-                }
-            }
         }
     }
 }

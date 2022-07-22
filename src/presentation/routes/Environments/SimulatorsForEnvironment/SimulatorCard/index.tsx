@@ -2,18 +2,20 @@ import React from 'react'
 import { QueryName, Simulator } from '../../../../../data'
 import { ImageRepository } from '../../../../../data/repositories/ImageRepository'
 import useQuery from '../../../../../hooks/useQuery'
-import DeleteIcon from '../../../../components/Icons/DeleteIcon'
-import EditIcon from '../../../../components/Icons/EditIcon'
-import FileIcon from '../../../../components/Icons/FileIcon'
-import RightArrowIcon from '../../../../components/Icons/RightArrowIcon'
-import TagIcon from '../../../../components/Icons/TagIcon'
-import WifiIcon from '../../../../components/Icons/WifiIcon'
 
 import * as classes from './SimulatorCard.module.scss'
 import { Link } from 'react-router-dom'
 import { useMutation } from 'react-query'
 import { SimulatorRepository } from '../../../../../data/repositories/SimulatorRepository'
 import { toast } from 'react-toastify'
+import {
+    AccessPoint,
+    ArrowRight,
+    Edit,
+    Photo,
+    Tag,
+    Trash,
+} from 'tabler-icons-react'
 
 interface SimulatorCardProps {
     simulator: Simulator
@@ -52,15 +54,15 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({
                 <h2>{simulator.name}</h2>
                 <div className={classes.image}>
                     <div title="image name">
-                        <FileIcon className={classes.icon} />
+                        <Photo className={classes.icon} />
                         {image !== undefined && <p>{image.tag.name}</p>}
                     </div>
                     <div title="version">
-                        <TagIcon className={classes.icon} />
+                        <Tag className={classes.icon} />
                         {image !== undefined && <p>{image.tag.version}</p>}
                     </div>
                     <div title="port">
-                        <WifiIcon className={classes.icon} />
+                        <AccessPoint className={classes.icon} />
                         <p>{simulator.port}</p>
                     </div>
                 </div>
@@ -69,7 +71,7 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({
                 {Object.keys(simulator.configuration).map(key => (
                     <div key={key} className={classes.value}>
                         <p>{key}</p>
-                        <RightArrowIcon className={classes.arrow} />
+                        <ArrowRight />
                         <p>{simulator.configuration[key]}</p>
                     </div>
                 ))}
@@ -79,11 +81,11 @@ const SimulatorCard: React.FC<SimulatorCardProps> = ({
                     className={classes.edit}
                     to={`/environments/${environmentId}/simulators/${simulator.id}/edit`}
                 >
-                    <EditIcon className={classes['edit-icon']} />
+                    <Edit className={classes['edit-icon']} />
                     <p>Edit</p>
                 </Link>
                 <div className={classes.delete} onClick={handleRemove}>
-                    <DeleteIcon className={classes['delete-icon']} />
+                    <Trash className={classes['delete-icon']} />
                     <p>Delete</p>
                 </div>
             </div>

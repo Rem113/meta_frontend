@@ -1,8 +1,8 @@
 import React from 'react'
 import { LogMessage } from '../../../../../data/scenario'
-import ClockIcon from '../../../../components/Icons/ClockIcon'
 
 import * as classes from './ScenarioLogs.module.scss'
+import { Clock } from 'tabler-icons-react'
 
 const pad = (number: number) => (number < 10 ? `0${number}` : number)
 
@@ -23,7 +23,7 @@ const ScenarioLogs: React.FC<ScenarioLogsProps> = ({ logs }) => {
                         className={classes.log}
                     >
                         <p className={classes.timestamp}>
-                            <ClockIcon className={classes['timestamp-icon']} />
+                            <Clock size="1rem" />
                             <span>{`${pad(timestamp.getHours())}:${pad(
                                 timestamp.getMinutes()
                             )}:${pad(timestamp.getSeconds())}`}</span>
