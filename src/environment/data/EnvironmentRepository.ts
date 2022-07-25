@@ -3,34 +3,10 @@ import { BASE_URL, Environment, Execution, Simulator } from '../../core/data'
 const baseUrl = `${BASE_URL}/environments`
 
 export namespace EnvironmentRepository {
-    export interface CreateEnvironmentParams {
-        name: string
-        description: string
-    }
-
     export const all = async (): Promise<Environment[]> => {
         console.log('Querying environments...')
         const res = await fetch(baseUrl)
         return res.json()
-    }
-
-    export const create = async (
-        params: CreateEnvironmentParams
-    ): Promise<Environment> => {
-        const body = JSON.stringify(params)
-        const response = await fetch(baseUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body,
-        })
-
-        if (response.status === 201) return response.json()
-        else {
-            const message = await response.json().then(json => json.message)
-            throw new Error('Failed to create environment: ' + message)
-        }
     }
 
     export const find = async (id: string): Promise<Environment> => {

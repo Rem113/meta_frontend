@@ -8,11 +8,11 @@ export default [
         element: SimulatorsForEnvironment,
     },
     {
-        path: '/environments/:environmentId/simulators/:simulatorId/edit',
-        element: EditSimulator,
+        path: '/environments/:environmentId/simulators/create',
+        element: CreateSimulator,
     },
     {
-        path: '/environments/:environmentId/simulators/:simulatorId/create',
-        element: CreateSimulator,
+        path: '/environments/:environmentId/simulators/:simulatorId/edit',
+        element: EditSimulator,
     },
 ]

@@ -1,65 +1,94 @@
 import React, { useState } from 'react'
 import RaisedButton from '../../../../core/presentation/RaisedButton'
 import TextInput from '../../../../core/presentation/TextInput'
+import * as Yup from 'yup'
 
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { queryClient, QueryName } from '../../../../core/data'
-import { EnvironmentRepository } from '../../../data/EnvironmentRepository'
 
 import * as classes from './CreateEnvironment.module.scss'
 import { Plus } from 'tabler-icons-react'
 
-interface CreateEnvironmentFormErrors {
+import environmentRepository, {
+    CreateEnvironmentParams,
+} from '../../../data/environmentRepository'
+
+interface CreateEnvironmentError {
     name?: string
     description?: string
 }
 
+const schema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    description: Yup.string().required('Description is required'),
+})
+
 const CreateEnvironment: React.FC = () => {
-    const [name, setName] = useState<string>('')
-    const [description, setDescription] = useState<string>('')
-    const [errors, setErrors] = useState<CreateEnvironmentFormErrors>({})
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [errors, setErrors] = useState<CreateEnvironmentError>({})
     const navigate = useNavigate()
 
+    const handleChange =
+        (name: string, setter: (value: string) => void) => (value: string) => {
+            setter(value)
+            setErrors(errors => ({
+                ...errors,
+                [name]: undefined,
+            }))
+        }
+
     const { mutateAsync: createEnvironment, isLoading: isCreatingEnvironment } =
-        useMutation(EnvironmentRepository.create, {
+        useMutation(environmentRepository.create, {
             onSuccess: environment => {
                 queryClient.invalidateQueries(QueryName.ENVIRONMENTS)
                 toast('Environment created!', {
                     theme: 'dark',
                     type: 'success',
                 })
-                navigate(`/environments/${environment.id}`)
+                navigate(`/environments`)
             },
         })
 
-    const validate = (
-        name?: string,
-        description?: string
-    ): CreateEnvironmentFormErrors => {
-        const errors: CreateEnvironmentFormErrors = {}
-
-        if (name === undefined || name.trim().length === 0)
-            errors.name = 'Please enter a name'
-
-        if (description === undefined || description.trim().length === 0)
-            errors.description = 'Please enter a description'
-
-        return errors
+    const validate = async (
+        params: CreateEnvironmentParams
+    ): Promise<boolean> => {
+        try {
+            await schema.validate(params, { abortEarly: false })
+            return true
+        } catch (error: any) {
+            setErrors(
+                error.inner.reduce(
+                    (
+                        accumulator: CreateEnvironmentError,
+                        { path, message }: { path: string; message: string }
+                    ) => ({
+                        ...accumulator,
+                        [path]: message,
+                    }),
+                    {}
+                )
+            )
+            return false
+        }
     }
 
-    const submit = () => {
-        const errors = validate(name, description)
+    const submit = async () => {
+        const params = { name, description }
+        const isValid = await validate(params)
 
-        if (Object.keys(errors).length > 0) setErrors(errors)
-        else
-            createEnvironment({ name, description }).catch(error =>
-                toast(error.message, {
-                    theme: 'dark',
-                    type: 'error',
-                })
-            )
+        if (!isValid) return
+
+        setErrors({})
+
+        createEnvironment(params).catch(error =>
+            toast(error.message, {
+                theme: 'dark',
+                type: 'error',
+            })
+        )
     }
 
     return (
@@ -68,13 +97,13 @@ const CreateEnvironment: React.FC = () => {
             <form>
                 <TextInput
                     value={name}
-                    onChange={setName}
+                    onChange={handleChange('name', setName)}
                     label={'Name'}
                     error={errors.name}
                 />
                 <TextInput
                     value={description}
-                    onChange={setDescription}
+                    onChange={handleChange('description', setDescription)}
                     label={'Description'}
                     error={errors.description}
                 />
