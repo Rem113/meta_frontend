@@ -14,7 +14,6 @@ import * as classes from './CreateImage.module.scss'
 import JSONInput from '../../../../core/presentation/components/JSONInput'
 import { Plus } from 'tabler-icons-react'
 import validate from '../../../../core/presentation/utils/validate'
-import commandsValidator from './commandsValidator'
 
 interface CreateImageError {
     name?: string
@@ -22,12 +21,6 @@ interface CreateImageError {
     description?: string
     commands?: string
     file?: string
-}
-
-const validateCommands = (commands: string | undefined): boolean => {
-    const isValid = commandsValidator(commands)
-    console.log(commandsValidator.errors)
-    return isValid
 }
 
 const schema = Yup.object().shape({
@@ -39,9 +32,7 @@ const schema = Yup.object().shape({
         )
         .required('Version is required'),
     description: Yup.string().required('Description is required'),
-    commands: Yup.string()
-        .test('Commands', 'Invalid JSON schema', validateCommands)
-        .required('Commands is required'),
+    commands: Yup.string().required('Commands is required'),
     file: Yup.mixed().required('File is required'),
 })
 
