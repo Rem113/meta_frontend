@@ -1,5 +1,5 @@
 import React from 'react'
-import { Command } from '../../../../../core/data'
+import { Command } from '../../../../core/data'
 
 import * as classes from './CommandCard.module.scss'
 import { Track } from 'tabler-icons-react'

@@ -1,25 +1,49 @@
 import React, { useState } from 'react'
-import TextInput from '../../../../core/presentation/TextInput'
+import TextInput from '../../../../core/presentation/components/TextInput'
 import { useMutation } from 'react-query'
 import { ImageRepository } from '../../../data/ImageRepository'
 import { queryClient, QueryName } from '../../../../core/data'
-import RaisedButton from '../../../../core/presentation/RaisedButton'
+import RaisedButton from '../../../../core/presentation/components/RaisedButton'
+import * as Yup from 'yup'
 
 import { toast } from 'react-toastify'
-import FileInput from '../../../../core/presentation/FileInput'
+import FileInput from '../../../../core/presentation/components/FileInput'
 import { useNavigate } from 'react-router-dom'
 
 import * as classes from './CreateImage.module.scss'
-import JSONInput from '../../../../core/presentation/JSONInput'
+import JSONInput from '../../../../core/presentation/components/JSONInput'
 import { Plus } from 'tabler-icons-react'
+import validate from '../../../../core/presentation/utils/validate'
+import commandsValidator from './commandsValidator'
 
-interface CreateImageFormErrors {
+interface CreateImageError {
     name?: string
     version?: string
     description?: string
-    command?: string
+    commands?: string
     file?: string
 }
+
+const validateCommands = (commands: string | undefined): boolean => {
+    const isValid = commandsValidator(commands)
+    console.log(commandsValidator.errors)
+    return isValid
+}
+
+const schema = Yup.object().shape({
+    name: Yup.string().required('Name is required'),
+    version: Yup.string()
+        .matches(
+            /^[0-9]+.[0-9]+.[0-9]+$/,
+            "Version must be in the format 'x.x.x'"
+        )
+        .required('Version is required'),
+    description: Yup.string().required('Description is required'),
+    commands: Yup.string()
+        .test('Commands', 'Invalid JSON schema', validateCommands)
+        .required('Commands is required'),
+    file: Yup.mixed().required('File is required'),
+})
 
 const CreateImage: React.FC = () => {
     const { mutateAsync: createImage, isLoading: isCreatingImage } =
@@ -32,34 +56,28 @@ const CreateImage: React.FC = () => {
     const [description, setDescription] = useState<string>('')
     const [commands, setCommands] = useState<string>('')
     const [file, setFile] = useState<File | null>(null)
-    const [errors, setErrors] = useState<CreateImageFormErrors>({})
+    const [errors, setErrors] = useState<CreateImageError>({})
 
     const navigate = useNavigate()
 
-    const validate = (
-        name: string,
-        version: string,
-        command: string,
-        file: File | null
-    ): CreateImageFormErrors => {
-        const errors: CreateImageFormErrors = {}
-
-        if (name.trim().length === 0) errors.name = 'Please enter a name'
-        if (version.trim().length === 0)
-            errors.version = 'Please enter a version number'
-        if (description.trim().length === 0)
-            errors.description = 'Please enter a description'
-        // TODO: Validate command schema
-        if (file === null) errors.file = 'Please select a file'
-
-        return errors
-    }
+    const handleChange =
+        (name: string, setter: (value: any) => void) => (value: any) => {
+            setter(value)
+            setErrors(errors => ({
+                ...errors,
+                [name]: undefined,
+            }))
+        }
 
     const submit = async () => {
-        const errors = validate(name, version, commands, file)
+        const params = { name, version, description, commands, file }
+        const errors = await validate<CreateImageError>(params, schema)
 
-        if (Object.keys(errors).length > 0) setErrors(errors)
-        else {
+        if (errors !== null) {
+            setErrors(errors)
+        } else {
+            setErrors({})
+
             const createImageParams = {
                 file: file!,
                 data: {
@@ -78,7 +96,7 @@ const CreateImage: React.FC = () => {
                     theme: 'dark',
                     type: 'success',
                 })
-                navigate(-1)
+                navigate(`/images`)
             } catch (error) {
                 toast(() => 'Failed to create an image: ' + error, {
                     theme: 'dark',
@@ -94,32 +112,32 @@ const CreateImage: React.FC = () => {
             <form onSubmit={submit}>
                 <TextInput
                     value={name}
-                    onChange={setName}
+                    onChange={handleChange('name', setName)}
                     label={'Name'}
                     error={errors.name}
                 />
                 <TextInput
                     value={version}
-                    onChange={setVersion}
+                    onChange={handleChange('version', setVersion)}
                     label={'Version'}
                     error={errors.version}
                 />
                 <TextInput
                     value={description}
-                    onChange={setDescription}
+                    onChange={handleChange('description', setDescription)}
                     label={'Description'}
                     error={errors.description}
                 />
                 <JSONInput
                     value={commands}
-                    onChange={setCommands}
+                    onChange={handleChange('commands', setCommands)}
                     label={'Commands'}
-                    error={errors.command}
+                    error={errors.commands}
                 />
                 <FileInput
                     label={'Image'}
                     file={file}
-                    onFileSelected={setFile}
+                    onFileSelected={handleChange('file', setFile)}
                     error={errors.file}
                 />
             </form>

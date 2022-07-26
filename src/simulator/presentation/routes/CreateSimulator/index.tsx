@@ -63,6 +63,7 @@ const CreateSimulator: React.FC = () => {
     const [name, setName] = useState('')
     const [configuration, setConfiguration] = useState('')
 
+    // TODO: Validate
     useEffect(() => {
         if (selectedImage !== undefined) {
             const selectedImageVersions = images!.filter(

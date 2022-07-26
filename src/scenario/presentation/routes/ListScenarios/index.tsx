@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { QueryName } from '../../../../core/data'
 import { ScenarioRepository } from '../../../data/ScenarioRepository'
-import FloatingActionButton from '../../../../core/presentation/FloatingActionButton'
+import FloatingActionButton from '../../../../core/presentation/components/FloatingActionButton'
 
 import * as classes from './ListScenarios.module.scss'
 import ScenarioCard from '../../components/ScenarioCard'

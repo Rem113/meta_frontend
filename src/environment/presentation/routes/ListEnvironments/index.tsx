@@ -2,13 +2,13 @@ import React from 'react'
 
 import * as classes from './ListEnvironments.module.scss'
 import { QueryName } from '../../../../core/data'
-import { EnvironmentRepository } from '../../../data/EnvironmentRepository'
-import FloatingActionButton from '../../../../core/presentation/FloatingActionButton'
+import FloatingActionButton from '../../../../core/presentation/components/FloatingActionButton'
 
 import { useNavigate } from 'react-router-dom'
 import EnvironmentCard from '../../components/EnvironmentCard'
 import { Plus } from 'tabler-icons-react'
 import { useQuery } from 'react-query'
+import { EnvironmentRepository } from '../../../data/EnvironmentRepository'
 
 const ListEnvironments: React.FC = () => {
     const {

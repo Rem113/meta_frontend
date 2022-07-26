@@ -5,7 +5,7 @@ import { ImageRepository } from '../../../../image/data/ImageRepository'
 
 import * as classes from './ScenarioStep.module.scss'
 import { StepState } from '../../../data/scenario'
-import Highlight from '../../../../core/presentation/Highlight'
+import Highlight from '../../../../core/presentation/components/Highlight'
 import { Tag, Track } from 'tabler-icons-react'
 import { useQuery } from 'react-query'
 

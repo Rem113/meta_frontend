@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { StepData } from '../../routes/EditScenario'
 
 import { Image } from '../../../../core/data'
-import JSONInput from '../../../../core/presentation/JSONInput'
-import SelectInput from '../../../../core/presentation/SelectInput'
-import TextInput from '../../../../core/presentation/TextInput'
+import JSONInput from '../../../../core/presentation/components/JSONInput'
+import SelectInput from '../../../../core/presentation/components/SelectInput'
+import TextInput from '../../../../core/presentation/components/TextInput'
 
 import * as classes from './StepForm.module.scss'
 import dedupeImages from '../../../../image/utils/dedupeImages'

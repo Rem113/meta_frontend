@@ -101,6 +101,8 @@ const EditSimulator: React.FC = () => {
         return <p>Loading...</p>
     }
 
+    // TODO: Validate
+
     return (
         <div className={classes.wrapper}>
             <h1>

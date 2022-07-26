@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as classes from './ImageVersions.module.scss'
 import compareSemver from '../../../utils/compareSemver'
-import Chip from '../../../../core/presentation/Chip'
+import Chip from '../../../../core/presentation/components/Chip'
 import { Image } from '../../../../core/data'
 import { Tag } from 'tabler-icons-react'
 

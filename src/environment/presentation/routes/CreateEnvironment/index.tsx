@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import RaisedButton from '../../../../core/presentation/RaisedButton'
-import TextInput from '../../../../core/presentation/TextInput'
+import RaisedButton from '../../../../core/presentation/components/RaisedButton'
+import TextInput from '../../../../core/presentation/components/TextInput'
 import * as Yup from 'yup'
 
 import { useMutation } from 'react-query'
@@ -11,9 +11,8 @@ import { queryClient, QueryName } from '../../../../core/data'
 import * as classes from './CreateEnvironment.module.scss'
 import { Plus } from 'tabler-icons-react'
 
-import environmentRepository, {
-    CreateEnvironmentParams,
-} from '../../../data/environmentRepository'
+import environmentRepository from '../../../data/environmentRepository'
+import validate from '../../../../core/presentation/utils/validate'
 
 interface CreateEnvironmentError {
     name?: string
@@ -42,7 +41,7 @@ const CreateEnvironment: React.FC = () => {
 
     const { mutateAsync: createEnvironment, isLoading: isCreatingEnvironment } =
         useMutation(environmentRepository.create, {
-            onSuccess: environment => {
+            onSuccess: () => {
                 queryClient.invalidateQueries(QueryName.ENVIRONMENTS)
                 toast('Environment created!', {
                     theme: 'dark',
@@ -52,43 +51,22 @@ const CreateEnvironment: React.FC = () => {
             },
         })
 
-    const validate = async (
-        params: CreateEnvironmentParams
-    ): Promise<boolean> => {
-        try {
-            await schema.validate(params, { abortEarly: false })
-            return true
-        } catch (error: any) {
-            setErrors(
-                error.inner.reduce(
-                    (
-                        accumulator: CreateEnvironmentError,
-                        { path, message }: { path: string; message: string }
-                    ) => ({
-                        ...accumulator,
-                        [path]: message,
-                    }),
-                    {}
-                )
-            )
-            return false
-        }
-    }
-
     const submit = async () => {
         const params = { name, description }
-        const isValid = await validate(params)
+        const errors = await validate<CreateEnvironmentError>(params, schema)
 
-        if (!isValid) return
+        if (errors !== null) {
+            setErrors(errors)
+        } else {
+            setErrors({})
 
-        setErrors({})
-
-        createEnvironment(params).catch(error =>
-            toast(error.message, {
-                theme: 'dark',
-                type: 'error',
-            })
-        )
+            createEnvironment(params).catch(error =>
+                toast(error.message, {
+                    theme: 'dark',
+                    type: 'error',
+                })
+            )
+        }
     }
 
     return (

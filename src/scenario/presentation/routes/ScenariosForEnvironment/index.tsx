@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { QueryName } from '../../../../core/data'
 import { EnvironmentRepository } from '../../../../environment/data/EnvironmentRepository'
 import { ScenarioRepository } from '../../../data/ScenarioRepository'
-import Card from '../../../../core/presentation/Card'
+import Card from '../../../../core/presentation/components/Card'
 
 import * as classes from './ScenariosForEnvironment.module.scss'
 import { useQuery } from 'react-query'

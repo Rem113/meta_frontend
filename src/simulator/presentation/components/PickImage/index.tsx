@@ -2,7 +2,7 @@ import React from 'react'
 import { Environment, Image } from '../../../../core/data'
 
 import * as classes from './PickImage.module.scss'
-import Card from '../../../../core/presentation/Card'
+import Card from '../../../../core/presentation/components/Card'
 
 interface PickImageProps {
     images: Image[]

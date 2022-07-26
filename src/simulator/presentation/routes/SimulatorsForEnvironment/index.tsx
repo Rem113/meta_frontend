@@ -5,7 +5,7 @@ import { EnvironmentRepository } from '../../../../environment/data/EnvironmentR
 import SimulatorCard from '../../components/SimulatorCard'
 
 import * as classes from './SimulatorsForEnvironment.module.scss'
-import FloatingActionButton from '../../../../core/presentation/FloatingActionButton'
+import FloatingActionButton from '../../../../core/presentation/components/FloatingActionButton'
 import { Plus } from 'tabler-icons-react'
 import { useQuery } from 'react-query'
 

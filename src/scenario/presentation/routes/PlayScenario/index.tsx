@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { QueryName } from '../../../../core/data'
 import { ScenarioRepository } from '../../../data/ScenarioRepository'
 
-import FloatingActionButton from '../../../../core/presentation/FloatingActionButton'
+import FloatingActionButton from '../../../../core/presentation/components/FloatingActionButton'
 
 import Scenario from '../../components/Scenario'
 import usePlayScenario from '../../hooks/usePlayScenario'
