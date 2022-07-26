@@ -11,7 +11,7 @@ import { queryClient, QueryName } from '../../../../core/data'
 import * as classes from './CreateEnvironment.module.scss'
 import { Plus } from 'tabler-icons-react'
 
-import environmentRepository from '../../../data/environmentRepository'
+import environment from '../../../data/environment'
 import validate from '../../../../core/presentation/utils/validate'
 
 interface CreateEnvironmentError {
@@ -40,7 +40,7 @@ const CreateEnvironment: React.FC = () => {
         }
 
     const { mutateAsync: createEnvironment, isLoading: isCreatingEnvironment } =
-        useMutation(environmentRepository.create, {
+        useMutation(environment.create, {
             onSuccess: () => {
                 queryClient.invalidateQueries(QueryName.ENVIRONMENTS)
                 toast('Environment created!', {
