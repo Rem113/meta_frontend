@@ -4,7 +4,7 @@
 - [ ] Propagate backend errors to the user
 - [ ] Fix duplicating the same scenario
 - [ ] Validate JSON with schemas
-- [ ] Prevent users from playing scenario in environment that is missing some of the simulators
+- [ ] Prevent users from playing scenario in environment that is missing some simulators
 - [ ] View image details
 - [ ] Edit and delete images
 - [ ] Add test suites

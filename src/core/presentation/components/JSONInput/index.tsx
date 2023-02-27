@@ -10,9 +10,10 @@ interface JSONInputProps {
     value: string
     onChange: (value: string) => void
     label?: string
+    error?: string
 }
 
-const JSONInput: React.FC<JSONInputProps> = ({ value, onChange, label }) => {
+const JSONInput: React.FC<JSONInputProps> = ({ value, onChange, label, error }) => {
     return (
         <div className={classes.wrapper}>
             {label && <label className={classes.label}>{label}:</label>}
@@ -29,6 +30,7 @@ const JSONInput: React.FC<JSONInputProps> = ({ value, onChange, label }) => {
                     onChange={value => onChange(value)}
                 />
             </div>
+            <small className={classes.error}>{error}</small>
         </div>
     )
 }

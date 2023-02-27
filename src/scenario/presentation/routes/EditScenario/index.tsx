@@ -11,6 +11,8 @@ import TextInput from '../../../../core/presentation/components/TextInput'
 import * as classes from './EditScenario.module.scss'
 import StepForm from '../../components/StepForm'
 import { Edit, Plus } from 'tabler-icons-react'
+import * as Yup from "yup"
+import validate from "../../../../core/presentation/utils/validate"
 
 export interface StepData {
     step: number
@@ -21,12 +23,24 @@ export interface StepData {
     arguments: string
 }
 
+interface EditScenarioError {
+    name?: string
+    description?: string
+}
+
+const schema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    description: Yup.string().required("Description is required")
+    // steps: Yup.array()
+})
+
 const EditScenario: React.FC = () => {
     const { scenarioId } = useParams()
 
     const [name, setName] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [stepsData, setStepsData] = useState<StepData[]>([])
+    const [errors, setErrors] = useState<EditScenarioError>({})
 
     const { data: images, isLoading: imagesLoading } = useQuery(
         QueryName.IMAGES,
@@ -140,8 +154,7 @@ const EditScenario: React.FC = () => {
     }
 
     const submit = async () => {
-        // TODO: Validate
-        const updateScenarioParams = {
+        const params = {
             id: scenario!.id,
             name,
             description,
@@ -162,29 +175,38 @@ const EditScenario: React.FC = () => {
                         description: stepData.commandDescription,
                         path: command!.path,
                     },
-                    arguments: JSON.parse(stepData.arguments),
+                    arguments: stepData.arguments ? JSON.parse(stepData.arguments) : {},
                 }
             }),
         }
 
-        updateScenario(updateScenarioParams).then(() => {
-            toast('Scenario updated!', {
-                theme: 'dark',
-                type: 'success',
+        const errors = await validate<EditScenarioError>(params, schema)
+
+        if (errors !== null) {
+            setErrors(errors)
+        } else {
+            setErrors({})
+
+            updateScenario(params).then(() => {
+                toast('Scenario updated!', {
+                    theme: 'dark',
+                    type: 'success',
+                })
+                navigate(-1)
             })
-            navigate(-1)
-        })
+        }
     }
 
     return (
         <div className={classes.wrapper}>
             <h1>Edit scenario</h1>
             <form>
-                <TextInput value={name} onChange={setName} label={'Name'} />
+                <TextInput value={name} onChange={setName} label={'Name'} error={errors.name} />
                 <TextInput
                     value={description}
                     onChange={setDescription}
                     label={'Description'}
+                    error={errors.description}
                 />
                 {!imagesLoading && (
                     <>
