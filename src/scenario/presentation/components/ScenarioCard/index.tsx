@@ -57,8 +57,10 @@ const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario }) => {
 
     return (
         <div className={classes.wrapper}>
-            <h3 className={classes.name}>{scenario.name}</h3>
-            <p className={classes.description}>{scenario.description}</p>
+            <div className={classes.header}>
+                <h3 className={classes.name}>{scenario.name}</h3>
+                <p className={classes.description}>{scenario.description}</p>
+            </div>
             <div className={classes.actions}>
                 <div className={classes.duplicate} onClick={handleDuplicate}>
                     <Copy className={classes.icon} />
